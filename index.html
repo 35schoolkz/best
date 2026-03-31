@@ -6,8 +6,6 @@
 <title>№35 Мектеп-лицейі</title>
 
 <style>
-* { box-sizing: border-box; }
-
 body {
     margin: 0;
     font-family: Arial;
@@ -18,109 +16,66 @@ body {
 header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 15px 20px;
+    padding: 15px;
     background: white;
     border-bottom: 1px solid #ddd;
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-}
-
-.logo img {
-    width: 40px;
-    margin-right: 10px;
-}
-
-/* MENU ПОД ЛОГО */
+/* MENU */
 .menu {
     display: flex;
     justify-content: center;
     gap: 10px;
     padding: 10px;
     background: #f9fafb;
-    border-bottom: 1px solid #ddd;
 }
 
 .menu button {
+    padding: 10px;
     border: none;
     background: #e5e7eb;
-    padding: 10px 15px;
     border-radius: 10px;
     cursor: pointer;
-    transition: 0.3s;
-}
-
-.menu button:hover {
-    background: #d1d5db;
 }
 
 /* PAGES */
-.page {
-    display: none;
-    padding: 20px;
-}
+.page { display: none; padding: 20px; }
+.active { display: block; }
 
-.active {
-    display: block;
-}
-
-/* SLIDER */
-.slider {
-    max-width: 700px;
-    margin: 20px auto;
-    position: relative;
-}
-
-.slide {
-    width: 100%;
-    height: 350px; /* фикс высота */
-    object-fit: cover; /* делает ровно */
-    display: none;
-    border-radius: 12px;
-}
-
-.slide.active {
-    display: block;
-}
-
-/* ARROWS */
-.prev, .next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0,0,0,0.5);
-    color: white;
-    border: none;
-    padding: 10px;
+/* LIST */
+.item {
+    background: white;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
     cursor: pointer;
 }
 
-.prev { left: 10px; }
-.next { right: 10px; }
+/* COLORS */
+.gold { border-left: 6px solid gold; }
+.silver { border-left: 6px solid silver; }
+.bronze { border-left: 6px solid #cd7f32; }
 
-/* CONTENT */
-.content {
-    max-width: 600px;
-    margin: auto;
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+}
+
+.modal-content {
     background: white;
+    margin: 100px auto;
     padding: 20px;
-    border-radius: 12px;
+    max-width: 400px;
+    border-radius: 10px;
     text-align: center;
 }
 
-/* COMMENTS */
-input, textarea {
+.modal img {
     width: 100%;
-    margin-top: 10px;
-    padding: 10px;
-}
-
-button.send {
-    margin-top: 10px;
-    padding: 10px;
 }
 </style>
 
@@ -128,78 +83,56 @@ button.send {
 <body>
 
 <header>
-    <div class="logo">
-        <img src="logo.jpg">
-        <b>№35 Мектеп-лицейі</b>
-    </div>
+    <b>№35 Мектеп-лицейі</b>
 </header>
 
-<!-- МЕНЮ -->
 <div class="menu">
     <button onclick="openPage('home')">Басты бет</button>
-    <button onclick="openPage('study')">Ақылды оқыту</button>
-    <button onclick="openPage('safe')">Қауіпсіз мектеп</button>
-    <button onclick="openPage('goal')">Бір мақсат</button>
-    <button onclick="openPage('sport')">Спорт</button>
-    <button onclick="openPage('comments')">Пікірлер</button>
+    <button onclick="openPage('rating')">Үздіктер</button>
 </div>
 
 <!-- HOME -->
 <div id="home" class="page active">
+    <h1>Басты бет</h1>
+    <p>Мектеп сайты</p>
+</div>
 
-    <h1 style="text-align:center;">Зияткерлік мектептері</h1>
+<!-- RATING -->
+<div id="rating" class="page">
 
-    <div class="slider">
-        <img src="photo1.jpg" class="slide active">
-        <img src="photo2.jpg" class="slide">
-        <img src="photo3.jpg" class="slide">
-        <img src="photo4.jpg" class="slide">
+    <h2>🏆 Үздік оқушылар</h2>
 
-        <button class="prev" onclick="prev()">❮</button>
-        <button class="next" onclick="next()">❯</button>
-    </div>
+    <!-- GOLD -->
+    <div class="item gold" onclick="showDiploma('d1.jpg')">🥇 Оқушы 1</div>
+    <div class="item gold" onclick="showDiploma('d2.jpg')">🥇 Оқушы 2</div>
+    <div class="item gold">🥇 Оқушы 3</div>
+
+    <!-- SILVER -->
+    <div class="item silver" onclick="showDiploma('d3.jpg')">🥈 Оқушы 4</div>
+    <div class="item silver">🥈 Оқушы 5</div>
+    <div class="item silver">🥈 Оқушы 6</div>
+    <div class="item silver">🥈 Оқушы 7</div>
+
+    <!-- BRONZE -->
+    <div class="item bronze">🥉 Оқушы 8</div>
+    <div class="item bronze">🥉 Оқушы 9</div>
+    <div class="item bronze">🥉 Оқушы 10</div>
+
+    <h2>👨‍🏫 Үздік мұғалімдер</h2>
+
+    <div class="item" onclick="showDiploma('t1.jpg')">Мұғалім 1</div>
+    <div class="item">Мұғалім 2</div>
+    <div class="item" onclick="showDiploma('t2.jpg')">Мұғалім 3</div>
+    <div class="item">Мұғалім 4</div>
+    <div class="item">Мұғалім 5</div>
 
 </div>
 
-<!-- PAGES -->
-<div id="study" class="page">
-    <div class="content">
-        <h2>Ақылды оқыту</h2>
-        <p>Заманауи технология арқылы білім беру.</p>
-    </div>
-</div>
-
-<div id="safe" class="page">
-    <div class="content">
-        <h2>Қауіпсіз мектеп</h2>
-        <p>Оқушылар үшін қауіпсіз орта.</p>
-    </div>
-</div>
-
-<div id="goal" class="page">
-    <div class="content">
-        <h2>Бір мақсат</h2>
-        <p>Барлығы бір мақсатта жұмыс істейді.</p>
-    </div>
-</div>
-
-<div id="sport" class="page">
-    <div class="content">
-        <h2>Спорт</h2>
-        <p>Спорттық жетістіктер.</p>
-    </div>
-</div>
-
-<!-- COMMENTS -->
-<div id="comments" class="page">
-    <div class="content">
-        <h2>Пікірлер</h2>
-
-        <input id="name" placeholder="Атыңыз">
-        <textarea id="text" placeholder="Пікір"></textarea>
-        <button class="send" onclick="addComment()">Жіберу</button>
-
-        <div id="list"></div>
+<!-- MODAL -->
+<div id="modal" class="modal" onclick="closeModal()">
+    <div class="modal-content">
+        <h3>Диплом</h3>
+        <img id="diplomaImg">
     </div>
 </div>
 
@@ -209,36 +142,14 @@ function openPage(id){
     document.getElementById(id).classList.add("active");
 }
 
-/* SLIDER */
-let i = 0;
-let slides = document.querySelectorAll(".slide");
-
-function show(n){
-    slides.forEach(s => s.classList.remove("active"));
-    slides[n].classList.add("active");
+/* MODAL */
+function showDiploma(img){
+    document.getElementById("modal").style.display = "block";
+    document.getElementById("diplomaImg").src = img;
 }
 
-function next(){
-    i = (i + 1) % slides.length;
-    show(i);
-}
-
-function prev(){
-    i = (i - 1 + slides.length) % slides.length;
-    show(i);
-}
-
-setInterval(next, 3000);
-
-/* COMMENTS */
-function addComment(){
-    let name = document.getElementById("name").value;
-    let text = document.getElementById("text").value;
-
-    let div = document.createElement("div");
-    div.innerHTML = "<b>" + name + ":</b> " + text;
-
-    document.getElementById("list").appendChild(div);
+function closeModal(){
+    document.getElementById("modal").style.display = "none";
 }
 </script>
 
