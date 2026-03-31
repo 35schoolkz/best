@@ -6,6 +6,8 @@
 <title>№35 Мектеп-лицейі</title>
 
 <style>
+* {box-sizing: border-box;}
+
 body {
     margin: 0;
     font-family: Arial;
@@ -14,10 +16,10 @@ body {
 
 /* HEADER */
 header {
-    padding: 15px;
     background: white;
-    border-bottom: 1px solid #ddd;
+    padding: 15px;
     text-align: center;
+    font-weight: bold;
 }
 
 /* MENU */
@@ -31,10 +33,16 @@ header {
 
 .menu button {
     padding: 10px 15px;
-    border: none;
-    background: #e5e7eb;
     border-radius: 10px;
+    border: 1px solid #ddd;
+    background: white;
     cursor: pointer;
+    transition: 0.3s;
+}
+
+.menu button:hover {
+    background: black;
+    color: white;
 }
 
 /* PAGE */
@@ -43,9 +51,10 @@ header {
 
 /* SLIDER */
 .slider {
-    max-width: 600px;
+    max-width: 650px;
     margin: 20px auto;
     position: relative;
+    overflow: hidden;
 }
 
 .slide {
@@ -56,9 +65,7 @@ header {
     display: none;
 }
 
-.slide.active {
-    display: block;
-}
+.slide.active { display: block; }
 
 /* ARROWS */
 .prev, .next {
@@ -69,28 +76,27 @@ header {
     color: white;
     border: none;
     padding: 10px;
+    border-radius: 50%;
     cursor: pointer;
 }
 
 .prev { left: 10px; }
 .next { right: 10px; }
 
-/* CONTENT */
-.content {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 600px;
-    margin: auto;
-}
-
-/* ITEMS */
+/* CARDS */
 .item {
     background: white;
     padding: 15px;
     margin: 10px 0;
-    border-radius: 10px;
+    border-radius: 12px;
     cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
 .gold { border-left: 6px solid gold; }
@@ -103,26 +109,35 @@ header {
     position: fixed;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.85);
+    backdrop-filter: blur(5px);
     top: 0;
 }
 
 .modal img {
     display: block;
     margin: 80px auto;
-    max-width: 500px; /* фикс размер */
+    max-width: 450px;
     width: 90%;
-    height: auto;
-    border-radius: 10px;
+    border-radius: 12px;
+    animation: zoom 0.3s;
+}
+
+@keyframes zoom {
+    from {transform: scale(0.7);}
+    to {transform: scale(1);}
+}
+
+/* TITLES */
+h2 {
+    margin-top: 30px;
 }
 </style>
 
 </head>
 <body>
 
-<header>
-    <b>№35 Мектеп-лицейі</b>
-</header>
+<header>№35 Мектеп-лицейі</header>
 
 <div class="menu">
     <button onclick="openPage('home')">Басты бет</button>
@@ -132,42 +147,52 @@ header {
 <!-- HOME -->
 <div id="home" class="page active">
 
-    <h2 style="text-align:center;">№35 Мектеп-лицейі</h2>
+<h2 style="text-align:center;">№35 Мектеп-лицейі</h2>
 
-    <div class="slider">
-        <img src="photo1.jpg" class="slide active">
-        <img src="photo2.jpg" class="slide">
-        <img src="photo3.jpg" class="slide">
-        <img src="photo4.jpg" class="slide">
+<div class="slider">
+    <img src="photo1.jpg" class="slide active">
+    <img src="photo2.jpg" class="slide">
+    <img src="photo3.jpg" class="slide">
+    <img src="photo4.jpg" class="slide">
 
-        <button class="prev" onclick="prevSlide()">❮</button>
-        <button class="next" onclick="nextSlide()">❯</button>
-    </div>
+    <button class="prev" onclick="prevSlide()">❮</button>
+    <button class="next" onclick="nextSlide()">❯</button>
+</div>
 
 </div>
 
 <!-- RATING -->
 <div id="rating" class="page">
 
-    <h2>🏆 Үздік оқушылар</h2>
+<h2>🏆 Үздік оқушылар</h2>
 
-    <div class="item gold" onclick="openGallery('uldana')">🥇 Тәліпова Ұлдана</div>
-    <div class="item gold" onclick="openGallery('nuray')">🥇 Сәдуақас Нұрай</div>
+<!-- GOLD -->
+<div class="item gold" onclick="openGallery('uldana')">🥇 Тәліпова Ұлдана</div>
+<div class="item gold" onclick="openGallery('nuray')">🥇 Сәдуақас Нұрай</div>
+<div class="item gold">🥇 Мұхамеджанова Көркем</div>
 
-    <div class="item silver" onclick="openGallery('akerke')">🥈 Шерімқожа Ақерке</div>
+<!-- SILVER -->
+<div class="item silver" onclick="openGallery('akerke')">🥈 Шерімқожа Ақерке</div>
+<div class="item silver">🥈 Камаладин Мадияр</div>
+<div class="item silver">🥈 Амангелдиева Альбина</div>
+<div class="item silver">🥈 Астрахан Меруерт</div>
 
-    <div class="item bronze" onclick="openGallery('nurislam')">🥉 Мейрамбеков Нұрислам</div>
-    <div class="item bronze" onclick="openGallery('merei')">🥉 Ақбергенова Мерей</div>
+<!-- BRONZE -->
+<div class="item bronze" onclick="openGallery('nurislam')">🥉 Мейрамбеков Нұрислам</div>
+<div class="item bronze">🥉 Алмас Нұрислам</div>
+<div class="item bronze" onclick="openGallery('merei')">🥉 Ақбергенова Мерей</div>
 
-    <h2>👨‍🏫 Үздік мұғалімдер</h2>
+<h2>👨‍🏫 Үздік сынып жетекші</h2>
 
-    <div class="item" onclick="openGallery('aigerim')">Сағатова Айгерім</div>
-    <div class="item" onclick="openGallery('zharyl')">Жарылқасынова Ақмарал</div>
-    <div class="item" onclick="openGallery('aizhan')">Жұмабекқызы Айжан</div>
+<div class="item" onclick="openGallery('aigerim')">Сағатова Айгерім</div>
+<div class="item" onclick="openGallery('aigul')">Сулейменова Айгүл</div>
+<div class="item" onclick="openGallery('zharyl')">Жарылқасынова Ақмарал</div>
+<div class="item" onclick="openGallery('korganbay')">Қорғанбай Жансая</div>
+<div class="item" onclick="openGallery('aizhan')">Жұмабекқызы Айжан</div>
 
 </div>
 
-<!-- GALLERY -->
+<!-- MODAL -->
 <div id="gallery" class="modal" onclick="closeGallery()">
     <img id="img">
 </div>
@@ -178,7 +203,7 @@ function openPage(id){
     document.getElementById(id).classList.add("active");
 }
 
-/* SLIDER FIX */
+/* SLIDER */
 let index = 0;
 let slides = document.querySelectorAll(".slide");
 
@@ -199,16 +224,18 @@ function prevSlide(){
 
 setInterval(nextSlide, 3000);
 
-/* GALLERY */
+/* GALLERIES */
 let galleries = {
-    uldana: ["uldana1.jpeg"],
-    nuray: ["nuray1.png"],
+    uldana: ["uldana1.jpeg","uldana2.jpeg"],
+    nuray: ["nuray1.png","nuray2.png"],
     akerke: ["akerke1.jpeg"],
     nurislam: ["nurislam1.jpeg"],
     merei: ["merei1.jpeg"],
 
     aigerim: ["aigerim1.jpeg"],
+    aigul: ["aigul1.jpeg"],
     zharyl: ["zharyl1.jpeg"],
+    korganbay: ["korganbay1.jpeg"],
     aizhan: ["aizhan1.jpeg"]
 };
 
