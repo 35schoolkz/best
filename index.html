@@ -178,3 +178,171 @@ function closeGallery(){
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>№35 Мектеп-лицейі</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #f3f4f6;
+}
+
+.menu {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    background: white;
+}
+
+.menu button {
+    padding: 10px;
+    border: none;
+    background: #e5e7eb;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.page { display: none; padding: 20px; }
+.active { display: block; }
+
+.item {
+    background: white;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.gold { border-left: 6px solid gold; }
+.silver { border-left: 6px solid silver; }
+.bronze { border-left: 6px solid #cd7f32; }
+
+.modal {
+    display: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    top: 0;
+}
+
+.modal img {
+    display: block;
+    margin: 80px auto;
+    max-width: 80%;
+    border-radius: 10px;
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+}
+
+.left { left: 20px; }
+.right { right: 20px; }
+</style>
+
+</head>
+<body>
+
+<div class="menu">
+    <button onclick="openPage('home')">Басты бет</button>
+    <button onclick="openPage('rating')">Үздіктер</button>
+</div>
+
+<div id="home" class="page active">
+    <h2>Қош келдіңіз!</h2>
+</div>
+
+<div id="rating" class="page">
+
+    <h2>🏆 Үздік оқушылар</h2>
+
+    <div class="item gold" onclick="openGallery('uldana')">🥇 Тәліпова Ұлдана</div>
+    <div class="item gold" onclick="openGallery('nuray')">🥇 Сәдуақас Нұрай</div>
+    <div class="item gold">🥇 Мұхамеджанова Көркем</div>
+
+    <div class="item silver" onclick="openGallery('akerke')">🥈 Шерімқожа Ақерке</div>
+
+    <div class="item bronze" onclick="openGallery('nurislam')">🥉 Мейрамбеков Нұрислам</div>
+    <div class="item bronze" onclick="openGallery('merei')">🥉 Ақбергенова Мерей</div>
+
+    <h2>👨‍🏫 Үздік сынып жетекші</h2>
+
+    <div class="item" onclick="openGallery('aigerim')">Сағатова Айгерім</div>
+    <div class="item" onclick="openGallery('aigul')">Сулейменова Айгүл</div>
+    <div class="item" onclick="openGallery('akmaral')">Жарылқасынова Ақмарал</div>
+    <div class="item" onclick="openGallery('korganbay')">Қорғанбай Жансая</div>
+    <div class="item" onclick="openGallery('aizhan')">Жұмабекқызы Айжан</div>
+
+</div>
+
+<div id="gallery" class="modal" onclick="closeGallery()">
+    <span class="arrow left" onclick="prev(event)">❮</span>
+    <span class="arrow right" onclick="next(event)">❯</span>
+    <img id="img">
+</div>
+
+<script>
+function openPage(id){
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+}
+
+let galleries = {
+    uldana: ["uldana1.jpeg","uldana2.jpeg","uldana3.jpeg"],
+    nuray: ["nuray1.png","nuray2.png","nuray3.png"],
+    akerke: ["akerke1.jpeg","akerke2.jpeg"],
+    nurislam: ["nurislam1.jpeg","nurislam2.jpeg"],
+    merei: ["merei1.jpeg","merei2.jpeg"],
+
+    /* УЧИТЕЛЯ */
+    aigerim: ["aigerim1.jpeg","aigerim2.jpeg","aigerim3.jpeg"],
+    aigul: ["aigul1.jpeg"],
+    akmaral: ["akmaral1.jpeg"],
+    korganbay: ["korganbay1.jpeg","korganbay2.jpeg"],
+    aizhan: ["aizhan1.jpeg","aizhan2.jpeg"]
+};
+
+let current = [];
+let i = 0;
+
+function openGallery(name){
+    current = galleries[name];
+    i = 0;
+    document.getElementById("gallery").style.display = "block";
+    show();
+}
+
+function show(){
+    document.getElementById("img").src = current[i];
+}
+
+function next(e){
+    e.stopPropagation();
+    i = (i + 1) % current.length;
+    show();
+}
+
+function prev(e){
+    e.stopPropagation();
+    i = (i - 1 + current.length) % current.length;
+    show();
+}
+
+function closeGallery(){
+    document.getElementById("gallery").style.display = "none";
+}
+</script>
+
+</body>
+</html>
