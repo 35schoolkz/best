@@ -6,19 +6,20 @@
 <title>№35 Мектеп-лицейі</title>
 
 <style>
+* { box-sizing: border-box; }
+
 body {
     margin: 0;
     font-family: Arial;
     background: #f3f4f6;
-    text-align: center;
 }
 
 /* HEADER */
 header {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 15px 40px;
+    align-items: center;
+    padding: 15px 30px;
     background: white;
     border-bottom: 1px solid #ddd;
 }
@@ -29,31 +30,59 @@ header {
 }
 
 .logo img {
-    width: 50px;
+    width: 40px;
     margin-right: 10px;
 }
 
-/* SLIDER */
-.slider {
-    position: relative;
-    max-width: 800px;
-    margin: 40px auto;
+nav {
+    display: flex;
+    gap: 10px;
 }
 
-.slide {
-    width: 100%;
-    border-radius: 15px;
+nav button {
+    border: none;
+    background: #e5e7eb;
+    padding: 10px 15px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+nav button:hover {
+    background: #d1d5db;
+}
+
+/* PAGES */
+.page {
     display: none;
+    padding: 20px;
+    animation: fade 0.3s;
 }
 
-.slide.active {
+.active {
     display: block;
-    animation: fade 0.6s;
 }
 
 @keyframes fade {
     from {opacity: 0;}
     to {opacity: 1;}
+}
+
+/* SLIDER */
+.slider {
+    max-width: 700px;
+    margin: 20px auto;
+    position: relative;
+}
+
+.slide {
+    width: 100%;
+    display: none;
+    border-radius: 10px;
+}
+
+.slide.active {
+    display: block;
 }
 
 .prev, .next {
@@ -70,57 +99,26 @@ header {
 .prev { left: 10px; }
 .next { right: 10px; }
 
-/* CARDS */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 15px;
-    padding: 40px;
-}
-
-.card {
-    background: white;
-    padding: 15px;
-    border-radius: 12px;
-    transition: 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-}
-
-/* GALLERY */
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 15px;
-    padding: 40px;
-}
-
-.gallery img {
-    width: 100%;
-    border-radius: 10px;
-}
-
-/* COMMENTS */
-.comment-box {
+/* CONTENT BOX */
+.content {
     max-width: 600px;
     margin: auto;
     background: white;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 12px;
+    text-align: center;
 }
 
+/* COMMENTS */
 input, textarea {
     width: 100%;
     margin-top: 10px;
     padding: 10px;
 }
 
-/* MOBILE */
-@media(max-width:700px){
-    .grid {grid-template-columns:1fr;}
-    .gallery {grid-template-columns:1fr;}
+button.send {
+    margin-top: 10px;
+    padding: 10px;
 }
 </style>
 
@@ -132,71 +130,110 @@ input, textarea {
         <img src="logo.jpg">
         <b>№35 Мектеп-лицейі</b>
     </div>
+
+    <nav>
+        <button onclick="openPage('home')">Басты бет</button>
+        <button onclick="openPage('study')">Ақылды оқыту</button>
+        <button onclick="openPage('safe')">Қауіпсіз мектеп</button>
+        <button onclick="openPage('goal')">Бір мақсат</button>
+        <button onclick="openPage('sport')">Спорт</button>
+        <button onclick="openPage('comments')">Пікірлер</button>
+    </nav>
 </header>
 
-<!-- SLIDER -->
-<div class="slider">
-    <img src="photo1.jpg" class="slide active">
-    <img src="photo2.jpg" class="slide">
-    <img src="photo3.jpg" class="slide">
-    <img src="photo4.jpg" class="slide">
+<!-- HOME -->
+<div id="home" class="page active">
 
-    <button class="prev" onclick="prev()">❮</button>
-    <button class="next" onclick="next()">❯</button>
+    <h1 style="text-align:center;">Зияткерлік мектептері</h1>
+
+    <div class="slider">
+        <img src="photo1.jpg" class="slide active">
+        <img src="photo2.jpg" class="slide">
+        <img src="photo3.jpg" class="slide">
+        <img src="photo4.jpg" class="slide">
+
+        <button class="prev" onclick="prev()">❮</button>
+        <button class="next" onclick="next()">❯</button>
+    </div>
+
 </div>
 
-<h2>МЕКТЕП ТУРАЛЫ</h2>
-
-<div class="grid">
-    <div class="card">Ақылды оқыту</div>
-    <div class="card">Қауіпсіз мектеп</div>
-    <div class="card">Бір мақсат</div>
-    <div class="card">Спорт</div>
+<!-- PAGES -->
+<div id="study" class="page">
+    <div class="content">
+        <h2>Ақылды оқыту</h2>
+        <p>Заманауи технология арқылы білім беру.</p>
+    </div>
 </div>
 
-<div class="gallery">
-    <img src="photo2.jpg">
-    <img src="photo3.jpg">
-    <img src="photo4.jpg">
-    <img src="photo5.jpg">
+<div id="safe" class="page">
+    <div class="content">
+        <h2>Қауіпсіз мектеп</h2>
+        <p>Оқушылар үшін қауіпсіз орта.</p>
+    </div>
 </div>
 
-<div class="comment-box">
-    <h2>Пікірлер</h2>
-    <input id="name" placeholder="Атыңыз">
-    <textarea id="text" placeholder="Пікір"></textarea>
-    <button onclick="addComment()">Жіберу</button>
+<div id="goal" class="page">
+    <div class="content">
+        <h2>Бір мақсат</h2>
+        <p>Барлығы бір мақсатта жұмыс істейді.</p>
+    </div>
+</div>
 
-    <div id="list"></div>
+<div id="sport" class="page">
+    <div class="content">
+        <h2>Спорт</h2>
+        <p>Спорттық жетістіктер.</p>
+    </div>
+</div>
+
+<!-- COMMENTS -->
+<div id="comments" class="page">
+    <div class="content">
+        <h2>Пікірлер</h2>
+
+        <input id="name" placeholder="Атыңыз">
+        <textarea id="text" placeholder="Пікір"></textarea>
+        <button class="send" onclick="addComment()">Жіберу</button>
+
+        <div id="list"></div>
+    </div>
 </div>
 
 <script>
+function openPage(id){
+    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+    document.getElementById(id).classList.add("active");
+}
+
+/* SLIDER */
 let i = 0;
 let slides = document.querySelectorAll(".slide");
 
-function show(n) {
+function show(n){
     slides.forEach(s => s.classList.remove("active"));
     slides[n].classList.add("active");
 }
 
-function next() {
+function next(){
     i = (i + 1) % slides.length;
     show(i);
 }
 
-function prev() {
+function prev(){
     i = (i - 1 + slides.length) % slides.length;
     show(i);
 }
 
 setInterval(next, 3000);
 
+/* COMMENTS */
 function addComment(){
-    let name=document.getElementById("name").value;
-    let text=document.getElementById("text").value;
+    let name = document.getElementById("name").value;
+    let text = document.getElementById("text").value;
 
-    let div=document.createElement("div");
-    div.innerHTML="<b>"+name+":</b> "+text;
+    let div = document.createElement("div");
+    div.innerHTML = "<b>" + name + ":</b> " + text;
 
     document.getElementById("list").appendChild(div);
 }
