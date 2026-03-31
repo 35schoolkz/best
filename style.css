@@ -1,47 +1,31 @@
 body {
     margin: 0;
     font-family: Arial;
+    background: #f3f4f6; /* светло-серый */
+    color: #1f2933;
 }
 
-header {
-    background: #1e293b;
-    color: white;
-    padding: 20px;
-    text-align: center;
-}
-
-nav a {
-    color: white;
-    margin: 10px;
-    text-decoration: none;
-}
-
-.hero {
-    background: #38bdf8;
-    padding: 60px;
-    text-align: center;
-    color: white;
-}
-
-section {
+/* контейнер */
+.container {
+    max-width: 1200px;
+    margin: auto;
     padding: 40px;
 }
 
-footer {
-    background: #1e293b;
-    color: white;
-    text-align: center;
+/* header */
+header {
+    background: #ffffff;
     padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid #e5e7eb;
 }
+
+/* hero */
 .hero {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 60px;
-}
-
-.hero-text {
-    max-width: 500px;
+    padding: 60px 40px;
 }
 
 .hero h1 {
@@ -53,35 +37,24 @@ footer {
     border-radius: 15px;
     margin-left: 10px;
 }
-body {
-    font-family: 'Arial', sans-serif;
-    background: #f8f5f0;
-    color: #222;
-}
 
-/* контейнер */
-.container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 40px;
-}
-
-/* заголовки */
-h1 {
-    font-size: 40px;
-    margin-bottom: 10px;
-}
-
-h2 {
-    margin-bottom: 20px;
+/* секции */
+.section {
+    padding: 50px 40px;
 }
 
 /* карточки */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
 .card {
-    background: white;
+    background: #ffffff;
     padding: 20px;
     border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
     transition: 0.3s;
 }
 
@@ -89,18 +62,60 @@ h2 {
     transform: translateY(-5px);
 }
 
-/* сетка */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+/* новости */
+.news {
+    display: flex;
     gap: 20px;
 }
 
-/* кнопки */
-button {
-    background: #d4a373;
+.news img {
+    width: 300px;
+    border-radius: 12px;
+}
+
+/* счетчики */
+.counter-box {
+    background: #4b5563; /* темно-серый */
     color: white;
-    border: none;
-    padding: 10px 20px;
+    padding: 25px;
+    border-radius: 12px;
+    font-size: 28px;
+}
+
+/* FAQ */
+.faq-item {
+    background: white;
+    margin: 10px 0;
+    padding: 15px;
     border-radius: 10px;
+    cursor: pointer;
+}
+
+/* комментарии */
+.comment-box {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    background: #374151;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1f2937;
 }
