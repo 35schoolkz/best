@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Мектеп сайты</title>
+
 <style>
 body {
     margin: 0;
@@ -24,10 +25,51 @@ nav a {
 }
 
 .hero {
-    background: #38bdf8;
-    padding: 60px;
-    text-align: center;
+    padding: 20px;
 }
+
+.slider {
+    position: relative;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.slide {
+    display: none;
+    position: relative;
+}
+
+.slide img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.slide h2 {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0,0,0,0.5);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.active {
+    display: block;
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
 
 section {
     padding: 40px;
@@ -66,6 +108,7 @@ button {
 }
 </style>
 </head>
+
 <body>
 
 <header>
@@ -79,21 +122,40 @@ button {
 </header>
 
 <section class="hero">
-    <h2>Қош келдіңіз!</h2>
-    <p>Бұл біздің мектептің ресми сайты</p>
+    <div class="slider">
+
+        <div class="slide active">
+            <img src="https://picsum.photos/1200/400?1">
+            <h2>Қош келдіңіз!</h2>
+        </div>
+
+        <div class="slide">
+            <img src="https://picsum.photos/1200/400?2">
+            <h2>Біздің мектеп</h2>
+        </div>
+
+        <div class="slide">
+            <img src="https://picsum.photos/1200/400?3">
+            <h2>Білім мен даму</h2>
+        </div>
+
+        <button class="prev" onclick="prevSlide()">❮</button>
+        <button class="next" onclick="nextSlide()">❯</button>
+
+    </div>
 </section>
 
 <section id="about">
     <h2>Мектеп туралы</h2>
     <div class="card">
-        Біздің мектеп — білім мен тәрбие беретін орын. Мұнда оқушылар өз қабілеттерін дамытады.
+        Бұл мектеп – білім мен тәрбиенің ордасы.
     </div>
 </section>
 
 <section id="news">
     <h2>Жаңалықтар</h2>
-    <div class="card">📌 Жаңа информатика кабинеті ашылды</div>
-    <div class="card">📌 Мектеп турнирі сәтті өтті</div>
+    <div class="card">📌 Жаңа кабинет ашылды</div>
+    <div class="card">📌 Мектеп жарысы өтті</div>
 </section>
 
 <section id="contact">
@@ -117,6 +179,26 @@ button {
 </section>
 
 <script>
+let index = 0;
+let slides = document.querySelectorAll(".slide");
+
+function showSlide(i) {
+    slides.forEach(s => s.classList.remove("active"));
+    slides[i].classList.add("active");
+}
+
+function nextSlide() {
+    index = (index + 1) % slides.length;
+    showSlide(index);
+}
+
+function prevSlide() {
+    index = (index - 1 + slides.length) % slides.length;
+    showSlide(index);
+}
+
+setInterval(nextSlide, 3000);
+
 function addComment() {
     let name = document.getElementById("name").value;
     let text = document.getElementById("text").value;
