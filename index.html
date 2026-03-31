@@ -12,22 +12,13 @@ body {
     background: #f3f4f6;
 }
 
-/* HEADER */
-header {
-    display: flex;
-    align-items: center;
-    padding: 15px;
-    background: white;
-    border-bottom: 1px solid #ddd;
-}
-
 /* MENU */
 .menu {
     display: flex;
     justify-content: center;
     gap: 10px;
     padding: 10px;
-    background: #f9fafb;
+    background: white;
 }
 
 .menu button {
@@ -38,11 +29,11 @@ header {
     cursor: pointer;
 }
 
-/* PAGES */
+/* PAGE */
 .page { display: none; padding: 20px; }
 .active { display: block; }
 
-/* LIST */
+/* ITEMS */
 .item {
     background: white;
     padding: 15px;
@@ -51,7 +42,6 @@ header {
     cursor: pointer;
 }
 
-/* COLORS */
 .gold { border-left: 6px solid gold; }
 .silver { border-left: 6px solid silver; }
 .bronze { border-left: 6px solid #cd7f32; }
@@ -60,31 +50,34 @@ header {
 .modal {
     display: none;
     position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.6);
-}
-
-.modal-content {
-    background: white;
-    margin: 100px auto;
-    padding: 20px;
-    max-width: 400px;
-    border-radius: 10px;
-    text-align: center;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    top: 0;
 }
 
 .modal img {
-    width: 100%;
+    display: block;
+    margin: 80px auto;
+    max-width: 80%;
+    border-radius: 10px;
 }
+
+/* ARROWS */
+.arrow {
+    position: absolute;
+    top: 50%;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
+}
+
+.left { left: 20px; }
+.right { right: 20px; }
 </style>
 
 </head>
 <body>
-
-<header>
-    <b>№35 Мектеп-лицейі</b>
-</header>
 
 <div class="menu">
     <button onclick="openPage('home')">Басты бет</button>
@@ -93,8 +86,7 @@ header {
 
 <!-- HOME -->
 <div id="home" class="page active">
-    <h1>Басты бет</h1>
-    <p>Мектеп сайты</p>
+    <h2>Қош келдіңіз!</h2>
 </div>
 
 <!-- RATING -->
@@ -103,37 +95,39 @@ header {
     <h2>🏆 Үздік оқушылар</h2>
 
     <!-- GOLD -->
-    <div class="item gold" onclick="showDiploma('d1.jpg')">🥇 Оқушы 1</div>
-    <div class="item gold" onclick="showDiploma('d2.jpg')">🥇 Оқушы 2</div>
-    <div class="item gold">🥇 Оқушы 3</div>
+    <div class="item gold" onclick="openGallery('uldana')">🥇 Тәліпова Ұлдана</div>
+    <div class="item gold" onclick="openGallery('nuray')">🥇 Сәдуақас Нұрай</div>
+    <div class="item gold">🥇 Мұхамеджанова Көркем</div>
 
     <!-- SILVER -->
-    <div class="item silver" onclick="showDiploma('d3.jpg')">🥈 Оқушы 4</div>
-    <div class="item silver">🥈 Оқушы 5</div>
-    <div class="item silver">🥈 Оқушы 6</div>
-    <div class="item silver">🥈 Оқушы 7</div>
+    <div class="item silver" onclick="openGallery('akerke')">🥈 Шерімқожа Ақерке</div>
+    <div class="item silver">🥈 Камаладин Мадияр</div>
+    <div class="item silver">🥈 Амангелдиева Альбина</div>
+    <div class="item silver">🥈 Астрахан Меруерт</div>
 
     <!-- BRONZE -->
-    <div class="item bronze">🥉 Оқушы 8</div>
-    <div class="item bronze">🥉 Оқушы 9</div>
-    <div class="item bronze">🥉 Оқушы 10</div>
+    <div class="item bronze" onclick="openGallery('nurislam')">🥉 Мейрамбеков Нұрислам</div>
+    <div class="item bronze">🥉 Алмас Нұрислам</div>
+    <div class="item bronze" onclick="openGallery('merei')">🥉 Ақбергенова Мерей</div>
 
-    <h2>👨‍🏫 Үздік мұғалімдер</h2>
+    <h2>👨‍🏫 Үздік сынып жетекші</h2>
 
-    <div class="item" onclick="showDiploma('t1.jpg')">Мұғалім 1</div>
-    <div class="item">Мұғалім 2</div>
-    <div class="item" onclick="showDiploma('t2.jpg')">Мұғалім 3</div>
-    <div class="item">Мұғалім 4</div>
-    <div class="item">Мұғалім 5</div>
+    <div class="item">Сағатова Айгерім</div>
+    <div class="item">Сулейменова Айгүл</div>
+    <div class="item">Жарылқасынова Ақмарал</div>
+    <div class="item">Қорғанбай Жансая</div>
+    <div class="item">Жұмабекқызы Айжан</div>
 
 </div>
 
-<!-- MODAL -->
-<div id="modal" class="modal" onclick="closeModal()">
-    <div class="modal-content">
-        <h3>Диплом</h3>
-        <img id="diplomaImg">
-    </div>
+<!-- GALLERY -->
+<div id="gallery" class="modal" onclick="closeGallery()">
+
+    <span class="arrow left" onclick="prev(event)">❮</span>
+    <span class="arrow right" onclick="next(event)">❯</span>
+
+    <img id="img">
+
 </div>
 
 <script>
@@ -142,14 +136,43 @@ function openPage(id){
     document.getElementById(id).classList.add("active");
 }
 
-/* MODAL */
-function showDiploma(img){
-    document.getElementById("modal").style.display = "block";
-    document.getElementById("diplomaImg").src = img;
+/* ГАЛЕРЕИ */
+let galleries = {
+    uldana: ["uldana1.jpeg","uldana2.jpeg","uldana3.jpeg"],
+    nuray: ["nurai.png","nurai2.png","nurai3.png"],
+    akerke: ["akerke1.jpeg","akerke2.jpeg"],
+    nurislam: ["nurislam1.jpeg","nurislam2.jpeg"],
+    merei: ["merei1.jpeg","merei2.jpeg"]
+};
+
+let current = [];
+let i = 0;
+
+function openGallery(name){
+    current = galleries[name];
+    i = 0;
+    document.getElementById("gallery").style.display = "block";
+    show();
 }
 
-function closeModal(){
-    document.getElementById("modal").style.display = "none";
+function show(){
+    document.getElementById("img").src = current[i];
+}
+
+function next(e){
+    e.stopPropagation();
+    i = (i + 1) % current.length;
+    show();
+}
+
+function prev(e){
+    e.stopPropagation();
+    i = (i - 1 + current.length) % current.length;
+    show();
+}
+
+function closeGallery(){
+    document.getElementById("gallery").style.display = "none";
 }
 </script>
 
