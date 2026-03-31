@@ -18,7 +18,6 @@ body {
 header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: 15px 20px;
     background: white;
     border-bottom: 1px solid #ddd;
@@ -34,7 +33,7 @@ header {
     margin-right: 10px;
 }
 
-/* MENU ПОД ЛОГО */
+/* MENU */
 .menu {
     display: flex;
     justify-content: center;
@@ -50,14 +49,9 @@ header {
     padding: 10px 15px;
     border-radius: 10px;
     cursor: pointer;
-    transition: 0.3s;
 }
 
-.menu button:hover {
-    background: #d1d5db;
-}
-
-/* PAGES */
+/* PAGE */
 .page {
     display: none;
     padding: 20px;
@@ -67,17 +61,46 @@ header {
     display: block;
 }
 
+/* HERO TEXT */
+.hero-text {
+    text-align: center;
+    max-width: 800px;
+    margin: auto;
+}
+
+.hero-text h1 {
+    margin-bottom: 10px;
+}
+
+.hero-text p {
+    color: #555;
+}
+
+/* ADVANTAGES */
+.advantages {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.adv {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+}
+
 /* SLIDER */
 .slider {
     max-width: 700px;
-    margin: 20px auto;
+    margin: 30px auto;
     position: relative;
 }
 
 .slide {
     width: 100%;
-    height: 350px; /* фикс высота */
-    object-fit: cover; /* делает ровно */
+    height: 350px;
+    object-fit: cover;
     display: none;
     border-radius: 12px;
 }
@@ -108,17 +131,11 @@ header {
     background: white;
     padding: 20px;
     border-radius: 12px;
-    text-align: center;
 }
 
 /* COMMENTS */
 input, textarea {
     width: 100%;
-    margin-top: 10px;
-    padding: 10px;
-}
-
-button.send {
     margin-top: 10px;
     padding: 10px;
 }
@@ -134,7 +151,6 @@ button.send {
     </div>
 </header>
 
-<!-- МЕНЮ -->
 <div class="menu">
     <button onclick="openPage('home')">Басты бет</button>
     <button onclick="openPage('study')">Ақылды оқыту</button>
@@ -147,7 +163,22 @@ button.send {
 <!-- HOME -->
 <div id="home" class="page active">
 
-    <h1 style="text-align:center;">Зияткерлік мектептері</h1>
+    <div class="hero-text">
+        <h1>№35 Мектеп-лицейі</h1>
+        <p>📍 Қызылорда қаласы, орталық аймақ</p>
+
+        <p>
+        №35 мектеп-лицейі – оқушыларға сапалы білім беретін, заманауи технологияларды қолданатын оқу орны. 
+        Мұнда әрбір оқушының қабілетін дамытуға ерекше көңіл бөлінеді.
+        </p>
+    </div>
+
+    <div class="advantages">
+        <div class="adv">📘 Заманауи білім беру жүйесі</div>
+        <div class="adv">👨‍🏫 Тәжірибелі мұғалімдер</div>
+        <div class="adv">💻 IT және жаңа технологиялар</div>
+        <div class="adv">🏆 Оқушылардың жоғары жетістіктері</div>
+    </div>
 
     <div class="slider">
         <img src="photo1.jpg" class="slide active">
@@ -161,7 +192,7 @@ button.send {
 
 </div>
 
-<!-- PAGES -->
+<!-- OTHER PAGES -->
 <div id="study" class="page">
     <div class="content">
         <h2>Ақылды оқыту</h2>
@@ -172,32 +203,31 @@ button.send {
 <div id="safe" class="page">
     <div class="content">
         <h2>Қауіпсіз мектеп</h2>
-        <p>Оқушылар үшін қауіпсіз орта.</p>
+        <p>Қауіпсіз орта мен бақылау жүйесі.</p>
     </div>
 </div>
 
 <div id="goal" class="page">
     <div class="content">
         <h2>Бір мақсат</h2>
-        <p>Барлығы бір мақсатта жұмыс істейді.</p>
+        <p>Барлық оқушылар жетістікке бағытталған.</p>
     </div>
 </div>
 
 <div id="sport" class="page">
     <div class="content">
         <h2>Спорт</h2>
-        <p>Спорттық жетістіктер.</p>
+        <p>Спорттық шаралар мен жарыстар.</p>
     </div>
 </div>
 
-<!-- COMMENTS -->
 <div id="comments" class="page">
     <div class="content">
         <h2>Пікірлер</h2>
 
         <input id="name" placeholder="Атыңыз">
         <textarea id="text" placeholder="Пікір"></textarea>
-        <button class="send" onclick="addComment()">Жіберу</button>
+        <button onclick="addComment()">Жіберу</button>
 
         <div id="list"></div>
     </div>
