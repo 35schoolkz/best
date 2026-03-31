@@ -35,11 +35,6 @@ header {
     background: #e5e7eb;
     border-radius: 10px;
     cursor: pointer;
-    transition: 0.2s;
-}
-
-.menu button:hover {
-    background: #d1d5db;
 }
 
 /* PAGE */
@@ -55,7 +50,7 @@ header {
 
 .slide {
     width: 100%;
-    height: 300px;
+    height: 260px;
     object-fit: cover;
     border-radius: 12px;
     display: none;
@@ -96,11 +91,6 @@ header {
     margin: 10px 0;
     border-radius: 10px;
     cursor: pointer;
-    transition: 0.2s;
-}
-
-.item:hover {
-    transform: translateY(-3px);
 }
 
 .gold { border-left: 6px solid gold; }
@@ -120,26 +110,10 @@ header {
 .modal img {
     display: block;
     margin: 80px auto;
-    max-width: 70%;
+    max-width: 500px; /* фикс размер */
+    width: 90%;
+    height: auto;
     border-radius: 10px;
-}
-
-.arrow {
-    position: absolute;
-    top: 50%;
-    font-size: 40px;
-    color: white;
-    cursor: pointer;
-}
-
-.left { left: 20px; }
-.right { right: 20px; }
-
-/* COMMENTS */
-input, textarea {
-    width: 100%;
-    margin-top: 10px;
-    padding: 10px;
 }
 </style>
 
@@ -152,12 +126,7 @@ input, textarea {
 
 <div class="menu">
     <button onclick="openPage('home')">Басты бет</button>
-    <button onclick="openPage('study')">Ақылды оқыту</button>
-    <button onclick="openPage('safe')">Қауіпсіз мектеп</button>
-    <button onclick="openPage('goal')">Бір мақсат</button>
-    <button onclick="openPage('sport')">Спорт</button>
     <button onclick="openPage('rating')">Үздіктер</button>
-    <button onclick="openPage('comments')">Пікірлер</button>
 </div>
 
 <!-- HOME -->
@@ -171,35 +140,10 @@ input, textarea {
         <img src="photo3.jpg" class="slide">
         <img src="photo4.jpg" class="slide">
 
-        <button class="prev" onclick="prev()">❮</button>
-        <button class="next" onclick="next()">❯</button>
+        <button class="prev" onclick="prevSlide()">❮</button>
+        <button class="next" onclick="nextSlide()">❯</button>
     </div>
 
-</div>
-
-<!-- OTHER PAGES -->
-<div id="study" class="page">
-    <div class="content">
-        Ақылды оқыту
-    </div>
-</div>
-
-<div id="safe" class="page">
-    <div class="content">
-        Қауіпсіз мектеп
-    </div>
-</div>
-
-<div id="goal" class="page">
-    <div class="content">
-        Бір мақсат
-    </div>
-</div>
-
-<div id="sport" class="page">
-    <div class="content">
-        Спорт
-    </div>
 </div>
 
 <!-- RATING -->
@@ -209,38 +153,22 @@ input, textarea {
 
     <div class="item gold" onclick="openGallery('uldana')">🥇 Тәліпова Ұлдана</div>
     <div class="item gold" onclick="openGallery('nuray')">🥇 Сәдуақас Нұрай</div>
-    <div class="item gold">🥇 Мұхамеджанова Көркем</div>
 
     <div class="item silver" onclick="openGallery('akerke')">🥈 Шерімқожа Ақерке</div>
 
     <div class="item bronze" onclick="openGallery('nurislam')">🥉 Мейрамбеков Нұрислам</div>
     <div class="item bronze" onclick="openGallery('merei')">🥉 Ақбергенова Мерей</div>
 
-    <h2>👨‍🏫 Үздік сынып жетекші</h2>
+    <h2>👨‍🏫 Үздік мұғалімдер</h2>
 
     <div class="item" onclick="openGallery('aigerim')">Сағатова Айгерім</div>
-    <div class="item" onclick="openGallery('aigul')">Сулейменова Айгүл</div>
     <div class="item" onclick="openGallery('zharyl')">Жарылқасынова Ақмарал</div>
-    <div class="item" onclick="openGallery('korganbay')">Қорғанбай Жансая</div>
     <div class="item" onclick="openGallery('aizhan')">Жұмабекқызы Айжан</div>
 
 </div>
 
-<!-- COMMENTS -->
-<div id="comments" class="page">
-    <div class="content">
-        <h2>Пікірлер</h2>
-        <input id="name" placeholder="Атыңыз">
-        <textarea id="text" placeholder="Пікір"></textarea>
-        <button onclick="addComment()">Жіберу</button>
-        <div id="list"></div>
-    </div>
-</div>
-
 <!-- GALLERY -->
 <div id="gallery" class="modal" onclick="closeGallery()">
-    <span class="arrow left" onclick="prevImg(event)">❮</span>
-    <span class="arrow right" onclick="nextImg(event)">❯</span>
     <img id="img">
 </div>
 
@@ -250,26 +178,26 @@ function openPage(id){
     document.getElementById(id).classList.add("active");
 }
 
-/* SLIDER */
-let i = 0;
+/* SLIDER FIX */
+let index = 0;
 let slides = document.querySelectorAll(".slide");
 
-function show(n){
+function showSlide(i){
     slides.forEach(s => s.classList.remove("active"));
-    slides[n].classList.add("active");
+    slides[i].classList.add("active");
 }
 
-function next(){
-    i = (i + 1) % slides.length;
-    show(i);
+function nextSlide(){
+    index = (index + 1) % slides.length;
+    showSlide(index);
 }
 
-function prev(){
-    i = (i - 1 + slides.length) % slides.length;
-    show(i);
+function prevSlide(){
+    index = (index - 1 + slides.length) % slides.length;
+    showSlide(index);
 }
 
-setInterval(next, 3000);
+setInterval(nextSlide, 3000);
 
 /* GALLERY */
 let galleries = {
@@ -280,48 +208,17 @@ let galleries = {
     merei: ["merei1.jpeg"],
 
     aigerim: ["aigerim1.jpeg"],
-    aigul: ["aigul1.jpeg"],
-    zharyl: ["zharyl1.jpeg"], /* ИСПРАВЛЕНО */
-    korganbay: ["korganbay1.jpeg"],
+    zharyl: ["zharyl1.jpeg"],
     aizhan: ["aizhan1.jpeg"]
 };
 
-let current = [];
-let j = 0;
-
 function openGallery(name){
-    current = galleries[name];
-    j = 0;
     document.getElementById("gallery").style.display = "block";
-    showImg();
-}
-
-function showImg(){
-    document.getElementById("img").src = current[j];
-}
-
-function nextImg(e){
-    e.stopPropagation();
-    j = (j + 1) % current.length;
-    showImg();
-}
-
-function prevImg(e){
-    e.stopPropagation();
-    j = (j - 1 + current.length) % current.length;
-    showImg();
+    document.getElementById("img").src = galleries[name][0];
 }
 
 function closeGallery(){
     document.getElementById("gallery").style.display = "none";
-}
-
-function addComment(){
-    let name = document.getElementById("name").value;
-    let text = document.getElementById("text").value;
-    let div = document.createElement("div");
-    div.innerHTML = "<b>"+name+":</b> "+text;
-    document.getElementById("list").appendChild(div);
 }
 </script>
 
