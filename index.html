@@ -12,6 +12,7 @@ body {
     color: #222;
 }
 
+/* HEADER */
 header {
     background: white;
     padding: 20px;
@@ -19,15 +20,12 @@ header {
     border-bottom: 1px solid #eee;
 }
 
+/* HERO */
 .hero {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 60px;
-}
-
-.hero-text {
-    max-width: 500px;
 }
 
 .hero h1 {
@@ -40,10 +38,12 @@ header {
     margin: 5px;
 }
 
+/* SECTION */
 .section {
-    padding: 50px;
+    padding: 60px;
 }
 
+/* CARDS */
 .cards {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -57,6 +57,7 @@ header {
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
 
+/* NEWS */
 .news {
     display: flex;
     gap: 20px;
@@ -67,6 +68,35 @@ header {
     border-radius: 10px;
 }
 
+/* COUNTER */
+.counter {
+    display: flex;
+    gap: 20px;
+}
+
+.counter-box {
+    background: #d4a373;
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    font-size: 30px;
+}
+
+/* FAQ */
+.faq-item {
+    background: white;
+    margin: 10px 0;
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.faq-answer {
+    display: none;
+    margin-top: 10px;
+}
+
+/* COMMENTS */
 .comment-box {
     background: white;
     padding: 20px;
@@ -100,9 +130,9 @@ button {
 </header>
 
 <section class="hero">
-    <div class="hero-text">
+    <div>
         <h1>Зияткерлік мектептері</h1>
-        <p>Бұл мектеп оқушыларға сапалы білім береді</p>
+        <p>Сапалы білім мен даму</p>
     </div>
 
     <div class="hero-images">
@@ -114,28 +144,50 @@ button {
 
 <section class="section">
     <h2>Жаңалықтар</h2>
-
     <div class="news">
         <img src="https://picsum.photos/300/200">
         <div>
             <p>📌 Жаңа кабинет ашылды</p>
-            <p>📌 Мектеп жарысы өтті</p>
-            <p>📌 Оқушылар жетістікке жетті</p>
+            <p>📌 Турнир өтті</p>
+            <p>📌 Жетістікке жеттік</p>
         </div>
     </div>
 </section>
 
 <section class="section">
     <h2>Мүмкіндіктер</h2>
-
     <div class="cards">
         <div class="card">📘 Сапалы білім</div>
         <div class="card">💻 IT сабақтар</div>
         <div class="card">🏆 Жетістіктер</div>
-        <div class="card">🌍 Халықаралық бағдарлама</div>
-        <div class="card">📊 Даму жүйесі</div>
+        <div class="card">🌍 Бағдарламалар</div>
+        <div class="card">📊 Даму</div>
         <div class="card">👨‍🏫 Мұғалімдер</div>
     </div>
+</section>
+
+<section class="section">
+    <h2>Сандар</h2>
+    <div class="counter">
+        <div class="counter-box" id="c1">0</div>
+        <div class="counter-box" id="c2">0</div>
+        <div class="counter-box" id="c3">0</div>
+    </div>
+</section>
+
+<section class="section">
+    <h2>Сұрақтар</h2>
+
+    <div class="faq-item" onclick="toggleFAQ(this)">
+        Мектеп қай жерде?
+        <div class="faq-answer">Қызылорда қаласында</div>
+    </div>
+
+    <div class="faq-item" onclick="toggleFAQ(this)">
+        Қалай түсуге болады?
+        <div class="faq-answer">Емтихан арқылы</div>
+    </div>
+
 </section>
 
 <section class="section">
@@ -143,7 +195,7 @@ button {
 
     <div class="comment-box">
         <input id="name" placeholder="Атыңыз">
-        <textarea id="text" placeholder="Пікір жазыңыз"></textarea>
+        <textarea id="text" placeholder="Пікір"></textarea>
         <button onclick="addComment()">Жіберу</button>
 
         <div id="comments"></div>
@@ -151,6 +203,32 @@ button {
 </section>
 
 <script>
+/* COUNTER ANIMATION */
+function animateCounter(id, target) {
+    let el = document.getElementById(id);
+    let count = 0;
+
+    let interval = setInterval(() => {
+        count += Math.ceil(target / 50);
+        if (count >= target) {
+            count = target;
+            clearInterval(interval);
+        }
+        el.innerText = count;
+    }, 30);
+}
+
+animateCounter("c1", 2700);
+animateCounter("c2", 5000);
+animateCounter("c3", 1800);
+
+/* FAQ */
+function toggleFAQ(el) {
+    let ans = el.querySelector(".faq-answer");
+    ans.style.display = ans.style.display === "block" ? "none" : "block";
+}
+
+/* COMMENTS */
 function addComment() {
     let name = document.getElementById("name").value;
     let text = document.getElementById("text").value;
