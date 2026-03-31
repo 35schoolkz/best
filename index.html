@@ -12,12 +12,21 @@ body {
     background: #f3f4f6;
 }
 
+/* HEADER */
+header {
+    padding: 15px;
+    background: white;
+    border-bottom: 1px solid #ddd;
+}
+
+/* MENU */
 .menu {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
     padding: 10px;
-    background: white;
+    background: #f9fafb;
 }
 
 .menu button {
@@ -28,9 +37,20 @@ body {
     cursor: pointer;
 }
 
+/* PAGE */
 .page { display: none; padding: 20px; }
 .active { display: block; }
 
+/* CONTENT */
+.content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: auto;
+}
+
+/* ITEMS */
 .item {
     background: white;
     padding: 15px;
@@ -43,6 +63,7 @@ body {
 .silver { border-left: 6px solid silver; }
 .bronze { border-left: 6px solid #cd7f32; }
 
+/* MODAL */
 .modal {
     display: none;
     position: fixed;
@@ -69,20 +90,67 @@ body {
 
 .left { left: 20px; }
 .right { right: 20px; }
+
+/* COMMENTS */
+input, textarea {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+}
 </style>
 
 </head>
 <body>
 
+<header>
+    <b>№35 Мектеп-лицейі</b>
+</header>
+
 <div class="menu">
     <button onclick="openPage('home')">Басты бет</button>
+    <button onclick="openPage('study')">Ақылды оқыту</button>
+    <button onclick="openPage('safe')">Қауіпсіз мектеп</button>
+    <button onclick="openPage('goal')">Бір мақсат</button>
+    <button onclick="openPage('sport')">Спорт</button>
     <button onclick="openPage('rating')">Үздіктер</button>
+    <button onclick="openPage('comments')">Пікірлер</button>
 </div>
 
+<!-- HOME -->
 <div id="home" class="page active">
     <h2>Қош келдіңіз!</h2>
 </div>
 
+<!-- OTHER PAGES -->
+<div id="study" class="page">
+    <div class="content">
+        <h2>Ақылды оқыту</h2>
+        <p>Заманауи технологиялар арқылы білім беру.</p>
+    </div>
+</div>
+
+<div id="safe" class="page">
+    <div class="content">
+        <h2>Қауіпсіз мектеп</h2>
+        <p>Қауіпсіз орта.</p>
+    </div>
+</div>
+
+<div id="goal" class="page">
+    <div class="content">
+        <h2>Бір мақсат</h2>
+        <p>Барлығы бір мақсатқа бағытталған.</p>
+    </div>
+</div>
+
+<div id="sport" class="page">
+    <div class="content">
+        <h2>Спорт</h2>
+        <p>Спорттық жетістіктер.</p>
+    </div>
+</div>
+
+<!-- РЕЙТИНГ -->
 <div id="rating" class="page">
 
     <h2>🏆 Үздік оқушылар</h2>
@@ -106,6 +174,20 @@ body {
 
 </div>
 
+<!-- COMMENTS -->
+<div id="comments" class="page">
+    <div class="content">
+        <h2>Пікірлер</h2>
+
+        <input id="name" placeholder="Атыңыз">
+        <textarea id="text" placeholder="Пікір"></textarea>
+        <button onclick="addComment()">Жіберу</button>
+
+        <div id="list"></div>
+    </div>
+</div>
+
+<!-- GALLERY -->
 <div id="gallery" class="modal" onclick="closeGallery()">
     <span class="arrow left" onclick="prev(event)">❮</span>
     <span class="arrow right" onclick="next(event)">❯</span>
@@ -119,18 +201,17 @@ function openPage(id){
 }
 
 let galleries = {
-    uldana: ["uldana1.jpeg","uldana2.jpeg","uldana3.jpeg"],
-    nuray: ["nuray1.png","nuray2.png","nuray3.png"],
-    akerke: ["akerke1.jpeg","akerke2.jpeg"],
-    nurislam: ["nurislam1.jpeg","nurislam2.jpeg"],
-    merei: ["merei1.jpeg","merei2.jpeg"],
+    uldana: ["uldana1.jpeg","uldana2.jpeg"],
+    nuray: ["nuray1.png"],
+    akerke: ["akerke1.jpeg"],
+    nurislam: ["nurislam1.jpeg"],
+    merei: ["merei1.jpeg"],
 
-    /* УЧИТЕЛЯ */
-    aigerim: ["aigerim1.jpeg","aigerim2.jpeg","aigerim3.jpeg"],
+    aigerim: ["aigerim1.jpeg"],
     aigul: ["aigul1.jpeg"],
     akmaral: ["akmaral1.jpeg"],
-    korganbay: ["korganbay1.jpeg","korganbay2.jpeg"],
-    aizhan: ["aizhan1.jpeg","aizhan2.jpeg"]
+    korganbay: ["korganbay1.jpeg"],
+    aizhan: ["aizhan1.jpeg"]
 };
 
 let current = [];
@@ -161,6 +242,16 @@ function prev(e){
 
 function closeGallery(){
     document.getElementById("gallery").style.display = "none";
+}
+
+function addComment(){
+    let name = document.getElementById("name").value;
+    let text = document.getElementById("text").value;
+
+    let div = document.createElement("div");
+    div.innerHTML = "<b>"+name+":</b> "+text;
+
+    document.getElementById("list").appendChild(div);
 }
 </script>
 
