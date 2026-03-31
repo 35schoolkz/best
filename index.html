@@ -6,20 +6,10 @@
 <title>№35 Мектеп-лицейі</title>
 
 <style>
-* {box-sizing: border-box;}
-
 body {
     margin: 0;
     font-family: Arial;
-    background: #f3f4f6;
-}
-
-/* HEADER */
-header {
-    background: white;
-    padding: 15px;
-    text-align: center;
-    font-weight: bold;
+    background: #f1f3f7;
 }
 
 /* MENU */
@@ -27,8 +17,8 @@ header {
     display: flex;
     justify-content: center;
     gap: 10px;
-    padding: 10px;
-    background: #f9fafb;
+    padding: 12px;
+    background: white;
 }
 
 .menu button {
@@ -37,66 +27,52 @@ header {
     border: 1px solid #ddd;
     background: white;
     cursor: pointer;
-    transition: 0.3s;
 }
 
-.menu button:hover {
-    background: black;
-    color: white;
-}
-
-/* PAGE */
 .page { display: none; padding: 20px; }
 .active { display: block; }
 
 /* SLIDER */
 .slider {
-    max-width: 650px;
-    margin: 20px auto;
+    max-width: 600px;
+    margin: auto;
     position: relative;
-    overflow: hidden;
 }
 
 .slide {
     width: 100%;
-    height: 260px;
+    height: 250px;
     object-fit: cover;
-    border-radius: 12px;
     display: none;
+    border-radius: 12px;
 }
 
-.slide.active { display: block; }
+.slide.active {
+    display: block;
+}
 
-/* ARROWS */
-.prev, .next {
+/* SLIDER BUTTONS */
+.btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0,0,0,0.5);
+    background: black;
     color: white;
-    border: none;
-    padding: 10px;
-    border-radius: 50%;
+    padding: 8px;
     cursor: pointer;
+    border-radius: 50%;
 }
 
-.prev { left: 10px; }
-.next { right: 10px; }
+.left { left: 10px; }
+.right { right: 10px; }
 
-/* CARDS */
+/* LIST */
 .item {
     background: white;
     padding: 15px;
     margin: 10px 0;
     border-radius: 12px;
     cursor: pointer;
-    transition: 0.3s;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
-
-.item:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
 }
 
 .gold { border-left: 6px solid gold; }
@@ -110,34 +86,31 @@ header {
     width: 100%;
     height: 100%;
     background: rgba(0,0,0,0.85);
-    backdrop-filter: blur(5px);
     top: 0;
 }
 
 .modal img {
     display: block;
-    margin: 80px auto;
+    margin: 70px auto;
     max-width: 450px;
     width: 90%;
-    border-radius: 12px;
-    animation: zoom 0.3s;
 }
 
-@keyframes zoom {
-    from {transform: scale(0.7);}
-    to {transform: scale(1);}
+/* GALLERY ARROWS */
+.arrow {
+    position: absolute;
+    top: 50%;
+    font-size: 40px;
+    color: white;
+    cursor: pointer;
 }
 
-/* TITLES */
-h2 {
-    margin-top: 30px;
-}
+.arrow.left { left: 20px; }
+.arrow.right { right: 20px; }
+
 </style>
-
 </head>
 <body>
-
-<header>№35 Мектеп-лицейі</header>
 
 <div class="menu">
     <button onclick="openPage('home')">Басты бет</button>
@@ -153,10 +126,9 @@ h2 {
     <img src="photo1.jpg" class="slide active">
     <img src="photo2.jpg" class="slide">
     <img src="photo3.jpg" class="slide">
-    <img src="photo4.jpg" class="slide">
 
-    <button class="prev" onclick="prevSlide()">❮</button>
-    <button class="next" onclick="nextSlide()">❯</button>
+    <div class="btn left" onclick="prevSlide()">❮</div>
+    <div class="btn right" onclick="nextSlide()">❯</div>
 </div>
 
 </div>
@@ -166,23 +138,15 @@ h2 {
 
 <h2>🏆 Үздік оқушылар</h2>
 
-<!-- GOLD -->
 <div class="item gold" onclick="openGallery('uldana')">🥇 Тәліпова Ұлдана</div>
 <div class="item gold" onclick="openGallery('nuray')">🥇 Сәдуақас Нұрай</div>
-<div class="item gold">🥇 Мұхамеджанова Көркем</div>
 
-<!-- SILVER -->
 <div class="item silver" onclick="openGallery('akerke')">🥈 Шерімқожа Ақерке</div>
-<div class="item silver">🥈 Камаладин Мадияр</div>
-<div class="item silver">🥈 Амангелдиева Альбина</div>
-<div class="item silver">🥈 Астрахан Меруерт</div>
 
-<!-- BRONZE -->
 <div class="item bronze" onclick="openGallery('nurislam')">🥉 Мейрамбеков Нұрислам</div>
-<div class="item bronze">🥉 Алмас Нұрислам</div>
 <div class="item bronze" onclick="openGallery('merei')">🥉 Ақбергенова Мерей</div>
 
-<h2>👨‍🏫 Үздік сынып жетекші</h2>
+<h2>👨‍🏫 Үздік мұғалімдер</h2>
 
 <div class="item" onclick="openGallery('aigerim')">Сағатова Айгерім</div>
 <div class="item" onclick="openGallery('aigul')">Сулейменова Айгүл</div>
@@ -193,8 +157,13 @@ h2 {
 </div>
 
 <!-- MODAL -->
-<div id="gallery" class="modal" onclick="closeGallery()">
-    <img id="img">
+<div id="modal" class="modal" onclick="closeModal()">
+
+<span class="arrow left" onclick="prevImg(event)">❮</span>
+<span class="arrow right" onclick="nextImg(event)">❯</span>
+
+<img id="img">
+
 </div>
 
 <script>
@@ -203,49 +172,68 @@ function openPage(id){
     document.getElementById(id).classList.add("active");
 }
 
-/* SLIDER */
-let index = 0;
+/* SLIDER FIX */
+let s = 0;
 let slides = document.querySelectorAll(".slide");
 
-function showSlide(i){
-    slides.forEach(s => s.classList.remove("active"));
-    slides[i].classList.add("active");
+function showSlide(){
+    slides.forEach(el => el.classList.remove("active"));
+    slides[s].classList.add("active");
 }
 
 function nextSlide(){
-    index = (index + 1) % slides.length;
-    showSlide(index);
+    s = (s + 1) % slides.length;
+    showSlide();
 }
 
 function prevSlide(){
-    index = (index - 1 + slides.length) % slides.length;
-    showSlide(index);
+    s = (s - 1 + slides.length) % slides.length;
+    showSlide();
 }
 
-setInterval(nextSlide, 3000);
-
-/* GALLERIES */
+/* GALLERY */
 let galleries = {
     uldana: ["uldana1.jpeg","uldana2.jpeg"],
-    nuray: ["nuray1.png","nuray2.png"],
+    nuray: ["nurai1.png","nurai2.png"], /* ВАЖНО */
     akerke: ["akerke1.jpeg"],
     nurislam: ["nurislam1.jpeg"],
     merei: ["merei1.jpeg"],
 
     aigerim: ["aigerim1.jpeg"],
-    aigul: ["aigul1.jpeg"],
+    aigul: ["aigul1.jpeg"], /* ВАЖНО */
     zharyl: ["zharyl1.jpeg"],
     korganbay: ["korganbay1.jpeg"],
     aizhan: ["aizhan1.jpeg"]
 };
 
+let current = [];
+let i = 0;
+
 function openGallery(name){
-    document.getElementById("gallery").style.display = "block";
-    document.getElementById("img").src = galleries[name][0];
+    current = galleries[name];
+    i = 0;
+    document.getElementById("modal").style.display = "block";
+    showImg();
 }
 
-function closeGallery(){
-    document.getElementById("gallery").style.display = "none";
+function showImg(){
+    document.getElementById("img").src = current[i];
+}
+
+function nextImg(e){
+    e.stopPropagation();
+    i = (i + 1) % current.length;
+    showImg();
+}
+
+function prevImg(e){
+    e.stopPropagation();
+    i = (i - 1 + current.length) % current.length;
+    showImg();
+}
+
+function closeModal(){
+    document.getElementById("modal").style.display = "none";
 }
 </script>
 
