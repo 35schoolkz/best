@@ -17,9 +17,9 @@ body {
 /* HEADER */
 header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
+    justify-content: space-between;
+    padding: 15px 20px;
     background: white;
     border-bottom: 1px solid #ddd;
 }
@@ -34,12 +34,17 @@ header {
     margin-right: 10px;
 }
 
-nav {
+/* MENU ПОД ЛОГО */
+.menu {
     display: flex;
+    justify-content: center;
     gap: 10px;
+    padding: 10px;
+    background: #f9fafb;
+    border-bottom: 1px solid #ddd;
 }
 
-nav button {
+.menu button {
     border: none;
     background: #e5e7eb;
     padding: 10px 15px;
@@ -48,7 +53,7 @@ nav button {
     transition: 0.3s;
 }
 
-nav button:hover {
+.menu button:hover {
     background: #d1d5db;
 }
 
@@ -56,16 +61,10 @@ nav button:hover {
 .page {
     display: none;
     padding: 20px;
-    animation: fade 0.3s;
 }
 
 .active {
     display: block;
-}
-
-@keyframes fade {
-    from {opacity: 0;}
-    to {opacity: 1;}
 }
 
 /* SLIDER */
@@ -77,14 +76,17 @@ nav button:hover {
 
 .slide {
     width: 100%;
+    height: 350px; /* фикс высота */
+    object-fit: cover; /* делает ровно */
     display: none;
-    border-radius: 10px;
+    border-radius: 12px;
 }
 
 .slide.active {
     display: block;
 }
 
+/* ARROWS */
 .prev, .next {
     position: absolute;
     top: 50%;
@@ -99,7 +101,7 @@ nav button:hover {
 .prev { left: 10px; }
 .next { right: 10px; }
 
-/* CONTENT BOX */
+/* CONTENT */
 .content {
     max-width: 600px;
     margin: auto;
@@ -130,16 +132,17 @@ button.send {
         <img src="logo.jpg">
         <b>№35 Мектеп-лицейі</b>
     </div>
-
-    <nav>
-        <button onclick="openPage('home')">Басты бет</button>
-        <button onclick="openPage('study')">Ақылды оқыту</button>
-        <button onclick="openPage('safe')">Қауіпсіз мектеп</button>
-        <button onclick="openPage('goal')">Бір мақсат</button>
-        <button onclick="openPage('sport')">Спорт</button>
-        <button onclick="openPage('comments')">Пікірлер</button>
-    </nav>
 </header>
+
+<!-- МЕНЮ -->
+<div class="menu">
+    <button onclick="openPage('home')">Басты бет</button>
+    <button onclick="openPage('study')">Ақылды оқыту</button>
+    <button onclick="openPage('safe')">Қауіпсіз мектеп</button>
+    <button onclick="openPage('goal')">Бір мақсат</button>
+    <button onclick="openPage('sport')">Спорт</button>
+    <button onclick="openPage('comments')">Пікірлер</button>
+</div>
 
 <!-- HOME -->
 <div id="home" class="page active">
