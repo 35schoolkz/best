@@ -1,157 +1,200 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>№35 Мектеп-лицейі</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     font-family: Arial;
-    background: #f3f4f6; /* светло-серый */
-    color: #1f2933;
+    background: #f3f4f6;
 }
 
-/* контейнер */
-.container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 40px;
-}
-
-/* header */
+/* HEADER */
 header {
-    background: #ffffff;
-    padding: 20px;
-    text-align: center;
-    border-bottom: 1px solid #e5e7eb;
-}
-
-/* hero */
-.hero {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 60px 40px;
-}
-
-.hero h1 {
-    font-size: 36px;
-}
-
-.hero-images img {
-    width: 120px;
-    border-radius: 15px;
-    margin-left: 10px;
-}
-
-/* секции */
-.section {
-    padding: 50px 40px;
-}
-
-/* карточки */
-.cards {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.card {
-    background: #ffffff;
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-    transition: 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-}
-
-/* новости */
-.news {
-    display: flex;
-    gap: 20px;
-}
-
-.news img {
-    width: 300px;
-    border-radius: 12px;
-}
-
-/* счетчики */
-.counter-box {
-    background: #4b5563; /* темно-серый */
-    color: white;
-    padding: 25px;
-    border-radius: 12px;
-    font-size: 28px;
-}
-
-/* FAQ */
-.faq-item {
+    padding: 15px 20px;
     background: white;
-    margin: 10px 0;
-    padding: 15px;
-    border-radius: 10px;
-    cursor: pointer;
+    border-bottom: 1px solid #ddd;
 }
 
-/* комментарии */
-.comment-box {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
+header img {
+    width: 40px;
+    margin-right: 10px;
 }
 
-input, textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    border-radius: 8px;
-    border: 1px solid #d1d5db;
+/* TITLE */
+h1, h2 {
+    text-align: center;
 }
 
-button {
-    margin-top: 10px;
-    padding: 10px;
-    border: none;
-    background: #374151;
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #1f2937;
-}
+/* SLIDER */
 .slider {
-    position: relative;
     max-width: 700px;
-    margin: auto;
+    margin: 30px auto;
+    position: relative;
 }
 
 .slide {
     width: 100%;
-    border-radius: 15px;
     display: none;
-    transition: opacity 0.5s ease;
+    border-radius: 10px;
 }
 
-.slide.active {
+.active {
     display: block;
-    animation: fade 0.5s;
 }
 
-@keyframes fade {
-    from {opacity: 0;}
-    to {opacity: 1;}
-}
-
-.prev, .next {
+/* ARROWS */
+button.prev, button.next {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
+    border: none;
     background: rgba(0,0,0,0.5);
     color: white;
-    border: none;
     padding: 10px;
     cursor: pointer;
 }
 
 .prev { left: 10px; }
 .next { right: 10px; }
+
+/* CARDS */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 10px;
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* GALLERY */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 10px;
+    padding: 20px;
+}
+
+.gallery img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* COMMENTS */
+.comment-box {
+    padding: 20px;
+}
+
+input, textarea {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+button.send {
+    margin-top: 10px;
+    padding: 10px;
+}
+
+/* MOBILE */
+@media (max-width:600px){
+    .grid {grid-template-columns:1fr;}
+    .gallery {grid-template-columns:1fr;}
+}
+</style>
+
+</head>
+<body>
+
+<header>
+    <img src="logo.jpg">
+    <b>№35 Мектеп-лицейі</b>
+</header>
+
+<h1>Зияткерлік мектептері</h1>
+
+<div class="slider">
+    <img src="photo1.jpg" class="slide active">
+    <img src="photo2.jpg" class="slide">
+    <img src="photo3.jpg" class="slide">
+    <img src="photo4.jpg" class="slide">
+
+    <button class="prev" onclick="prev()">❮</button>
+    <button class="next" onclick="next()">❯</button>
+</div>
+
+<h2>Мектеп туралы</h2>
+
+<div class="grid">
+    <div class="card">Ақылды оқыту</div>
+    <div class="card">Қауіпсіз мектеп</div>
+    <div class="card">Бір мақсат</div>
+    <div class="card">Спорт</div>
+</div>
+
+<div class="gallery">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+    <img src="photo4.jpg">
+    <img src="photo5.jpg">
+</div>
+
+<div class="comment-box">
+    <h2>Пікірлер</h2>
+
+    <input id="name" placeholder="Атыңыз">
+    <textarea id="text" placeholder="Пікір"></textarea>
+    <button class="send" onclick="addComment()">Жіберу</button>
+
+    <div id="list"></div>
+</div>
+
+<script>
+let i = 0;
+let slides = document.querySelectorAll(".slide");
+
+function show(n){
+    slides.forEach(s => s.classList.remove("active"));
+    slides[n].classList.add("active");
+}
+
+function next(){
+    i = (i + 1) % slides.length;
+    show(i);
+}
+
+function prev(){
+    i = (i - 1 + slides.length) % slides.length;
+    show(i);
+}
+
+setInterval(next, 3000);
+
+function addComment(){
+    let name = document.getElementById("name").value;
+    let text = document.getElementById("text").value;
+
+    let div = document.createElement("div");
+    div.innerHTML = "<b>" + name + ":</b> " + text;
+
+    document.getElementById("list").appendChild(div);
+}
+</script>
+
+</body>
+</html>
