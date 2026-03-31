@@ -1,10 +1,141 @@
 <!DOCTYPE html>
-<html>
+<html lang="kk">
 <head>
-<title>Школа</title>
+<meta charset="UTF-8">
+<title>Мектеп сайты</title>
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #0f172a;
+    color: white;
+}
+
+header {
+    background: #1e293b;
+    padding: 20px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 10px;
+    text-decoration: none;
+}
+
+.hero {
+    background: #38bdf8;
+    padding: 60px;
+    text-align: center;
+}
+
+section {
+    padding: 40px;
+}
+
+.card {
+    background: #1e293b;
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+    border: none;
+}
+
+button {
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    background: #22c55e;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.comment {
+    background: #334155;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+}
+</style>
 </head>
 <body>
-<h1>Мой школьный сайт</h1>
-<p>Добро пожаловать!</p>
+
+<header>
+    <h1>🏫 Менің мектебім</h1>
+    <nav>
+        <a href="#about">Мектеп туралы</a>
+        <a href="#news">Жаңалықтар</a>
+        <a href="#contact">Байланыс</a>
+        <a href="#comments">Пікірлер</a>
+    </nav>
+</header>
+
+<section class="hero">
+    <h2>Қош келдіңіз!</h2>
+    <p>Бұл біздің мектептің ресми сайты</p>
+</section>
+
+<section id="about">
+    <h2>Мектеп туралы</h2>
+    <div class="card">
+        Біздің мектеп — білім мен тәрбие беретін орын. Мұнда оқушылар өз қабілеттерін дамытады.
+    </div>
+</section>
+
+<section id="news">
+    <h2>Жаңалықтар</h2>
+    <div class="card">📌 Жаңа информатика кабинеті ашылды</div>
+    <div class="card">📌 Мектеп турнирі сәтті өтті</div>
+</section>
+
+<section id="contact">
+    <h2>Байланыс</h2>
+    <div class="card">
+        📍 Қызылорда  
+        <br>📞 +7 700 000 00 00
+    </div>
+</section>
+
+<section id="comments">
+    <h2>💬 Пікірлер</h2>
+
+    <div class="card">
+        <input id="name" placeholder="Атыңыз">
+        <textarea id="text" placeholder="Пікір жазыңыз"></textarea>
+        <button onclick="addComment()">Жіберу</button>
+    </div>
+
+    <div id="commentList"></div>
+</section>
+
+<script>
+function addComment() {
+    let name = document.getElementById("name").value;
+    let text = document.getElementById("text").value;
+
+    if(name === "" || text === "") {
+        alert("Барлық өрісті толтырыңыз!");
+        return;
+    }
+
+    let div = document.createElement("div");
+    div.className = "comment";
+    div.innerHTML = "<b>" + name + ":</b><br>" + text;
+
+    document.getElementById("commentList").appendChild(div);
+
+    document.getElementById("name").value = "";
+    document.getElementById("text").value = "";
+}
+</script>
+
 </body>
 </html>
