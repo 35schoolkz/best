@@ -53,3 +53,54 @@ footer {
     border-radius: 15px;
     margin-left: 10px;
 }
+body {
+    font-family: 'Arial', sans-serif;
+    background: #f8f5f0;
+    color: #222;
+}
+
+/* контейнер */
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px;
+}
+
+/* заголовки */
+h1 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+/* карточки */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* сетка */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* кнопки */
+button {
+    background: #d4a373;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+}
