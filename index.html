@@ -6,158 +6,95 @@
 <title>№35 Мектеп-лицейі</title>
 
 <style>
+body{margin:0;font-family:sans-serif;}
 
-/* ОБЩЕЕ */
-body{
-margin:0;
-font-family:sans-serif;
-}
-
-/* ФОН */
 .bg{
-position:fixed;
-width:100%;
-height:100%;
+position:fixed;width:100%;height:100%;
 background:url("school.jpg") center/cover;
-filter:blur(6px);
-z-index:-1;
-pointer-events:none;
+filter:blur(6px);z-index:-1;
 }
 
-/* КОНТЕЙНЕР */
-.container{
-max-width:900px;
-margin:auto;
-padding:20px;
-}
+.container{max-width:900px;margin:auto;padding:20px;}
 
-/* HEADER */
-.header{
-display:flex;
-align-items:center;
-gap:10px;
-cursor:pointer;
-}
+.header{display:flex;gap:10px;align-items:center;cursor:pointer;}
+.logo{width:50px}
 
-.logo{
-width:50px;
-}
-
-/* КНОПКИ */
-.menu{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:10px;
-margin:10px 0;
-}
-
+/* кнопки */
+.menu{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:10px 0;}
 .menu button{
-padding:15px;
-border:none;
-border-radius:12px;
-cursor:pointer;
-background:white;
-font-size:14px;
+padding:15px;border:none;border-radius:12px;
+background:white;cursor:pointer;
 }
 
-/* СЛАЙДЕР */
-.slider{
-position:relative;
-height:200px;
-margin:10px 0;
-}
-
+/* slider */
+.slider{position:relative;height:200px;}
 .slide{
-position:absolute;
-width:100%;
-height:100%;
-object-fit:cover;
-border-radius:10px;
-opacity:0;
-transition:1s;
+position:absolute;width:100%;height:100%;
+object-fit:cover;opacity:0;transition:1s;
 }
+.slide.active{opacity:1}
 
-.slide.active{
-opacity:1;
-}
+/* страницы */
+.page{display:none}
+.page.active{display:block}
 
-/* СТРАНИЦЫ */
-.page{
-display:none;
-}
-
-.page.active{
-display:block;
-}
-
-/* ФОТО */
-.feed img{
-width:100%;
-margin:10px 0;
-border-radius:10px;
-}
-
-/* БОЛЬШАЯ */
-.big{
-width:100%;
-border-radius:10px;
-margin-bottom:10px;
-}
-
-/* ВИДЕО */
-iframe{
-width:100%;
-height:200px;
-margin:10px 0;
-border-radius:10px;
-}
-
-/* РЕЙТИНГ */
-.cards{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-}
-
-.card{
+/* рейтинг */
+.rating-box{
 background:white;
-padding:10px;
-border-radius:10px;
-cursor:pointer;
+padding:20px;
+border-radius:20px;
+max-width:600px;
+margin:auto;
 text-align:center;
 }
 
-/* МОДАЛ */
+.rank{
+padding:12px;
+margin:6px 0;
+border-radius:10px;
+cursor:pointer;
+font-weight:600;
+transition:0.3s;
+}
+
+.rank:hover{transform:scale(1.05)}
+
+.gold{background:linear-gradient(90deg,#FFD700,#fff)}
+.silver{background:linear-gradient(90deg,#C0C0C0,#fff)}
+.bronze{background:linear-gradient(90deg,#CD7F32,#fff)}
+
+/* галерея */
 .modal{
 display:none;
 position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
+top:0;left:0;
+width:100%;height:100%;
 background:rgba(0,0,0,0.9);
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:999;
 }
 
 .modal img{
-display:block;
-margin:50px auto;
 max-width:90%;
+border-radius:10px;
 }
 
-/* КОММЕНТ */
-input{
-width:100%;
-margin:5px 0;
-padding:10px;
+.controls{
+margin-top:10px;
+display:flex;
+gap:10px;
 }
 
-button.send{
-width:100%;
-padding:10px;
+.controls button{
+padding:10px 15px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+background:white;
 }
-
 </style>
-
 </head>
 
 <body>
@@ -166,7 +103,6 @@ padding:10px;
 
 <div class="container">
 
-<!-- HEADER -->
 <div class="header" onclick="openPage('home')">
 <img src="logo.jpg" class="logo">
 <h2>№35 Мектеп-лицейі</h2>
@@ -176,9 +112,9 @@ padding:10px;
 <div id="home" class="page active">
 
 <div class="menu">
-<button onclick="openPage('bilim')">📘 Білім</button>
-<button onclick="openPage('maksat')">🎯 Бір мақсат</button>
 <button onclick="openPage('rating')">🏆 Үздіктер</button>
+<button onclick="openPage('bilim')">📘 Білім</button>
+<button onclick="openPage('sport')">⚽ Спорт</button>
 </div>
 
 <div class="slider">
@@ -187,43 +123,6 @@ padding:10px;
 <img src="photo3.jpg" class="slide">
 </div>
 
-<div class="menu">
-<button onclick="openPage('safe')">🛡 Қауіпсіз</button>
-<button onclick="openPage('sport')">⚽ Спорт</button>
-<button onclick="openPage('comment')">💬 Пікірлер</button>
-</div>
-
-</div>
-
-<!-- БІЛІМ -->
-<div id="bilim" class="page">
-<h2>📘 Білім</h2>
-
-<img src="bilim1.jpg" class="big">
-
-<div id="bilimFeed" class="feed"></div>
-</div>
-
-<!-- СПОРТ -->
-<div id="sport" class="page">
-<h2>⚽ Спорт</h2>
-<div id="sportFeed" class="feed"></div>
-</div>
-
-<!-- ВИДЕО -->
-<div id="maksat" class="page">
-<h2>🎯 Бір мақсат</h2>
-<iframe src="https://www.youtube.com/embed/G7MI7YPqEhY"></iframe>
-<iframe src="https://www.youtube.com/embed/_4A4fcuPQq0"></iframe>
-<iframe src="https://www.youtube.com/embed/L0bstXl4kiY"></iframe>
-</div>
-
-<!-- ҚАУІПСІЗ -->
-<div id="safe" class="page">
-<h2>🛡 Қауіпсіз мектеп</h2>
-<iframe src="https://www.youtube.com/embed/s6GVbAE_uqE"></iframe>
-<iframe src="https://www.youtube.com/embed/sbnnTlA8HVQ"></iframe>
-<iframe src="https://www.youtube.com/embed/HaLxqOs3hLA"></iframe>
 </div>
 
 <!-- РЕЙТИНГ -->
@@ -233,112 +132,92 @@ padding:10px;
 
 <h2>🏆 Үздік оқушылар</h2>
 
-<div class="rating-list">
+<div class="rank gold" onclick="openGallery('uldana')">🥇 Тәліпова Ұлдана</div>
+<div class="rank gold" onclick="openGallery('nuray')">🥇 Сәдуақас Нұрай</div>
 
-<div class="rank gold">🥇 Тәліпова Ұлдана</div>
-<div class="rank gold">🥇 Сәдуақас Нұрай</div>
-<div class="rank gold">🥇 Мұхамеджанова Көркем</div>
+<div class="rank silver" onclick="openGallery('akerke')">🥈 Ақерке</div>
+<div class="rank silver" onclick="openGallery('merei')">🥈 Мерей</div>
 
-<div class="rank silver">🥈 Шерімқожа Ақерке</div>
-<div class="rank silver">🥈 Камаладин Мадияр</div>
-<div class="rank silver">🥈 Амангелдиева Альбина</div>
-<div class="rank silver">🥈 Астрахан Меруерт</div>
-
-<div class="rank bronze">🥉 Мейрамбеков Нұрислам</div>
-<div class="rank bronze">🥉 Алмас Нұрислам</div>
-<div class="rank bronze">🥉 Ақбергенова Мерей</div>
-
-</div>
+<div class="rank bronze" onclick="openGallery('nurislam')">🥉 Нұрислам</div>
 
 <h2>👩‍🏫 Мұғалімдер</h2>
 
-<div class="rating-list">
-
-<div class="rank">Сағатова Айгерім</div>
-<div class="rank">Жұмабекқызы Айжан</div>
-<div class="rank">Жарылқасынова Ақмарал</div>
-<div class="rank">Қорғанбай Жансая</div>
-<div class="rank">Сулейменова Айгүл</div>
+<div class="rank" onclick="openGallery('aigerim')">Айгерім</div>
+<div class="rank" onclick="openGallery('aizhan')">Айжан</div>
 
 </div>
 
 </div>
 
-</div>
-<!-- ПІКІР -->
-<div id="comment" class="page">
-<h2>💬 Пікірлер</h2>
-
-<div id="comments"></div>
-
-<input id="name" placeholder="Атың">
-<input id="text" placeholder="Пікір">
-<button class="send" onclick="addComment()">Жіберу</button>
-
-</div>
-
-</div>
-
-<!-- МОДАЛ -->
+<!-- ГАЛЕРЕЯ -->
 <div id="modal" class="modal">
 <img id="img">
 
 <div class="controls">
 <button onclick="prev()">⬅</button>
 <button onclick="next()">➡</button>
-<button onclick="closeImg()">❌</button>
+<button onclick="closeGallery()">❌</button>
 </div>
+</div>
+
 </div>
 
 <script>
 
-/* ВКЛАДКИ */
+/* вкладки */
 function openPage(id){
 document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
 document.getElementById(id).classList.add("active");
 }
 
-/* СЛАЙДЕР */
+/* slider */
 let slides=document.querySelectorAll(".slide");
 let i=0;
-
 setInterval(()=>{
 slides[i].classList.remove("active");
 i=(i+1)%slides.length;
 slides[i].classList.add("active");
 },3000);
 
-/* БІЛІМ */
-let b="";
-for(let i=1;i<=19;i++){
-b+=`<img src="bilim${i}.jpg">`;
-}
-document.getElementById("bilimFeed").innerHTML=b;
-
-/* СПОРТ */
-let s="";
-for(let i=1;i<=10;i++){
-s+=`<img src="sport${i}.jpeg">`;
-}
-document.getElementById("sportFeed").innerHTML=s;
-
-/* КОММЕНТ */
-function addComment(){
-let n=document.getElementById("name").value;
-let t=document.getElementById("text").value;
-if(n && t){
-document.getElementById("comments").innerHTML+=
-`<div>${n}: ${t}</div>`;
-}
-}
-
-/* ГАЛЕРЕЯ */
+/* ВСЕ ФОТКИ 🔥 */
 let galleries={
-uldana:["uldana1.jpeg","uldana2.jpeg","uldana3.jpeg","uldana4.jpeg","uldana5.jpeg","uldana6.jpeg"],
-nuray:["nurai.png","nurai2.png","nurai3.png","nurasy1.jpeg","nurasy2.jpeg","nurasy3.jpeg"],
-akerke:["akerke1.jpeg","akerke2.jpeg","akerke3.jpeg","akerke4.jpeg","akerke5.jpeg","akerke6.jpeg"],
-nurislam:["nurislam1.jpeg","nurislam2.jpeg","nurislam3.jpeg","nurislam4.jpeg","nurislam5.jpeg","nurislam6.jpeg"],
-merei:["merei1.jpeg","merei2.jpeg","merei3.jpeg","merei4.jpeg","merei5.jpeg","merei6.jpeg"]
+
+uldana:[
+"uldana1.jpeg","uldana2.jpeg","uldana3.jpeg",
+"uldana4.jpeg","uldana5.jpeg","uldana6.jpeg","uldana7.jpeg"
+],
+
+nuray:[
+"nurai.png","nurai2.png","nurai3.png",
+"nurasy1.jpeg","nurasy2.jpeg","nurasy3.jpeg",
+"nurasy4.jpeg","nurasy5.jpeg"
+],
+
+akerke:[
+"akerke1.jpeg","akerke2.jpeg","akerke3.jpeg",
+"akerke4.jpeg","akerke5.jpeg","akerke6.jpeg","akerke7.jpeg"
+],
+
+nurislam:[
+"nurislam1.jpeg","nurislam2.jpeg","nurislam3.jpeg",
+"nurislam4.jpeg","nurislam5.jpeg","nurislam6.jpeg","nurislam7.jpeg"
+],
+
+merei:[
+"merei1.jpeg","merei2.jpeg","merei3.jpeg",
+"merei4.jpeg","merei5.jpeg","merei6.jpeg","merei7.jpeg"
+],
+
+aigerim:[
+"aigerim1.jpeg","aigerim2.jpeg","aigerim3.jpeg",
+"aigerim4.jpeg","aigerim5.jpeg","aigerim6.jpeg"
+],
+
+aizhan:[
+"aizhan1.jpeg","aizhan2.jpeg","aizhan3.jpeg",
+"aizhan4.jpeg","aizhan5.jpeg"
+]
+
 };
 
 let current=[];
@@ -361,7 +240,7 @@ index=(index-1+current.length)%current.length;
 img.src=current[index];
 }
 
-function closeImg(){
+function closeGallery(){
 modal.style.display="none";
 }
 
