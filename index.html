@@ -12,121 +12,80 @@
 
 <div class="bg"></div>
 
-<div class="container">
-
 <!-- HEADER -->
-<div class="top" onclick="show('home')">
+<header>
 <img src="logo.jpg">
-<span>№35 Мектеп-лицейі</span>
-</div>
+<h2>№35 Мектеп-лицейі</h2>
+</header>
 
-<!-- HOME -->
-<div id="home" class="page active">
-
-<div class="center">
+<!-- HERO -->
+<section class="hero">
 <img src="logo.jpg">
 <h1>№35 Мектеп-лицейі</h1>
 <p>Білім мен жетістік мекені</p>
 
-<div class="buttons">
-<button onclick="show('rating')">Үздіктер</button>
-</div>
-</div>
+<button onclick="scrollToSection()">Үздіктер</button>
+</section>
 
-<!-- СЛАЙДЕР -->
-<div class="slider" id="slider">
-<img src="photo1.jpg" class="slide active">
-<img src="photo2.jpg" class="slide">
-<img src="photo3.jpg" class="slide">
-
-<div class="nav prev" onclick="prevSlide()">❮</div>
-<div class="nav next" onclick="nextSlide()">❯</div>
-</div>
+<!-- ГАЛЕРЕЯ -->
+<section class="gallery">
+<img src="photo1.jpg">
+<img src="photo2.jpg">
+<img src="photo3.jpg">
+</section>
 
 <!-- ВИДЕО -->
+<section class="videos">
+
 <h2>🎯 Бір мақсат</h2>
-<div class="videos">
+<div class="video-grid">
 <iframe src="https://www.youtube.com/embed/G7MI7YPqEhY"></iframe>
 <iframe src="https://www.youtube.com/embed/_4A4fcuPQq0"></iframe>
 <iframe src="https://www.youtube.com/embed/L0bstXl4kiY"></iframe>
 </div>
 
 <h2>🛡 Қауіпсіз мектеп</h2>
-<div class="videos">
+<div class="video-grid">
 <iframe src="https://www.youtube.com/embed/s6GVbAE_uqE"></iframe>
 <iframe src="https://www.youtube.com/embed/sbnnTlA8HVQ"></iframe>
 <iframe src="https://www.youtube.com/embed/HaLxqOs3hLA"></iframe>
 </div>
 
-</div>
+</section>
 
-<!-- RATING -->
-<div id="rating" class="page">
+<!-- РЕЙТИНГ -->
+<section class="rating" id="rating">
 
 <h2>🏆 Үздік оқушылар</h2>
 
+<h3 class="gold">🥇 Алтын</h3>
 <div class="cards">
-
-<div class="card" onclick="openImg('uldana1.jpeg')">🥇 Ұлдана</div>
-<div class="card" onclick="openImg('nurai.png')">🥇 Нұрай</div>
-<div class="card">🥇 Көркем</div>
-
-<div class="card">🥈 Ақерке</div>
-<div class="card">🥈 Мадияр</div>
-<div class="card">🥈 Альбина</div>
-<div class="card">🥈 Меруерт</div>
-
-<div class="card">🥉 Нұрислам</div>
-<div class="card">🥉 Алмас</div>
-<div class="card">🥉 Мерей</div>
-
+<div class="card gold">Тәліпова Ұлдана</div>
+<div class="card gold">Сәдуақас Нұрай</div>
+<div class="card gold">Мұхамеджанова Көркем</div>
 </div>
 
+<h3 class="silver">🥈 Күміс</h3>
+<div class="cards">
+<div class="card silver">Шерімқожа Ақерке</div>
+<div class="card silver">Камаладин Мадияр</div>
+<div class="card silver">Амангелдиева Альбина</div>
+<div class="card silver">Астрахан Меруерт</div>
 </div>
 
+<h3 class="bronze">🥉 Қола</h3>
+<div class="cards">
+<div class="card bronze">Мейрамбеков Нұрислам</div>
+<div class="card bronze">Алмас Нұрислам</div>
+<div class="card bronze">Ақбергенова Мерей</div>
 </div>
 
-<!-- МОДАЛ -->
-<div id="modal" class="modal" onclick="closeImg()">
-<img id="modalImg">
-</div>
+</section>
 
 <script>
-
-/* страницы */
-function show(id){
-document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-document.getElementById(id).classList.add("active");
+function scrollToSection(){
+document.getElementById("rating").scrollIntoView({behavior:"smooth"});
 }
-
-/* СЛАЙДЕР */
-let index=0;
-let slides=document.querySelectorAll(".slide");
-
-function nextSlide(){
-slides[index].classList.remove("active");
-index=(index+1)%slides.length;
-slides[index].classList.add("active");
-}
-
-function prevSlide(){
-slides[index].classList.remove("active");
-index=(index-1+slides.length)%slides.length;
-slides[index].classList.add("active");
-}
-
-setInterval(nextSlide,4000);
-
-/* МОДАЛ */
-function openImg(src){
-document.getElementById("modal").style.display="block";
-document.getElementById("modalImg").src=src;
-}
-
-function closeImg(){
-document.getElementById("modal").style.display="none";
-}
-
 </script>
 
 </body>

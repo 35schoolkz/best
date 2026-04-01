@@ -1,133 +1,129 @@
-<!DOCTYPE html>
-<html lang="kk">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>№35 Мектеп-лицейі</title>
-
-<link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-<div class="bg"></div>
-
-<div class="container">
-
-<!-- HEADER -->
-<div class="top" onclick="show('home')">
-<img src="logo.jpg">
-<span>№35 Мектеп-лицейі</span>
-</div>
-
-<!-- HOME -->
-<div id="home" class="page active">
-
-<div class="center">
-<img src="logo.jpg">
-<h1>№35 Мектеп-лицейі</h1>
-<p>Білім мен жетістік мекені</p>
-
-<div class="buttons">
-<button onclick="show('rating')">Үздіктер</button>
-</div>
-</div>
-
-<!-- СЛАЙДЕР -->
-<div class="slider" id="slider">
-<img src="photo1.jpg" class="slide active">
-<img src="photo2.jpg" class="slide">
-<img src="photo3.jpg" class="slide">
-
-<div class="nav prev" onclick="prevSlide()">❮</div>
-<div class="nav next" onclick="nextSlide()">❯</div>
-</div>
-
-<!-- ВИДЕО -->
-<h2>🎯 Бір мақсат</h2>
-<div class="videos">
-<iframe src="https://www.youtube.com/embed/G7MI7YPqEhY"></iframe>
-<iframe src="https://www.youtube.com/embed/_4A4fcuPQq0"></iframe>
-<iframe src="https://www.youtube.com/embed/L0bstXl4kiY"></iframe>
-</div>
-
-<h2>🛡 Қауіпсіз мектеп</h2>
-<div class="videos">
-<iframe src="https://www.youtube.com/embed/s6GVbAE_uqE"></iframe>
-<iframe src="https://www.youtube.com/embed/sbnnTlA8HVQ"></iframe>
-<iframe src="https://www.youtube.com/embed/HaLxqOs3hLA"></iframe>
-</div>
-
-</div>
-
-<!-- RATING -->
-<div id="rating" class="page">
-
-<h2>🏆 Үздік оқушылар</h2>
-
-<div class="cards">
-
-<div class="card" onclick="openImg('uldana1.jpeg')">🥇 Ұлдана</div>
-<div class="card" onclick="openImg('nurai.png')">🥇 Нұрай</div>
-<div class="card">🥇 Көркем</div>
-
-<div class="card">🥈 Ақерке</div>
-<div class="card">🥈 Мадияр</div>
-<div class="card">🥈 Альбина</div>
-<div class="card">🥈 Меруерт</div>
-
-<div class="card">🥉 Нұрислам</div>
-<div class="card">🥉 Алмас</div>
-<div class="card">🥉 Мерей</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- МОДАЛ -->
-<div id="modal" class="modal" onclick="closeImg()">
-<img id="modalImg">
-</div>
-
-<script>
-
-/* страницы */
-function show(id){
-document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-document.getElementById(id).classList.add("active");
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
 }
 
-/* СЛАЙДЕР */
-let index=0;
-let slides=document.querySelectorAll(".slide");
-
-function nextSlide(){
-slides[index].classList.remove("active");
-index=(index+1)%slides.length;
-slides[index].classList.add("active");
+/* ФОН */
+.bg{
+position:fixed;
+width:100%;
+height:100%;
+background:url("school.jpg") center/cover no-repeat;
+filter:blur(10px) brightness(0.7);
+z-index:-1;
 }
 
-function prevSlide(){
-slides[index].classList.remove("active");
-index=(index-1+slides.length)%slides.length;
-slides[index].classList.add("active");
+/* HEADER */
+header{
+display:flex;
+align-items:center;
+gap:10px;
+padding:15px 40px;
+color:white;
 }
 
-setInterval(nextSlide,4000);
-
-/* МОДАЛ */
-function openImg(src){
-document.getElementById("modal").style.display="block";
-document.getElementById("modalImg").src=src;
+header img{
+width:40px;
+border-radius:50%;
 }
 
-function closeImg(){
-document.getElementById("modal").style.display="none";
+/* HERO */
+.hero{
+text-align:center;
+padding:60px 20px;
+color:white;
 }
 
-</script>
+.hero img{
+width:120px;
+margin-bottom:10px;
+}
 
-</body>
-</html>
+.hero button{
+margin-top:15px;
+padding:10px 20px;
+border:none;
+border-radius:20px;
+background:black;
+color:white;
+cursor:pointer;
+}
+
+/* ГАЛЕРЕЯ */
+.gallery{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+padding:20px 40px;
+}
+
+.gallery img{
+width:100%;
+height:220px;
+object-fit:cover;
+border-radius:15px;
+transition:0.3s;
+}
+
+.gallery img:hover{
+transform:scale(1.05);
+}
+
+/* ВИДЕО */
+.videos{
+padding:20px 40px;
+color:white;
+}
+
+.video-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+margin:15px 0;
+}
+
+.video-grid iframe{
+width:100%;
+height:180px;
+border-radius:10px;
+}
+
+/* РЕЙТИНГ */
+.rating{
+background:white;
+padding:30px;
+margin:30px;
+border-radius:20px;
+}
+
+.cards{
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:10px;
+margin-top:15px;
+}
+
+.card{
+background:#f1f1f1;
+padding:15px;
+border-radius:12px;
+text-align:center;
+cursor:pointer;
+transition:0.3s;
+}
+
+.card:hover{
+background:black;
+color:white;
+transform:translateY(-5px);
+}
+
+.gold{color:#d4af37;}
+.silver{color:#aaa;}
+.bronze{color:#cd7f32;}
+
+.card.gold{border-left:5px solid gold;}
+.card.silver{border-left:5px solid silver;}
+.card.bronze{border-left:5px solid #cd7f32;}
