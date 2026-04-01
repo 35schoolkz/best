@@ -164,3 +164,16 @@ cursor:pointer;
 }
 .left{left:20px;}
 .right{right:20px;}
+.mini{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:4px;
+margin-bottom:8px;
+}
+
+.mini img{
+width:100%;
+height:60px;
+object-fit:cover;
+border-radius:6px;
+}
