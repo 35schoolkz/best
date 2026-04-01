@@ -181,3 +181,13 @@ h2 {
         max-width: 90%;
     }
 }
+/* общий контейнер */
+.center-box {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* карточки по центру */
+.item {
+    text-align: center;
+}
