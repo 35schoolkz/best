@@ -1,251 +1,159 @@
-/* ОБЩЕЕ */
-body{
-margin:0;
-font-family:sans-serif;
-background:#f0f2f5;
-}
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>№35 Мектеп-лицейі</title>
 
-/* ФОН (НЕ ЛОМАЕТ КЛИКИ) */
-.bg{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:url("school.jpg") center/cover no-repeat;
-filter:blur(6px);
-z-index:-1;
-pointer-events:none;
-}
+<link rel="stylesheet" href="style.css">
+</head>
 
-/* КОНТЕЙНЕР */
-.container{
-max-width:900px;
-margin:auto;
-padding:20px;
-}
+<body>
 
-/* HEADER */
-.header{
-display:flex;
-align-items:center;
-gap:10px;
-cursor:pointer;
-margin-bottom:10px;
-}
+<div class="bg"></div>
 
-.logo{
-width:50px;
-height:50px;
-object-fit:cover;
-}
+<div class="container">
 
-/* КНОПКИ */
-.menu{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:10px;
-margin:10px 0;
-}
+<!-- HEADER -->
+<div class="header" onclick="openPage('home')">
+<img src="logo.jpg" class="logo">
+<h2>№35 Мектеп-лицейі</h2>
+</div>
 
-.menu button{
-padding:15px;
-border:none;
-border-radius:12px;
-background:white;
-cursor:pointer;
-font-size:14px;
-transition:0.2s;
-}
+<!-- HOME -->
+<div id="home" class="page active">
 
-.menu button:hover{
-transform:scale(1.05);
+<div class="menu">
+<button onclick="openPage('bilim')">📘 Білім</button>
+<button onclick="openPage('maksat')">🎯 Бір мақсат</button>
+<button onclick="openPage('rating')">🏆 Үздіктер</button>
+</div>
+
+<div class="slider">
+<img src="photo1.jpg" class="slide active">
+<img src="photo2.jpg" class="slide">
+<img src="photo3.jpg" class="slide">
+</div>
+
+<div class="menu">
+<button onclick="openPage('safe')">🛡 Қауіпсіз</button>
+<button onclick="openPage('sport')">⚽ Спорт</button>
+<button onclick="openPage('comment')">💬 Пікірлер</button>
+</div>
+
+</div>
+
+<!-- БІЛІМ -->
+<div id="bilim" class="page">
+<h2>Білім</h2>
+<div id="bilimFeed" class="feed"></div>
+</div>
+
+<!-- СПОРТ -->
+<div id="sport" class="page">
+<h2>Спорт</h2>
+<div id="sportFeed" class="feed"></div>
+</div>
+
+<!-- ВИДЕО -->
+<div id="maksat" class="page">
+<h2>Бір мақсат</h2>
+<iframe src="https://www.youtube.com/embed/G7MI7YPqEhY"></iframe>
+<iframe src="https://www.youtube.com/embed/_4A4fcuPQq0"></iframe>
+<iframe src="https://www.youtube.com/embed/L0bstXl4kiY"></iframe>
+</div>
+
+<!-- ҚАУІПСІЗ -->
+<div id="safe" class="page">
+<h2>Қауіпсіз мектеп</h2>
+<iframe src="https://www.youtube.com/embed/s6GVbAE_uqE"></iframe>
+<iframe src="https://www.youtube.com/embed/sbnnTlA8HVQ"></iframe>
+<iframe src="https://www.youtube.com/embed/HaLxqOs3hLA"></iframe>
+</div>
+
+<!-- 🔥 РЕЙТИНГ (НОВЫЙ) -->
+<div id="rating" class="page">
+
+<div class="rating-wrapper">
+
+<h2>🏆 Үздік оқушылар</h2>
+
+<div class="rating-list">
+
+<div class="rank gold">🥇 Тәліпова Ұлдана</div>
+<div class="rank gold">🥇 Сәдуақас Нұрай</div>
+<div class="rank gold">🥇 Мұхамеджанова Көркем</div>
+
+<div class="rank silver">🥈 Шерімқожа Ақерке</div>
+<div class="rank silver">🥈 Камаладин Мадияр</div>
+<div class="rank silver">🥈 Амангелдиева Альбина</div>
+<div class="rank silver">🥈 Астрахан Меруерт</div>
+
+<div class="rank bronze">🥉 Мейрамбеков Нұрислам</div>
+<div class="rank bronze">🥉 Алмас Нұрислам</div>
+<div class="rank bronze">🥉 Ақбергенова Мерей</div>
+
+</div>
+
+<h2>👩‍🏫 Мұғалімдер</h2>
+
+<div class="rating-list">
+
+<div class="rank">Сағатова Айгерім</div>
+<div class="rank">Жұмабекқызы Айжан</div>
+<div class="rank">Жарылқасынова Ақмарал</div>
+<div class="rank">Қорғанбай Жансая</div>
+<div class="rank">Сулейменова Айгүл</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ПІКІР -->
+<div id="comment" class="page">
+<h2>Пікір</h2>
+<div id="comments"></div>
+<input id="name">
+<input id="text">
+<button onclick="addComment()">Жіберу</button>
+</div>
+
+</div>
+
+<script>
+
+/* ВКЛАДКИ */
+function openPage(id){
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document.getElementById(id).classList.add("active");
 }
 
 /* СЛАЙДЕР */
-.slider{
-position:relative;
-height:200px;
-margin:10px 0;
-}
+let slides=document.querySelectorAll(".slide");
+let i=0;
+setInterval(()=>{
+slides[i].classList.remove("active");
+i=(i+1)%slides.length;
+slides[i].classList.add("active");
+},3000);
 
-.slide{
-position:absolute;
-width:100%;
-height:100%;
-object-fit:cover;
-border-radius:12px;
-opacity:0;
-transition:1s;
+/* БІЛІМ */
+let b="";
+for(let i=1;i<=19;i++){
+b+=`<img src="bilim${i}.jpg">`;
 }
+bilimFeed.innerHTML=b;
 
-.slide.active{
-opacity:1;
+/* СПОРТ */
+let s="";
+for(let i=1;i<=10;i++){
+s+=`<img src="sport${i}.jpeg">`;
 }
+sportFeed.innerHTML=s;
 
-/* СТРАНИЦЫ */
-.page{
-display:none;
-}
+</script>
 
-.page.active{
-display:block;
-}
-
-/* ФОТО */
-.feed{
-display:flex;
-flex-direction:column;
-gap:10px;
-}
-
-.feed img{
-width:100%;
-border-radius:12px;
-object-fit:contain; /* ВАЖНО */
-background:#eee;
-}
-
-/* ВИДЕО */
-iframe{
-width:100%;
-height:200px;
-border-radius:10px;
-margin:10px 0;
-border:none;
-}
-
-/* РЕЙТИНГ */
-.rating-list{
-display:flex;
-flex-direction:column;
-gap:10px;
-align-items:center;
-margin-top:15px;
-}
-
-.rank{
-width:80%;
-padding:12px;
-border-radius:12px;
-background:white;
-text-align:center;
-cursor:pointer;
-font-weight:600;
-transition:0.2s;
-}
-
-.rank:hover{
-transform:scale(1.03);
-}
-
-/* ЦВЕТА */
-.gold{
-background:linear-gradient(90deg,#FFD700,#fff);
-}
-
-.silver{
-background:linear-gradient(90deg,#C0C0C0,#fff);
-}
-
-.bronze{
-background:linear-gradient(90deg,#CD7F32,#fff);
-}
-
-/* КАРТОЧКИ */
-.cards{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:10px;
-}
-
-/* МИНИ ФОТО */
-.mini{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:4px;
-}
-
-.mini img{
-width:100%;
-height:60px;
-object-fit:contain;
-border-radius:6px;
-background:#eee;
-}
-
-/* МОДАЛ */
-.modal{
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.9);
-z-index:1000;
-}
-
-.modal img{
-display:block;
-margin:50px auto;
-max-width:90%;
-}
-
-/* КОММЕНТ */
-input{
-width:100%;
-margin:5px 0;
-padding:10px;
-border-radius:8px;
-border:1px solid #ccc;
-}
-
-button.send{
-width:100%;
-padding:10px;
-border:none;
-border-radius:8px;
-background:#333;
-color:white;
-cursor:pointer;
-}
-.rating-box{
-background:white;
-padding:20px;
-border-radius:20px;
-max-width:600px;
-margin:20px auto;
-box-shadow:0 10px 25px rgba(0,0,0,0.1);
-}
-
-.rating-box h2{
-text-align:center;
-margin-bottom:15px;
-}
-
-.rating-list{
-display:flex;
-flex-direction:column;
-gap:8px;
-}
-
-.rank{
-padding:12px;
-border-radius:10px;
-text-align:center;
-font-weight:600;
-background:#f5f5f5;
-}
-
-.gold{
-background:linear-gradient(90deg,#FFD700,#fff);
-}
-
-.silver{
-background:linear-gradient(90deg,#C0C0C0,#fff);
-}
-
-.bronze{
-background:linear-gradient(90deg,#CD7F32,#fff);
-}
+</body>
+</html>
