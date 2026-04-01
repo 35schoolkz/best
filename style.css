@@ -1,130 +1,128 @@
-<!DOCTYPE html>
-<html lang="kk">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>№35 Мектеп-лицейі</title>
+*{margin:0;padding:0;box-sizing:border-box;}
 
-<!-- ПОДКЛЮЧЕНИЕ CSS -->
-<link rel="stylesheet" href="style.css">
-
-</head>
-
-<body>
-
-<div class="bg"></div>
-
-<div class="container">
-
-<!-- HEADER -->
-<div class="top-bar" onclick="goHome()">
-<img src="logo.png" class="logo">
-<span class="title">№35 Мектеп-лицейі</span>
-</div>
-
-<!-- HOME -->
-<div id="home" class="page active">
-
-<div class="home-center">
-<img src="logo.png" class="big-logo">
-<h1>№35 Мектеп-лицейі</h1>
-<p>Білім мен жетістік мекені</p>
-
-<div class="home-buttons">
-<button onclick="openPage('programs')">Бағдарламалар</button>
-<button onclick="openPage('rating')">Үздіктер</button>
-</div>
-</div>
-
-<div class="slider">
-<img src="photo1.jpg" class="slide active">
-<img src="photo2.jpg" class="slide">
-<img src="photo3.jpg" class="slide">
-
-<div class="nav prev" onclick="prevSlide()">❮</div>
-<div class="nav next" onclick="nextSlide()">❯</div>
-
-<div class="dots">
-<span class="dot active" onclick="go(0)"></span>
-<span class="dot" onclick="go(1)"></span>
-<span class="dot" onclick="go(2)"></span>
-</div>
-</div>
-
-</div>
-
-<!-- PROGRAMS -->
-<div id="programs" class="page">
-
-<h2 style="text-align:center;">🎓 Бағдарламалар</h2>
-
-<h3 style="text-align:center;">🎯 Бір мақсат</h3>
-<div class="video-grid">
-<iframe src="https://www.youtube.com/embed/G7MI7YPqEhY" allowfullscreen></iframe>
-<iframe src="https://www.youtube.com/embed/_4A4fcuPQq0" allowfullscreen></iframe>
-<iframe src="https://www.youtube.com/embed/L0bstXl4kiY" allowfullscreen></iframe>
-</div>
-
-<h3 style="text-align:center;margin-top:20px;">🛡 Қауіпсіз мектеп</h3>
-<div class="video-grid">
-<iframe src="https://www.youtube.com/embed/s6GVbAE_uqE" allowfullscreen></iframe>
-<iframe src="https://www.youtube.com/embed/sbnnTlA8HVQ" allowfullscreen></iframe>
-<iframe src="https://www.youtube.com/embed/HaLxqOs3hLA" allowfullscreen></iframe>
-<iframe src="https://www.youtube.com/embed/WpG3irsxcyA" allowfullscreen></iframe>
-</div>
-
-</div>
-
-<!-- RATING -->
-<div id="rating" class="page">
-
-<h2 style="text-align:center;">🏆 Үздік оқушылар</h2>
-
-<div class="center">
-<div class="item">🥇 Тәліпова Ұлдана</div>
-<div class="item">🥇 Сәдуақас Нұрай</div>
-<div class="item">🥇 Мұхамеджанова Көркем</div>
-
-<div class="item">🥈 Шерімқожа Ақерке</div>
-<div class="item">🥈 Камаладин Мадияр</div>
-<div class="item">🥈 Амангелдиева Альбина</div>
-<div class="item">🥈 Астрахан Меруерт</div>
-
-<div class="item">🥉 Мейрамбеков Нұрислам</div>
-<div class="item">🥉 Алмас Нұрислам</div>
-<div class="item">🥉 Ақбергенова Мерей</div>
-</div>
-
-</div>
-
-</div>
-
-<script>
-
-function openPage(id){
-document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-document.getElementById(id).classList.add("active");
+body{
+font-family:'Segoe UI',sans-serif;
 }
 
-function goHome(){openPage("home");}
-
-/* SLIDER */
-let i=0;
-let slides=document.querySelectorAll(".slide");
-let dots=document.querySelectorAll(".dot");
-
-function show(n){
-slides.forEach(s=>s.classList.remove("active"));
-dots.forEach(d=>d.classList.remove("active"));
-slides[n].classList.add("active");
-dots[n].classList.add("active");
+/* ФОН */
+.bg{
+position:fixed;
+width:100%;
+height:100%;
+background:url("school.jpg") center/cover no-repeat;
+filter:blur(10px) brightness(0.8);
+z-index:-1;
 }
 
-function nextSlide(){i=(i+1)%slides.length;show(i);}
-function prevSlide(){i=(i-1+slides.length)%slides.length;show(i);}
-function go(n){i=n;show(i);}
+/* КОНТЕЙНЕР */
+.container{
+max-width:1100px;
+margin:40px auto;
+background:rgba(255,255,255,0.9);
+border-radius:20px;
+padding:20px;
+}
 
-</script>
+/* HEADER */
+.top{
+display:flex;
+align-items:center;
+gap:10px;
+cursor:pointer;
+margin-bottom:20px;
+}
 
-</body>
-</html>
+.top img{width:40px;}
+
+.top span{font-weight:bold;}
+
+/* ГЛАВНАЯ */
+.center{
+text-align:center;
+padding:40px;
+}
+
+.center img{width:120px;}
+
+/* КНОПКИ */
+.buttons{
+margin-top:20px;
+}
+
+.buttons button{
+padding:10px 15px;
+border:none;
+border-radius:10px;
+background:black;
+color:white;
+cursor:pointer;
+margin:5px;
+}
+
+/* СТРАНИЦЫ */
+.page{display:none;}
+.active{display:block;}
+
+/* СЛАЙДЕР */
+.slider{
+display:flex;
+gap:10px;
+margin-top:20px;
+}
+
+.slider img{
+width:33%;
+border-radius:10px;
+object-fit:cover;
+}
+
+/* ВИДЕО */
+.videos{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+margin-top:20px;
+}
+
+.videos iframe{
+width:100%;
+height:150px;
+border-radius:10px;
+}
+
+/* СПИСОК */
+.list{
+max-width:600px;
+margin:auto;
+}
+
+.item{
+background:white;
+padding:12px;
+margin:8px 0;
+border-radius:10px;
+text-align:center;
+cursor:pointer;
+transition:0.3s;
+}
+
+.item:hover{
+transform:scale(1.05);
+}
+
+/* МОДАЛ */
+.modal{
+display:none;
+position:fixed;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.8);
+top:0;
+}
+
+.modal img{
+display:block;
+margin:80px auto;
+max-width:500px;
+width:90%;
+}

@@ -5,9 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>№35 Мектеп-лицейі</title>
 
-<!-- ПОДКЛЮЧЕНИЕ CSS -->
 <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
@@ -16,39 +14,29 @@
 
 <div class="container">
 
-<!-- HEADER -->
-<div class="top-bar" onclick="goHome()">
-<img src="logo.png" class="logo">
-<span class="title">№35 Мектеп-лицейі</span>
+<div class="top" onclick="show('home')">
+<img src="logo.png">
+<span>№35 Мектеп-лицейі</span>
 </div>
 
 <!-- HOME -->
 <div id="home" class="page active">
 
-<div class="home-center">
-<img src="logo.png" class="big-logo">
+<div class="center">
+<img src="logo.png">
 <h1>№35 Мектеп-лицейі</h1>
 <p>Білім мен жетістік мекені</p>
 
-<div class="home-buttons">
-<button onclick="openPage('programs')">Бағдарламалар</button>
-<button onclick="openPage('rating')">Үздіктер</button>
+<div class="buttons">
+<button onclick="show('programs')">Бағдарламалар</button>
+<button onclick="show('rating')">Үздіктер</button>
 </div>
 </div>
 
 <div class="slider">
-<img src="photo1.jpg" class="slide active">
-<img src="photo2.jpg" class="slide">
-<img src="photo3.jpg" class="slide">
-
-<div class="nav prev" onclick="prevSlide()">❮</div>
-<div class="nav next" onclick="nextSlide()">❯</div>
-
-<div class="dots">
-<span class="dot active" onclick="go(0)"></span>
-<span class="dot" onclick="go(1)"></span>
-<span class="dot" onclick="go(2)"></span>
-</div>
+<img src="photo1.jpg">
+<img src="photo2.jpg">
+<img src="photo3.jpg">
 </div>
 
 </div>
@@ -56,21 +44,20 @@
 <!-- PROGRAMS -->
 <div id="programs" class="page">
 
-<h2 style="text-align:center;">🎓 Бағдарламалар</h2>
+<h2>Бағдарламалар</h2>
 
-<h3 style="text-align:center;">🎯 Бір мақсат</h3>
-<div class="video-grid">
-<iframe src="https://www.youtube.com/embed/G7MI7YPqEhY" allowfullscreen></iframe>
-<iframe src="https://www.youtube.com/embed/_4A4fcuPQq0" allowfullscreen></iframe>
-<iframe src="https://www.youtube.com/embed/L0bstXl4kiY" allowfullscreen></iframe>
+<h3>Бір мақсат</h3>
+<div class="videos">
+<iframe src="https://www.youtube.com/embed/G7MI7YPqEhY"></iframe>
+<iframe src="https://www.youtube.com/embed/_4A4fcuPQq0"></iframe>
+<iframe src="https://www.youtube.com/embed/L0bstXl4kiY"></iframe>
 </div>
 
-<h3 style="text-align:center;margin-top:20px;">🛡 Қауіпсіз мектеп</h3>
-<div class="video-grid">
-<iframe src="https://www.youtube.com/embed/s6GVbAE_uqE" allowfullscreen></iframe>
-<iframe src="https://www.youtube.com/embed/sbnnTlA8HVQ" allowfullscreen></iframe>
-<iframe src="https://www.youtube.com/embed/HaLxqOs3hLA" allowfullscreen></iframe>
-<iframe src="https://www.youtube.com/embed/WpG3irsxcyA" allowfullscreen></iframe>
+<h3>Қауіпсіз мектеп</h3>
+<div class="videos">
+<iframe src="https://www.youtube.com/embed/s6GVbAE_uqE"></iframe>
+<iframe src="https://www.youtube.com/embed/sbnnTlA8HVQ"></iframe>
+<iframe src="https://www.youtube.com/embed/HaLxqOs3hLA"></iframe>
 </div>
 
 </div>
@@ -78,52 +65,43 @@
 <!-- RATING -->
 <div id="rating" class="page">
 
-<h2 style="text-align:center;">🏆 Үздік оқушылар</h2>
+<h2>Үздік оқушылар</h2>
 
-<div class="center">
-<div class="item">🥇 Тәліпова Ұлдана</div>
-<div class="item">🥇 Сәдуақас Нұрай</div>
-<div class="item">🥇 Мұхамеджанова Көркем</div>
-
-<div class="item">🥈 Шерімқожа Ақерке</div>
-<div class="item">🥈 Камаладин Мадияр</div>
-<div class="item">🥈 Амангелдиева Альбина</div>
-<div class="item">🥈 Астрахан Меруерт</div>
-
-<div class="item">🥉 Мейрамбеков Нұрислам</div>
-<div class="item">🥉 Алмас Нұрислам</div>
-<div class="item">🥉 Ақбергенова Мерей</div>
+<div class="list">
+<div class="item" onclick="openImg('uldana1.jpeg')">Тәліпова Ұлдана</div>
+<div class="item" onclick="openImg('nurai.png')">Сәдуақас Нұрай</div>
+<div class="item">Мұхамеджанова Көркем</div>
+<div class="item">Шерімқожа Ақерке</div>
+<div class="item">Камаладин Мадияр</div>
+<div class="item">Амангелдиева Альбина</div>
+<div class="item">Астрахан Меруерт</div>
+<div class="item">Мейрамбеков Нұрислам</div>
+<div class="item">Алмас Нұрислам</div>
+<div class="item">Ақбергенова Мерей</div>
 </div>
 
 </div>
 
+</div>
+
+<div id="modal" class="modal" onclick="closeImg()">
+<img id="modalImg">
 </div>
 
 <script>
-
-function openPage(id){
-document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-document.getElementById(id).classList.add("active");
+function show(id){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById(id).classList.add('active');
 }
 
-function goHome(){openPage("home");}
-
-/* SLIDER */
-let i=0;
-let slides=document.querySelectorAll(".slide");
-let dots=document.querySelectorAll(".dot");
-
-function show(n){
-slides.forEach(s=>s.classList.remove("active"));
-dots.forEach(d=>d.classList.remove("active"));
-slides[n].classList.add("active");
-dots[n].classList.add("active");
+function openImg(src){
+document.getElementById("modal").style.display="block";
+document.getElementById("modalImg").src=src;
 }
 
-function nextSlide(){i=(i+1)%slides.length;show(i);}
-function prevSlide(){i=(i-1+slides.length)%slides.length;show(i);}
-function go(n){i=n;show(i);}
-
+function closeImg(){
+document.getElementById("modal").style.display="none";
+}
 </script>
 
 </body>
