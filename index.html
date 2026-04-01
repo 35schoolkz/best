@@ -12,7 +12,6 @@
 
 <div class="container">
 
-<!-- HEADER -->
 <div class="header" onclick="openPage('home')">
 <img src="logo.jpg">
 <h3>№35 Мектеп-лицейі</h3>
@@ -20,7 +19,6 @@
 
 <!-- HOME -->
 <div id="home" class="page active">
-
 <div class="home">
 <img src="logo.jpg">
 <h1>№35 Мектеп-лицейі</h1>
@@ -32,10 +30,9 @@
 <button class="btn safe" onclick="openPage('safe')">🛡 Қауіпсіз мектеп</button>
 <button class="btn sport" onclick="openPage('sport')">⚽ Спорт</button>
 </div>
-
 </div>
 
-<!-- СЛАЙДЕР -->
+<!-- SLIDER -->
 <div class="slider">
 <img src="photo1.jpg" class="slide active">
 <img src="photo2.jpg" class="slide">
@@ -47,41 +44,50 @@
 <!-- БІЛІМ -->
 <div id="bilim" class="page">
 <h2>📘 Білім</h2>
-
-<div class="feed" id="bilimFeed"></div>
-
+<div class="feed">
+<script>
+for(let i=1;i<=19;i++){
+document.write(`<div class="post">
+<img src="bilim${i}.jpg">
+<button onclick="zoom('bilim${i}.jpg')">🔍</button>
+</div>`)
+}
+</script>
+</div>
 </div>
 
 <!-- СПОРТ -->
 <div id="sport" class="page">
 <h2>⚽ Спорт</h2>
-
-<div class="feed" id="sportFeed"></div>
-
+<div class="feed">
+<script>
+for(let i=1;i<=10;i++){
+document.write(`<div class="post">
+<img src="sport${i}.jpeg">
+<button onclick="zoom('sport${i}.jpeg')">🔍</button>
+</div>`)
+}
+</script>
+</div>
 </div>
 
-<!-- БІР МАҚСАТ -->
+<!-- ВИДЕО -->
 <div id="maksat" class="page">
 <h2>🎯 Бір мақсат</h2>
-
 <div class="videos">
 <iframe src="https://www.youtube.com/embed/G7MI7YPqEhY"></iframe>
 <iframe src="https://www.youtube.com/embed/_4A4fcuPQq0"></iframe>
 <iframe src="https://www.youtube.com/embed/L0bstXl4kiY"></iframe>
 </div>
-
 </div>
 
-<!-- ҚАУІПСІЗ МЕКТЕП -->
 <div id="safe" class="page">
 <h2>🛡 Қауіпсіз мектеп</h2>
-
 <div class="videos">
 <iframe src="https://www.youtube.com/embed/s6GVbAE_uqE"></iframe>
 <iframe src="https://www.youtube.com/embed/sbnnTlA8HVQ"></iframe>
 <iframe src="https://www.youtube.com/embed/HaLxqOs3hLA"></iframe>
 </div>
-
 </div>
 
 <!-- РЕЙТИНГ -->
@@ -90,34 +96,28 @@
 <h2>🏆 Үздік оқушылар</h2>
 
 <div class="cards">
-
-<!-- GOLD -->
 <div class="card gold" onclick="openGallery('uldana')">🥇 Тәліпова Ұлдана</div>
 <div class="card gold" onclick="openGallery('nuray')">🥇 Сәдуақас Нұрай</div>
 <div class="card gold">🥇 Мұхамеджанова Көркем</div>
 
-<!-- SILVER -->
 <div class="card silver" onclick="openGallery('akerke')">🥈 Шерімқожа Ақерке</div>
 <div class="card silver">🥈 Камаладин Мадияр</div>
 <div class="card silver">🥈 Амангелдиева Альбина</div>
 <div class="card silver">🥈 Астрахан Меруерт</div>
 
-<!-- BRONZE -->
 <div class="card bronze" onclick="openGallery('nurislam')">🥉 Мейрамбеков Нұрислам</div>
 <div class="card bronze">🥉 Алмас Нұрислам</div>
 <div class="card bronze" onclick="openGallery('merei')">🥉 Ақбергенова Мерей</div>
-
 </div>
 
 <h2>👩‍🏫 Үздік мұғалімдер</h2>
 
 <div class="cards">
-
 <div class="card" onclick="openGallery('aigerim')">Сағатова Айгерім</div>
-<div class="card" onclick="openGallery('aigul')">Сулейменова Айгүл</div>
-<div class="card" onclick="openGallery('akmaral')">Жарылқасынова Ақмарал</div>
-<div class="card" onclick="openGallery('zhansaya')">Қорғанбай Жансая</div>
 <div class="card" onclick="openGallery('aizhan')">Жұмабекқызы Айжан</div>
+<div class="card" onclick="openGallery('zharyl')">Жарылқасынова Ақмарал</div>
+<div class="card" onclick="openGallery('korganbay')">Қорғанбай Жансая</div>
+</div>
 
 </div>
 
@@ -125,6 +125,8 @@
 
 <!-- МОДАЛ -->
 <div id="modal" class="modal" onclick="closeImg()">
+<span class="arrow left" onclick="prevImg(event)">❮</span>
+<span class="arrow right" onclick="nextImg(event)">❯</span>
 <img id="img">
 </div>
 
@@ -136,7 +138,7 @@ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
 document.getElementById(id).classList.add("active");
 }
 
-/* СЛАЙДЕР FADE */
+/* СЛАЙДЕР */
 let slides=document.querySelectorAll(".slide");
 let i=0;
 
@@ -146,38 +148,58 @@ i=(i+1)%slides.length;
 slides[i].classList.add("active");
 },3000);
 
-/* БІЛІМ ФОТО */
-let bilim=document.getElementById("bilimFeed");
-for(let i=1;i<=19;i++){
-bilim.innerHTML+=`
-<div class="post">
-<img src="bilim${i}.jpg">
-<button onclick="zoom('bilim${i}.jpg')">🔍</button>
-</div>`;
-}
-
-/* СПОРТ */
-let sport=document.getElementById("sportFeed");
-for(let i=1;i<=10;i++){
-sport.innerHTML+=`
-<div class="post">
-<img src="sport${i}.jpeg">
-<button onclick="zoom('sport${i}.jpeg')">🔍</button>
-</div>`;
-}
-
-/* ГАЛЕРЕЯ */
+/* ВСЕ ФОТКИ */
 let galleries={
-uldana:["uldana1.jpeg","uldana2.jpeg","uldana3.jpeg"],
-nuray:["nurai.png","nurai2.png"],
-akerke:["akerke1.jpeg","akerke2.jpeg"],
-nurislam:["nurislam1.jpeg","nurislam2.jpeg"],
-merei:["merei1.jpeg","merei2.jpeg"],
-aigerim:["aigerim1.jpeg"],
-aigul:["aigul1.jpeg"],
-akmaral:["zharyl1.jpeg"],
-zhansaya:["zhansaya1.jpeg"],
-aizhan:["aizhan1.jpeg"]
+
+uldana:[
+"uldana1.jpeg","uldana2.jpeg","uldana3.jpeg","uldana4.jpeg",
+"uldana5.jpeg","uldana6.jpeg","uldana7.jpeg","uldana8.jpeg",
+"uldana9.jpeg","uldana10.jpeg","uldana11.jpeg","uldana12.jpeg",
+"uldana13.jpeg","uldana14.jpeg","uldana15.jpeg"
+],
+
+nuray:[
+"nurai.png","nurai2.png","nurai3.png",
+"nurasy1.jpeg","nurasy2.jpeg","nurasy3.jpeg","nurasy4.jpeg",
+"nurasy5.jpeg","nurasy6.jpeg","nurasy7.jpeg","nurasy8.jpeg",
+"nurasy9.jpeg","nurasy10.jpeg","nurasy11.jpeg","nurasy12.jpeg",
+"nurasy13.jpeg","nurasy14.jpeg"
+],
+
+akerke:[
+"akerke1.jpeg","akerke2.jpeg","akerke3.jpeg","akerke4.jpeg",
+"akerke5.jpeg","akerke6.jpeg","akerke7.jpeg","akerke8.jpeg","akerke9.jpeg"
+],
+
+nurislam:[
+"nurislam1.jpeg","nurislam2.jpeg","nurislam3.jpeg","nurislam4.jpeg",
+"nurislam5.jpeg","nurislam6.jpeg","nurislam7.jpeg","nurislam8.jpeg",
+"nurislam9.jpeg","nurislam10.jpeg","nurislam11.jpeg"
+],
+
+merei:[
+"merei1.jpeg","merei2.jpeg","merei3.jpeg","merei4.jpeg",
+"merei5.jpeg","merei6.jpeg","merei7.jpeg","merei8.jpeg",
+"merei9.jpeg","merei10.jpeg","merei11.jpeg","merei12.jpeg","merei13.jpeg"
+],
+
+aigerim:[
+"aigerim1.jpeg","aigerim2.jpeg","aigerim3.jpeg",
+"aigerim4.jpeg","aigerim5.jpeg","aigerim6.jpeg"
+],
+
+aizhan:[
+"aizhan1.jpeg","aizhan2.jpeg","aizhan3.jpeg","aizhan4.jpeg"
+],
+
+zharyl:[
+"zharyl1.jpeg","zharyl2.jpeg","zharyl3.jpeg","zharyl4.jpeg"
+],
+
+korganbay:[
+"korganbay1.jpeg","korganbay2.jpeg"
+]
+
 };
 
 let current=[],index=0;
@@ -185,12 +207,24 @@ let current=[],index=0;
 function openGallery(name){
 current=galleries[name];
 index=0;
+document.getElementById("modal").style.display="block";
 showImg();
 }
 
 function showImg(){
-document.getElementById("modal").style.display="block";
 document.getElementById("img").src=current[index];
+}
+
+function nextImg(e){
+e.stopPropagation();
+index=(index+1)%current.length;
+showImg();
+}
+
+function prevImg(e){
+e.stopPropagation();
+index=(index-1+current.length)%current.length;
+showImg();
 }
 
 function zoom(src){

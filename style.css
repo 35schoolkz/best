@@ -12,7 +12,6 @@ border-radius:20px;
 padding:25px;
 }
 
-/* HEADER */
 .header{
 display:flex;
 gap:10px;
@@ -21,11 +20,9 @@ cursor:pointer;
 
 .header img{width:45px;border-radius:50%;}
 
-/* HOME */
 .home{text-align:center;padding:30px;}
 .home img{width:130px;}
 
-/* КНОПКИ */
 .menu{
 display:flex;
 flex-wrap:wrap;
@@ -50,7 +47,6 @@ cursor:pointer;
 .page{display:none;}
 .active{display:block;}
 
-/* СЛАЙДЕР */
 .slider{
 margin-top:30px;
 position:relative;
@@ -63,7 +59,7 @@ object-fit:cover;
 border-radius:15px;
 opacity:0;
 position:absolute;
-transition:opacity 1s;
+transition:1s;
 }
 
 .slide.active{
@@ -71,7 +67,6 @@ opacity:1;
 position:relative;
 }
 
-/* ВИДЕО */
 .videos{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
@@ -85,7 +80,6 @@ height:180px;
 border-radius:10px;
 }
 
-/* FEED */
 .feed{
 display:flex;
 flex-direction:column;
@@ -111,10 +105,8 @@ border:none;
 border-radius:50%;
 background:black;
 color:white;
-cursor:pointer;
 }
 
-/* РЕЙТИНГ */
 .cards{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
@@ -133,7 +125,6 @@ cursor:pointer;
 .silver{border-left:6px solid silver;}
 .bronze{border-left:6px solid #cd7f32;}
 
-/* МОДАЛ */
 .modal{
 display:none;
 position:fixed;
@@ -149,3 +140,13 @@ margin:60px auto;
 max-width:700px;
 width:95%;
 }
+
+.arrow{
+position:absolute;
+top:50%;
+font-size:40px;
+color:white;
+cursor:pointer;
+}
+.left{left:20px;}
+.right{right:20px;}
