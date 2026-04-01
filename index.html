@@ -2,114 +2,59 @@
 <html lang="kk">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>№35 Мектеп-лицейі</title>
+<title>Мектеп</title>
 
 <style>
 body {
-    margin: 0;
     font-family: Arial;
-    background: #f1f3f7;
+    background: #f3f4f6;
+    margin: 0;
 }
 
-/* MENU */
 .menu {
     display: flex;
     justify-content: center;
     gap: 10px;
-    padding: 12px;
+    padding: 10px;
     background: white;
 }
 
 .menu button {
-    padding: 10px 15px;
+    padding: 10px;
     border-radius: 10px;
-    border: 1px solid #ddd;
-    background: white;
+    border: 1px solid #ccc;
     cursor: pointer;
 }
 
 .page { display: none; padding: 20px; }
 .active { display: block; }
 
-/* SLIDER */
-.slider {
-    max-width: 600px;
-    margin: auto;
-    position: relative;
-}
-
-.slide {
-    width: 100%;
-    height: 250px;
-    object-fit: cover;
-    display: none;
-    border-radius: 12px;
-}
-
-.slide.active {
-    display: block;
-}
-
-/* SLIDER BUTTONS */
-.btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: black;
-    color: white;
-    padding: 8px;
-    cursor: pointer;
-    border-radius: 50%;
-}
-
-.left { left: 10px; }
-.right { right: 10px; }
-
-/* LIST */
 .item {
     background: white;
     padding: 15px;
     margin: 10px 0;
-    border-radius: 12px;
+    border-radius: 10px;
     cursor: pointer;
 }
 
-.gold { border-left: 6px solid gold; }
-.silver { border-left: 6px solid silver; }
-.bronze { border-left: 6px solid #cd7f32; }
-
-/* MODAL */
 .modal {
     display: none;
     position: fixed;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.85);
+    background: rgba(0,0,0,0.8);
     top: 0;
 }
 
 .modal img {
     display: block;
-    margin: 70px auto;
-    max-width: 450px;
+    margin: 80px auto;
+    max-width: 500px;
     width: 90%;
 }
-
-/* GALLERY ARROWS */
-.arrow {
-    position: absolute;
-    top: 50%;
-    font-size: 40px;
-    color: white;
-    cursor: pointer;
-}
-
-.arrow.left { left: 20px; }
-.arrow.right { right: 20px; }
-
 </style>
 </head>
+
 <body>
 
 <div class="menu">
@@ -117,36 +62,21 @@ body {
     <button onclick="openPage('rating')">Үздіктер</button>
 </div>
 
-<!-- HOME -->
 <div id="home" class="page active">
-
-<h2 style="text-align:center;">№35 Мектеп-лицейі</h2>
-
-<div class="slider">
-    <img src="photo1.jpg" class="slide active">
-    <img src="photo2.jpg" class="slide">
-    <img src="photo3.jpg" class="slide">
-
-    <div class="btn left" onclick="prevSlide()">❮</div>
-    <div class="btn right" onclick="nextSlide()">❯</div>
+    <h2>Басты бет</h2>
 </div>
 
-</div>
-
-<!-- RATING -->
 <div id="rating" class="page">
 
-<h2>🏆 Үздік оқушылар</h2>
+<h2>Үздік оқушылар</h2>
 
-<div class="item gold" onclick="openGallery('uldana')">🥇 Тәліпова Ұлдана</div>
-<div class="item gold" onclick="openGallery('nuray')">🥇 Сәдуақас Нұрай</div>
+<div class="item" onclick="openGallery('uldana')">Тәліпова Ұлдана</div>
+<div class="item" onclick="openGallery('nuray')">Сәдуақас Нұрай</div>
+<div class="item" onclick="openGallery('akerke')">Шерімқожа Ақерке</div>
+<div class="item" onclick="openGallery('nurislam')">Мейрамбеков Нұрислам</div>
+<div class="item" onclick="openGallery('merei')">Ақбергенова Мерей</div>
 
-<div class="item silver" onclick="openGallery('akerke')">🥈 Шерімқожа Ақерке</div>
-
-<div class="item bronze" onclick="openGallery('nurislam')">🥉 Мейрамбеков Нұрислам</div>
-<div class="item bronze" onclick="openGallery('merei')">🥉 Ақбергенова Мерей</div>
-
-<h2>👨‍🏫 Үздік мұғалімдер</h2>
+<h2>Үздік мұғалімдер</h2>
 
 <div class="item" onclick="openGallery('aigerim')">Сағатова Айгерім</div>
 <div class="item" onclick="openGallery('aigul')">Сулейменова Айгүл</div>
@@ -158,12 +88,7 @@ body {
 
 <!-- MODAL -->
 <div id="modal" class="modal" onclick="closeModal()">
-
-<span class="arrow left" onclick="prevImg(event)">❮</span>
-<span class="arrow right" onclick="nextImg(event)">❯</span>
-
-<img id="img">
-
+    <img id="img">
 </div>
 
 <script>
@@ -172,64 +97,64 @@ function openPage(id){
     document.getElementById(id).classList.add("active");
 }
 
-/* SLIDER FIX */
-let s = 0;
-let slides = document.querySelectorAll(".slide");
-
-function showSlide(){
-    slides.forEach(el => el.classList.remove("active"));
-    slides[s].classList.add("active");
-}
-
-function nextSlide(){
-    s = (s + 1) % slides.length;
-    showSlide();
-}
-
-function prevSlide(){
-    s = (s - 1 + slides.length) % slides.length;
-    showSlide();
-}
-
-/* GALLERY */
+/* ГАЛЕРЕИ ПОД ТВОИ ФАЙЛЫ */
 let galleries = {
-    uldana: ["uldana1.jpeg","uldana2.jpeg"],
-    nuray: ["nurai1.png","nurai2.png"], /* ВАЖНО */
-    akerke: ["akerke1.jpeg"],
-    nurislam: ["nurislam1.jpeg"],
-    merei: ["merei1.jpeg"],
 
-    aigerim: ["aigerim1.jpeg"],
-    aigul: ["aigul1.jpeg"], /* ВАЖНО */
-    zharyl: ["zharyl1.jpeg"],
-    korganbay: ["korganbay1.jpeg"],
-    aizhan: ["aizhan1.jpeg"]
+uldana: [
+"uldana1.jpeg","uldana2.jpeg","uldana3.jpeg","uldana4.jpeg"
+],
+
+nuray: [
+"nurai.png","nurai2.png","nurai3.png",
+"nurasy11.jpeg","nurasy12.jpeg"
+],
+
+akerke: [
+"akerke1.jpeg","akerke2.jpeg","akerke3.jpeg"
+],
+
+nurislam: [
+"nurislam1.jpeg","nurislam2.jpeg","nurislam3.jpeg"
+],
+
+merei: [
+"merei1.jpeg","merei2.jpeg","merei3.jpeg"
+],
+
+aigerim: [
+"aigerim1.jpeg","aigerim2.jpeg","aigerim3.jpeg"
+],
+
+aigul: [
+"sul1.jpeg","sul2.jpeg","sul3.jpeg"
+],
+
+zharyl: [
+"zharyl1.jpeg","zharyl2.jpeg","zharyl3.jpeg"
+],
+
+korganbay: [
+"korganbay1.jpeg","korganbay2.jpeg"
+],
+
+aizhan: [
+"aizhan1.jpeg","aizhan2.jpeg","aizhan3.jpeg"
+]
+
 };
 
-let current = [];
 let i = 0;
+let current = [];
 
 function openGallery(name){
     current = galleries[name];
     i = 0;
     document.getElementById("modal").style.display = "block";
-    showImg();
+    show();
 }
 
-function showImg(){
+function show(){
     document.getElementById("img").src = current[i];
-}
-
-function nextImg(e){
-    e.stopPropagation();
-    i = (i + 1) % current.length;
-    showImg();
-}
-
-function prevImg(e){
-    e.stopPropagation();
-    i = (i - 1 + current.length) % current.length;
-    showImg();
 }
 
 function closeModal(){
