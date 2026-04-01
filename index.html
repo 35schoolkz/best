@@ -10,65 +10,48 @@
 
 <body>
 
+<div class="overlay"></div>
+
 <div class="container">
 
 <div class="header" onclick="openPage('home')">
 <img src="logo.jpg">
-<h3>№35 Мектеп-лицейі</h3>
+<h2>№35 Мектеп-лицейі</h2>
 </div>
 
 <!-- HOME -->
 <div id="home" class="page active">
-<div class="home">
+<div class="hero">
 <img src="logo.jpg">
 <h1>№35 Мектеп-лицейі</h1>
+<p>Білім мен жетістік мекені</p>
+</div>
 
 <div class="menu">
-<button class="btn bilim" onclick="openPage('bilim')">📘 Білім</button>
-<button class="btn maksat" onclick="openPage('maksat')">🎯 Бір мақсат</button>
-<button class="btn uzdik" onclick="openPage('rating')">🏆 Үздіктер</button>
-<button class="btn safe" onclick="openPage('safe')">🛡 Қауіпсіз мектеп</button>
-<button class="btn sport" onclick="openPage('sport')">⚽ Спорт</button>
-</div>
+<button onclick="openPage('bilim')">📘 Білім</button>
+<button onclick="openPage('maksat')">🎯 Бір мақсат</button>
+<button onclick="openPage('rating')">🏆 Үздіктер</button>
+<button onclick="openPage('safe')">🛡 Қауіпсіз мектеп</button>
+<button onclick="openPage('sport')">⚽ Спорт</button>
 </div>
 
-<!-- SLIDER -->
 <div class="slider">
 <img src="photo1.jpg" class="slide active">
 <img src="photo2.jpg" class="slide">
 <img src="photo3.jpg" class="slide">
 </div>
-
 </div>
 
 <!-- БІЛІМ -->
 <div id="bilim" class="page">
 <h2>📘 Білім</h2>
-<div class="feed">
-<script>
-for(let i=1;i<=19;i++){
-document.write(`<div class="post">
-<img src="bilim${i}.jpg">
-<button onclick="zoom('bilim${i}.jpg')">🔍</button>
-</div>`)
-}
-</script>
-</div>
+<div class="feed" id="bilimFeed"></div>
 </div>
 
 <!-- СПОРТ -->
 <div id="sport" class="page">
 <h2>⚽ Спорт</h2>
-<div class="feed">
-<script>
-for(let i=1;i<=10;i++){
-document.write(`<div class="post">
-<img src="sport${i}.jpeg">
-<button onclick="zoom('sport${i}.jpeg')">🔍</button>
-</div>`)
-}
-</script>
-</div>
+<div class="feed" id="sportFeed"></div>
 </div>
 
 <!-- ВИДЕО -->
@@ -132,30 +115,41 @@ document.write(`<div class="post">
 
 <script>
 
-/* ПЕРЕКЛЮЧЕНИЕ */
+/* страницы */
 function openPage(id){
 document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
 document.getElementById(id).classList.add("active");
 }
 
-/* СЛАЙДЕР */
+/* слайдер */
 let slides=document.querySelectorAll(".slide");
 let i=0;
-
 setInterval(()=>{
 slides[i].classList.remove("active");
 i=(i+1)%slides.length;
 slides[i].classList.add("active");
 },3000);
 
-/* ВСЕ ФОТКИ */
+/* білім */
+for(let i=1;i<=19;i++){
+document.getElementById("bilimFeed").innerHTML+=`
+<div class="post"><img src="bilim${i}.jpg"></div>`
+}
+
+/* спорт */
+for(let i=1;i<=10;i++){
+document.getElementById("sportFeed").innerHTML+=`
+<div class="post"><img src="sport${i}.jpeg"></div>`
+}
+
+/* 🔥 ПОЛНЫЕ ГАЛЕРЕИ */
+
 let galleries={
 
 uldana:[
-"uldana1.jpeg","uldana2.jpeg","uldana3.jpeg","uldana4.jpeg",
-"uldana5.jpeg","uldana6.jpeg","uldana7.jpeg","uldana8.jpeg",
-"uldana9.jpeg","uldana10.jpeg","uldana11.jpeg","uldana12.jpeg",
-"uldana13.jpeg","uldana14.jpeg","uldana15.jpeg"
+"uldana1.jpeg","uldana2.jpeg","uldana3.jpeg","uldana4.jpeg","uldana5.jpeg",
+"uldana6.jpeg","uldana7.jpeg","uldana8.jpeg","uldana9.jpeg","uldana10.jpeg",
+"uldana11.jpeg","uldana12.jpeg","uldana13.jpeg","uldana14.jpeg","uldana15.jpeg"
 ],
 
 nuray:[
@@ -167,8 +161,8 @@ nuray:[
 ],
 
 akerke:[
-"akerke1.jpeg","akerke2.jpeg","akerke3.jpeg","akerke4.jpeg",
-"akerke5.jpeg","akerke6.jpeg","akerke7.jpeg","akerke8.jpeg","akerke9.jpeg"
+"akerke1.jpeg","akerke2.jpeg","akerke3.jpeg","akerke4.jpeg","akerke5.jpeg",
+"akerke6.jpeg","akerke7.jpeg","akerke8.jpeg","akerke9.jpeg"
 ],
 
 nurislam:[
@@ -178,14 +172,13 @@ nurislam:[
 ],
 
 merei:[
-"merei1.jpeg","merei2.jpeg","merei3.jpeg","merei4.jpeg",
-"merei5.jpeg","merei6.jpeg","merei7.jpeg","merei8.jpeg",
-"merei9.jpeg","merei10.jpeg","merei11.jpeg","merei12.jpeg","merei13.jpeg"
+"merei1.jpeg","merei2.jpeg","merei3.jpeg","merei4.jpeg","merei5.jpeg",
+"merei6.jpeg","merei7.jpeg","merei8.jpeg","merei9.jpeg","merei10.jpeg",
+"merei11.jpeg","merei12.jpeg","merei13.jpeg"
 ],
 
 aigerim:[
-"aigerim1.jpeg","aigerim2.jpeg","aigerim3.jpeg",
-"aigerim4.jpeg","aigerim5.jpeg","aigerim6.jpeg"
+"aigerim1.jpeg","aigerim2.jpeg","aigerim3.jpeg","aigerim4.jpeg","aigerim5.jpeg","aigerim6.jpeg"
 ],
 
 aizhan:[
@@ -207,11 +200,11 @@ let current=[],index=0;
 function openGallery(name){
 current=galleries[name];
 index=0;
-document.getElementById("modal").style.display="block";
 showImg();
 }
 
 function showImg(){
+document.getElementById("modal").style.display="block";
 document.getElementById("img").src=current[index];
 }
 
@@ -225,11 +218,6 @@ function prevImg(e){
 e.stopPropagation();
 index=(index-1+current.length)%current.length;
 showImg();
-}
-
-function zoom(src){
-document.getElementById("modal").style.display="block";
-document.getElementById("img").src=src;
 }
 
 function closeImg(){

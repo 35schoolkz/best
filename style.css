@@ -1,152 +1,230 @@
-*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif;}
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>№35 Мектеп-лицейі</title>
 
-body{
-background:url("school.jpg") center/cover no-repeat fixed;
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<div class="container">
+
+<div class="header" onclick="openPage('home')">
+<img src="logo.jpg">
+<h2>№35 Мектеп-лицейі</h2>
+</div>
+
+<!-- HOME -->
+<div id="home" class="page active">
+<div class="hero">
+<img src="logo.jpg">
+<h1>№35 Мектеп-лицейі</h1>
+<p>Білім мен жетістік мекені</p>
+</div>
+
+<div class="menu">
+<button onclick="openPage('bilim')">📘 Білім</button>
+<button onclick="openPage('maksat')">🎯 Бір мақсат</button>
+<button onclick="openPage('rating')">🏆 Үздіктер</button>
+<button onclick="openPage('safe')">🛡 Қауіпсіз мектеп</button>
+<button onclick="openPage('sport')">⚽ Спорт</button>
+</div>
+
+<div class="slider">
+<img src="photo1.jpg" class="slide active">
+<img src="photo2.jpg" class="slide">
+<img src="photo3.jpg" class="slide">
+</div>
+</div>
+
+<!-- БІЛІМ -->
+<div id="bilim" class="page">
+<h2>📘 Білім</h2>
+<div class="feed" id="bilimFeed"></div>
+</div>
+
+<!-- СПОРТ -->
+<div id="sport" class="page">
+<h2>⚽ Спорт</h2>
+<div class="feed" id="sportFeed"></div>
+</div>
+
+<!-- ВИДЕО -->
+<div id="maksat" class="page">
+<h2>🎯 Бір мақсат</h2>
+<div class="videos">
+<iframe src="https://www.youtube.com/embed/G7MI7YPqEhY"></iframe>
+<iframe src="https://www.youtube.com/embed/_4A4fcuPQq0"></iframe>
+<iframe src="https://www.youtube.com/embed/L0bstXl4kiY"></iframe>
+</div>
+</div>
+
+<div id="safe" class="page">
+<h2>🛡 Қауіпсіз мектеп</h2>
+<div class="videos">
+<iframe src="https://www.youtube.com/embed/s6GVbAE_uqE"></iframe>
+<iframe src="https://www.youtube.com/embed/sbnnTlA8HVQ"></iframe>
+<iframe src="https://www.youtube.com/embed/HaLxqOs3hLA"></iframe>
+</div>
+</div>
+
+<!-- РЕЙТИНГ -->
+<div id="rating" class="page">
+
+<h2>🏆 Үздік оқушылар</h2>
+
+<div class="cards">
+<div class="card gold" onclick="openGallery('uldana')">🥇 Тәліпова Ұлдана</div>
+<div class="card gold" onclick="openGallery('nuray')">🥇 Сәдуақас Нұрай</div>
+<div class="card gold">🥇 Мұхамеджанова Көркем</div>
+
+<div class="card silver" onclick="openGallery('akerke')">🥈 Шерімқожа Ақерке</div>
+<div class="card silver">🥈 Камаладин Мадияр</div>
+<div class="card silver">🥈 Амангелдиева Альбина</div>
+<div class="card silver">🥈 Астрахан Меруерт</div>
+
+<div class="card bronze" onclick="openGallery('nurislam')">🥉 Мейрамбеков Нұрислам</div>
+<div class="card bronze">🥉 Алмас Нұрислам</div>
+<div class="card bronze" onclick="openGallery('merei')">🥉 Ақбергенова Мерей</div>
+</div>
+
+<h2>👩‍🏫 Үздік мұғалімдер</h2>
+
+<div class="cards">
+<div class="card" onclick="openGallery('aigerim')">Сағатова Айгерім</div>
+<div class="card" onclick="openGallery('aizhan')">Жұмабекқызы Айжан</div>
+<div class="card" onclick="openGallery('zharyl')">Жарылқасынова Ақмарал</div>
+<div class="card" onclick="openGallery('korganbay')">Қорғанбай Жансая</div>
+</div>
+
+</div>
+
+</div>
+
+<!-- МОДАЛ -->
+<div id="modal" class="modal" onclick="closeImg()">
+<span class="arrow left" onclick="prevImg(event)">❮</span>
+<span class="arrow right" onclick="nextImg(event)">❯</span>
+<img id="img">
+</div>
+
+<script>
+
+/* страницы */
+function openPage(id){
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document.getElementById(id).classList.add("active");
 }
 
-.container{
-max-width:1200px;
-margin:40px auto;
-background:white;
-border-radius:20px;
-padding:25px;
+/* слайдер */
+let slides=document.querySelectorAll(".slide");
+let i=0;
+setInterval(()=>{
+slides[i].classList.remove("active");
+i=(i+1)%slides.length;
+slides[i].classList.add("active");
+},3000);
+
+/* білім */
+for(let i=1;i<=19;i++){
+document.getElementById("bilimFeed").innerHTML+=`
+<div class="post"><img src="bilim${i}.jpg"></div>`
 }
 
-.header{
-display:flex;
-gap:10px;
-cursor:pointer;
+/* спорт */
+for(let i=1;i<=10;i++){
+document.getElementById("sportFeed").innerHTML+=`
+<div class="post"><img src="sport${i}.jpeg"></div>`
 }
 
-.header img{width:45px;border-radius:50%;}
+/* 🔥 ПОЛНЫЕ ГАЛЕРЕИ */
 
-.home{text-align:center;padding:30px;}
-.home img{width:130px;}
+let galleries={
 
-.menu{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:10px;
+uldana:[
+"uldana1.jpeg","uldana2.jpeg","uldana3.jpeg","uldana4.jpeg","uldana5.jpeg",
+"uldana6.jpeg","uldana7.jpeg","uldana8.jpeg","uldana9.jpeg","uldana10.jpeg",
+"uldana11.jpeg","uldana12.jpeg","uldana13.jpeg","uldana14.jpeg","uldana15.jpeg"
+],
+
+nuray:[
+"nurai.png","nurai2.png","nurai3.png",
+"nurasy1.jpeg","nurasy2.jpeg","nurasy3.jpeg","nurasy4.jpeg",
+"nurasy5.jpeg","nurasy6.jpeg","nurasy7.jpeg","nurasy8.jpeg",
+"nurasy9.jpeg","nurasy10.jpeg","nurasy11.jpeg","nurasy12.jpeg",
+"nurasy13.jpeg","nurasy14.jpeg"
+],
+
+akerke:[
+"akerke1.jpeg","akerke2.jpeg","akerke3.jpeg","akerke4.jpeg","akerke5.jpeg",
+"akerke6.jpeg","akerke7.jpeg","akerke8.jpeg","akerke9.jpeg"
+],
+
+nurislam:[
+"nurislam1.jpeg","nurislam2.jpeg","nurislam3.jpeg","nurislam4.jpeg",
+"nurislam5.jpeg","nurislam6.jpeg","nurislam7.jpeg","nurislam8.jpeg",
+"nurislam9.jpeg","nurislam10.jpeg","nurislam11.jpeg"
+],
+
+merei:[
+"merei1.jpeg","merei2.jpeg","merei3.jpeg","merei4.jpeg","merei5.jpeg",
+"merei6.jpeg","merei7.jpeg","merei8.jpeg","merei9.jpeg","merei10.jpeg",
+"merei11.jpeg","merei12.jpeg","merei13.jpeg"
+],
+
+aigerim:[
+"aigerim1.jpeg","aigerim2.jpeg","aigerim3.jpeg","aigerim4.jpeg","aigerim5.jpeg","aigerim6.jpeg"
+],
+
+aizhan:[
+"aizhan1.jpeg","aizhan2.jpeg","aizhan3.jpeg","aizhan4.jpeg"
+],
+
+zharyl:[
+"zharyl1.jpeg","zharyl2.jpeg","zharyl3.jpeg","zharyl4.jpeg"
+],
+
+korganbay:[
+"korganbay1.jpeg","korganbay2.jpeg"
+]
+
+};
+
+let current=[],index=0;
+
+function openGallery(name){
+current=galleries[name];
+index=0;
+showImg();
 }
 
-.btn{
-padding:12px 20px;
-border:none;
-border-radius:25px;
-color:white;
-cursor:pointer;
+function showImg(){
+document.getElementById("modal").style.display="block";
+document.getElementById("img").src=current[index];
 }
 
-.bilim{background:#4CAF50;}
-.maksat{background:#2196F3;}
-.uzdik{background:black;}
-.safe{background:#f44336;}
-.sport{background:#ff9800;}
-
-.page{display:none;}
-.active{display:block;}
-
-.slider{
-margin-top:30px;
-position:relative;
+function nextImg(e){
+e.stopPropagation();
+index=(index+1)%current.length;
+showImg();
 }
 
-.slide{
-width:100%;
-height:320px;
-object-fit:cover;
-border-radius:15px;
-opacity:0;
-position:absolute;
-transition:1s;
+function prevImg(e){
+e.stopPropagation();
+index=(index-1+current.length)%current.length;
+showImg();
 }
 
-.slide.active{
-opacity:1;
-position:relative;
+function closeImg(){
+document.getElementById("modal").style.display="none";
 }
 
-.videos{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:15px;
-margin-top:20px;
-}
+</script>
 
-.videos iframe{
-width:100%;
-height:180px;
-border-radius:10px;
-}
-
-.feed{
-display:flex;
-flex-direction:column;
-gap:20px;
-margin-top:20px;
-}
-
-.post{
-position:relative;
-}
-
-.post img{
-width:100%;
-border-radius:15px;
-}
-
-.post button{
-position:absolute;
-bottom:10px;
-right:10px;
-padding:8px;
-border:none;
-border-radius:50%;
-background:black;
-color:white;
-}
-
-.cards{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-gap:12px;
-margin-top:20px;
-}
-
-.card{
-padding:14px;
-border-radius:12px;
-background:#f1f1f1;
-cursor:pointer;
-}
-
-.gold{border-left:6px solid gold;}
-.silver{border-left:6px solid silver;}
-.bronze{border-left:6px solid #cd7f32;}
-
-.modal{
-display:none;
-position:fixed;
-top:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.9);
-}
-
-.modal img{
-display:block;
-margin:60px auto;
-max-width:700px;
-width:95%;
-}
-
-.arrow{
-position:absolute;
-top:50%;
-font-size:40px;
-color:white;
-cursor:pointer;
-}
-.left{left:20px;}
-.right{right:20px;}
+</body>
+</html>
