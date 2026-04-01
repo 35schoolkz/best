@@ -6,7 +6,6 @@
 <title>№35 Мектеп-лицейі</title>
 
 <style>
-
 *{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif;}
 
 body{
@@ -24,7 +23,7 @@ z-index:-1;
 }
 
 .container{
-max-width:1100px;
+max-width:1200px;
 margin:40px auto;
 background:white;
 border-radius:20px;
@@ -39,23 +38,12 @@ gap:10px;
 cursor:pointer;
 }
 
-.header img{
-width:40px;
-border-radius:50%;
-}
+.header img{width:45px;border-radius:50%;}
 
-/* ГЛАВНАЯ */
-.home{
-text-align:center;
-padding:30px;
-}
+/* HOME */
+.home{text-align:center;padding:30px;}
+.home img{width:130px;}
 
-.home img{
-width:120px;
-margin-bottom:10px;
-}
-
-/* КНОПКИ */
 .menu{
 display:flex;
 flex-wrap:wrap;
@@ -69,112 +57,126 @@ padding:12px 20px;
 border:none;
 border-radius:25px;
 cursor:pointer;
-font-size:16px;
 color:white;
+font-size:16px;
 transition:0.3s;
 }
 
-.btn:hover{
-transform:scale(1.1);
-}
+.btn:hover{transform:scale(1.1);}
 
 .bilim{background:#4CAF50;}
 .maksat{background:#2196F3;}
-.uzdik{background:#000;}
+.uzdik{background:black;}
 .safe{background:#f44336;}
 .sport{background:#ff9800;}
 
-/* СТРАНИЦЫ */
 .page{display:none;}
 .active{display:block;}
+
+/* СЛАЙДЕР */
+.slider{
+position:relative;
+margin-top:30px;
+}
+
+.slide{
+width:100%;
+height:320px;
+object-fit:cover;
+border-radius:15px;
+display:none;
+}
+
+.slide.active{display:block;}
+
+.arrow{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+background:black;
+color:white;
+padding:10px;
+border-radius:50%;
+cursor:pointer;
+}
+
+.left{left:10px;}
+.right{right:10px;}
+
+.dots{text-align:center;margin-top:10px;}
+
+.dot{
+height:10px;width:10px;margin:5px;
+display:inline-block;background:#bbb;
+border-radius:50%;cursor:pointer;
+}
+.dot.active{background:black;}
 
 /* ВИДЕО */
 .videos{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:15px;
-margin-top:20px;
+gap:15px;margin-top:20px;
 }
 
 .videos iframe{
-width:100%;
-height:160px;
-border-radius:10px;
+width:100%;height:180px;border-radius:10px;
 }
 
 /* ФОТО */
 .images{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-gap:15px;
-margin-top:20px;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:15px;margin-top:20px;
 }
 
 .images img{
-width:100%;
-border-radius:12px;
+width:100%;height:250px;
+object-fit:cover;border-radius:12px;
 }
 
 /* РЕЙТИНГ */
 .cards{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-gap:10px;
-margin-top:20px;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:12px;margin-top:20px;
 }
 
 .card{
-padding:12px;
-border-radius:12px;
-background:#f1f1f1;
-text-align:center;
-cursor:pointer;
-transition:0.3s;
+padding:14px;border-radius:12px;
+background:#f1f1f1;text-align:center;
+cursor:pointer;transition:0.3s;
 }
 
 .card:hover{
-background:black;
-color:white;
+background:black;color:white;
 transform:scale(1.05);
 }
 
+.gold{border-left:6px solid gold;}
+.silver{border-left:6px solid silver;}
+.bronze{border-left:6px solid #cd7f32;}
+
 /* МОДАЛ */
 .modal{
-display:none;
-position:fixed;
-top:0;
-width:100%;
-height:100%;
+display:none;position:fixed;
+top:0;width:100%;height:100%;
 background:rgba(0,0,0,0.9);
 }
 
 .modal img{
-display:block;
-margin:60px auto;
-max-width:500px;
-width:90%;
+display:block;margin:60px auto;
+max-width:700px;width:95%;
+border-radius:10px;
 }
-
-.arrow{
-position:absolute;
-top:50%;
-font-size:40px;
-color:white;
-cursor:pointer;
-}
-
-.left{left:20px;}
-.right{right:20px;}
 
 </style>
-
 </head>
 
 <body>
 
 <div class="container">
 
-<!-- HEADER -->
 <div class="header" onclick="openPage('home')">
 <img src="logo.jpg">
 <h3>№35 Мектеп-лицейі</h3>
@@ -186,7 +188,6 @@ cursor:pointer;
 <div class="home">
 <img src="logo.jpg">
 <h1>№35 Мектеп-лицейі</h1>
-<p>Білім мен жетістік мекені</p>
 
 <div class="menu">
 <button class="btn bilim" onclick="openPage('bilim')">📘 Білім</button>
@@ -198,13 +199,34 @@ cursor:pointer;
 
 </div>
 
+<!-- СЛАЙДЕР -->
+<div class="slider">
+<img src="photo1.jpg" class="slide active">
+<img src="photo2.jpg" class="slide">
+<img src="photo3.jpg" class="slide">
+
+<div class="arrow left" onclick="prev()">❮</div>
+<div class="arrow right" onclick="next()">❯</div>
+
+<div class="dots">
+<span onclick="go(0)" class="dot active"></span>
+<span onclick="go(1)" class="dot"></span>
+<span onclick="go(2)" class="dot"></span>
+</div>
+</div>
+
 </div>
 
 <!-- БІЛІМ -->
 <div id="bilim" class="page">
 <h2>📘 Білім</h2>
 <div class="images">
-<img src="bilim.jpg">
+<!-- 19 фоток -->
+<script>
+for(let i=1;i<=19;i++){
+document.write(`<img src="bilim${i}.jpg">`)
+}
+</script>
 </div>
 </div>
 
@@ -232,21 +254,31 @@ cursor:pointer;
 <div id="sport" class="page">
 <h2>⚽ Спорт</h2>
 <div class="images">
-<img src="sport1.jpg">
-<img src="sport2.jpg">
+<script>
+for(let i=1;i<=10;i++){
+document.write(`<img src="sport${i}.jpeg">`)
+}
+</script>
 </div>
 </div>
 
-<!-- ҮЗДІКТЕР -->
+<!-- РЕЙТИНГ -->
 <div id="rating" class="page">
 <h2>🏆 Үздік оқушылар</h2>
 
 <div class="cards">
-<div class="card" onclick="openGallery('uldana')">Тәліпова Ұлдана</div>
-<div class="card" onclick="openGallery('nuray')">Сәдуақас Нұрай</div>
-<div class="card" onclick="openGallery('akerke')">Шерімқожа Ақерке</div>
-<div class="card" onclick="openGallery('nurislam')">Мейрамбеков Нұрислам</div>
-<div class="card" onclick="openGallery('merei')">Ақбергенова Мерей</div>
+<div class="card gold" onclick="openGallery('uldana')">🥇 Тәліпова Ұлдана</div>
+<div class="card gold" onclick="openGallery('nuray')">🥇 Сәдуақас Нұрай</div>
+<div class="card gold">🥇 Мұхамеджанова Көркем</div>
+
+<div class="card silver" onclick="openGallery('akerke')">🥈 Шерімқожа Ақерке</div>
+<div class="card silver">🥈 Камаладин Мадияр</div>
+<div class="card silver">🥈 Амангелдиева Альбина</div>
+<div class="card silver">🥈 Астрахан Меруерт</div>
+
+<div class="card bronze" onclick="openGallery('nurislam')">🥉 Мейрамбеков Нұрислам</div>
+<div class="card bronze">🥉 Алмас Нұрислам</div>
+<div class="card bronze" onclick="openGallery('merei')">🥉 Ақбергенова Мерей</div>
 </div>
 
 </div>
@@ -255,8 +287,6 @@ cursor:pointer;
 
 <!-- МОДАЛ -->
 <div id="modal" class="modal" onclick="closeImg()">
-<span class="arrow left" onclick="prevImg(event)">❮</span>
-<span class="arrow right" onclick="nextImg(event)">❯</span>
 <img id="img">
 </div>
 
@@ -268,7 +298,26 @@ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
 document.getElementById(id).classList.add("active");
 }
 
-/* ГАЛЕРЕИ */
+/* СЛАЙДЕР */
+let slides=document.querySelectorAll(".slide");
+let dots=document.querySelectorAll(".dot");
+let i=0;
+
+function showSlide(n){
+slides.forEach(s=>s.classList.remove("active"));
+dots.forEach(d=>d.classList.remove("active"));
+slides[n].classList.add("active");
+dots[n].classList.add("active");
+i=n;
+}
+
+function next(){showSlide((i+1)%slides.length);}
+function prev(){showSlide((i-1+slides.length)%slides.length);}
+function go(n){showSlide(n);}
+
+setInterval(next,3000);
+
+/* ГАЛЕРЕЯ */
 let galleries={
 uldana:["uldana1.jpeg","uldana2.jpeg","uldana3.jpeg"],
 nuray:["nurai.png","nurai2.png"],
@@ -277,29 +326,17 @@ nurislam:["nurislam1.jpeg","nurislam2.jpeg"],
 merei:["merei1.jpeg","merei2.jpeg"]
 };
 
-let current=[],i=0;
+let current=[],index=0;
 
 function openGallery(name){
 current=galleries[name];
-i=0;
+index=0;
 document.getElementById("modal").style.display="block";
 showImg();
 }
 
 function showImg(){
-document.getElementById("img").src=current[i];
-}
-
-function nextImg(e){
-e.stopPropagation();
-i=(i+1)%current.length;
-showImg();
-}
-
-function prevImg(e){
-e.stopPropagation();
-i=(i-1+current.length)%current.length;
-showImg();
+document.getElementById("img").src=current[index];
 }
 
 function closeImg(){
