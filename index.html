@@ -5,154 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>№35 Мектеп-лицейі</title>
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box;}
-
-body{
-    font-family: Arial;
-}
-
-/* ФОН */
-.bg{
-    position:fixed;
-    width:100%;
-    height:100%;
-    background:url("school.jpg") center/cover no-repeat;
-    filter:blur(8px);
-    z-index:-1;
-}
-
-/* КОНТЕЙНЕР */
-.container{
-    max-width:900px;
-    margin:40px auto;
-    background:rgba(255,255,255,0.95);
-    border-radius:20px;
-    padding:20px;
-}
-
-/* ВЕРХ */
-.top-bar{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    cursor:pointer;
-    margin-bottom:20px;
-}
-
-.logo{
-    width:40px;
-}
-
-.title{
-    font-weight:bold;
-}
-
-/* ГЛАВНАЯ */
-.home-center{
-    text-align:center;
-    padding:80px 20px;
-}
-
-.big-logo{
-    width:120px;
-    margin-bottom:15px;
-}
-
-/* СТРАНИЦЫ */
-.page{display:none;}
-.active{display:block;}
-
-/* СЛАЙДЕР */
-.slider{
-    margin-top:20px;
-    position:relative;
-}
-
-.slide{
-    width:100%;
-    height:250px;
-    object-fit:cover;
-    border-radius:12px;
-    display:none;
-}
-
-.slide.active{display:block;}
-
-.nav{
-    position:absolute;
-    top:50%;
-    transform:translateY(-50%);
-    background:black;
-    color:white;
-    padding:10px;
-    border-radius:50%;
-    cursor:pointer;
-}
-
-.prev{left:10px;}
-.next{right:10px;}
-
-.dots{
-    text-align:center;
-    margin-top:10px;
-}
-
-.dot{
-    width:10px;
-    height:10px;
-    background:#ccc;
-    border-radius:50%;
-    display:inline-block;
-    margin:5px;
-    cursor:pointer;
-}
-
-.dot.active{background:black;}
-
-/* СПИСОК */
-.center{
-    max-width:500px;
-    margin:auto;
-}
-
-.item{
-    background:white;
-    padding:15px;
-    margin:10px 0;
-    border-radius:12px;
-    text-align:center;
-    cursor:pointer;
-}
-
-/* МОДАЛ */
-.modal{
-    display:none;
-    position:fixed;
-    width:100%;
-    height:100%;
-    background:rgba(0,0,0,0.8);
-    top:0;
-}
-
-.modal img{
-    display:block;
-    margin:70px auto;
-    max-width:450px;
-    width:90%;
-}
-
-.arrow{
-    position:absolute;
-    top:50%;
-    font-size:40px;
-    color:white;
-    cursor:pointer;
-}
-
-.left{left:20px;}
-.right{right:20px;}
-</style>
+<!-- ПОДКЛЮЧЕНИЕ CSS -->
+<link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -162,7 +16,7 @@ body{
 
 <div class="container">
 
-<!-- верх -->
+<!-- HEADER -->
 <div class="top-bar" onclick="goHome()">
 <img src="logo.png" class="logo">
 <span class="title">№35 Мектеп-лицейі</span>
@@ -175,6 +29,11 @@ body{
 <img src="logo.png" class="big-logo">
 <h1>№35 Мектеп-лицейі</h1>
 <p>Білім мен жетістік мекені</p>
+
+<div class="home-buttons">
+<button onclick="openPage('programs')">Бағдарламалар</button>
+<button onclick="openPage('rating')">Үздіктер</button>
+</div>
 </div>
 
 <div class="slider">
@@ -194,46 +53,62 @@ body{
 
 </div>
 
+<!-- PROGRAMS -->
+<div id="programs" class="page">
+
+<h2 style="text-align:center;">🎓 Бағдарламалар</h2>
+
+<h3 style="text-align:center;">🎯 Бір мақсат</h3>
+<div class="video-grid">
+<iframe src="https://www.youtube.com/embed/G7MI7YPqEhY" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/_4A4fcuPQq0" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/L0bstXl4kiY" allowfullscreen></iframe>
+</div>
+
+<h3 style="text-align:center;margin-top:20px;">🛡 Қауіпсіз мектеп</h3>
+<div class="video-grid">
+<iframe src="https://www.youtube.com/embed/s6GVbAE_uqE" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/sbnnTlA8HVQ" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/HaLxqOs3hLA" allowfullscreen></iframe>
+<iframe src="https://www.youtube.com/embed/WpG3irsxcyA" allowfullscreen></iframe>
+</div>
+
+</div>
+
 <!-- RATING -->
 <div id="rating" class="page">
 
 <h2 style="text-align:center;">🏆 Үздік оқушылар</h2>
 
 <div class="center">
-<div class="item" onclick="openGallery('uldana')">🥇 Тәліпова Ұлдана</div>
-<div class="item" onclick="openGallery('nuray')">🥇 Сәдуақас Нұрай</div>
+<div class="item">🥇 Тәліпова Ұлдана</div>
+<div class="item">🥇 Сәдуақас Нұрай</div>
 <div class="item">🥇 Мұхамеджанова Көркем</div>
 
-<div class="item" onclick="openGallery('akerke')">🥈 Шерімқожа Ақерке</div>
+<div class="item">🥈 Шерімқожа Ақерке</div>
 <div class="item">🥈 Камаладин Мадияр</div>
 <div class="item">🥈 Амангелдиева Альбина</div>
 <div class="item">🥈 Астрахан Меруерт</div>
 
-<div class="item" onclick="openGallery('nurislam')">🥉 Мейрамбеков Нұрислам</div>
+<div class="item">🥉 Мейрамбеков Нұрислам</div>
 <div class="item">🥉 Алмас Нұрислам</div>
-<div class="item" onclick="openGallery('merei')">🥉 Ақбергенова Мерей</div>
+<div class="item">🥉 Ақбергенова Мерей</div>
 </div>
 
 </div>
 
-</div>
-
-<!-- МОДАЛ -->
-<div id="modal" class="modal" onclick="closeModal()">
-<span class="arrow left" onclick="prevImg(event)">❮</span>
-<span class="arrow right" onclick="nextImg(event)">❯</span>
-<img id="img">
 </div>
 
 <script>
 
-/* HOME */
-function goHome(){
+function openPage(id){
 document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-document.getElementById("home").classList.add("active");
+document.getElementById(id).classList.add("active");
 }
 
-/* СЛАЙДЕР */
+function goHome(){openPage("home");}
+
+/* SLIDER */
 let i=0;
 let slides=document.querySelectorAll(".slide");
 let dots=document.querySelectorAll(".dot");
@@ -248,45 +123,6 @@ dots[n].classList.add("active");
 function nextSlide(){i=(i+1)%slides.length;show(i);}
 function prevSlide(){i=(i-1+slides.length)%slides.length;show(i);}
 function go(n){i=n;show(i);}
-
-/* ГАЛЕРЕЯ */
-let galleries={
-uldana:["uldana1.jpeg"],
-nuray:["nurai.png","nurai2.png"],
-akerke:["akerke1.jpeg"],
-nurislam:["nurislam1.jpeg"],
-merei:["merei1.jpeg"]
-};
-
-let current=[];
-let index=0;
-
-function openGallery(name){
-current=galleries[name];
-index=0;
-document.getElementById("modal").style.display="block";
-showImg();
-}
-
-function showImg(){
-document.getElementById("img").src=current[index];
-}
-
-function nextImg(e){
-e.stopPropagation();
-index=(index+1)%current.length;
-showImg();
-}
-
-function prevImg(e){
-e.stopPropagation();
-index=(index-1+current.length)%current.length;
-showImg();
-}
-
-function closeModal(){
-document.getElementById("modal").style.display="none";
-}
 
 </script>
 
