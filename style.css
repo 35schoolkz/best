@@ -1,129 +1,151 @@
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Segoe UI',sans-serif;
+*{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif;}
+
+body{
+background:url("school.jpg") center/cover no-repeat fixed;
 }
 
-/* ФОН */
-.bg{
-position:fixed;
-width:100%;
-height:100%;
-background:url("school.jpg") center/cover no-repeat;
-filter:blur(10px) brightness(0.7);
-z-index:-1;
+.container{
+max-width:1200px;
+margin:40px auto;
+background:white;
+border-radius:20px;
+padding:25px;
 }
 
 /* HEADER */
-header{
+.header{
 display:flex;
-align-items:center;
 gap:10px;
-padding:15px 40px;
-color:white;
+cursor:pointer;
 }
 
-header img{
-width:40px;
-border-radius:50%;
+.header img{width:45px;border-radius:50%;}
+
+/* HOME */
+.home{text-align:center;padding:30px;}
+.home img{width:130px;}
+
+/* КНОПКИ */
+.menu{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:10px;
 }
 
-/* HERO */
-.hero{
-text-align:center;
-padding:60px 20px;
-color:white;
-}
-
-.hero img{
-width:120px;
-margin-bottom:10px;
-}
-
-.hero button{
-margin-top:15px;
-padding:10px 20px;
+.btn{
+padding:12px 20px;
 border:none;
-border-radius:20px;
-background:black;
+border-radius:25px;
 color:white;
 cursor:pointer;
 }
 
-/* ГАЛЕРЕЯ */
-.gallery{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:15px;
-padding:20px 40px;
+.bilim{background:#4CAF50;}
+.maksat{background:#2196F3;}
+.uzdik{background:black;}
+.safe{background:#f44336;}
+.sport{background:#ff9800;}
+
+.page{display:none;}
+.active{display:block;}
+
+/* СЛАЙДЕР */
+.slider{
+margin-top:30px;
+position:relative;
 }
 
-.gallery img{
+.slide{
 width:100%;
-height:220px;
+height:320px;
 object-fit:cover;
 border-radius:15px;
-transition:0.3s;
+opacity:0;
+position:absolute;
+transition:opacity 1s;
 }
 
-.gallery img:hover{
-transform:scale(1.05);
+.slide.active{
+opacity:1;
+position:relative;
 }
 
 /* ВИДЕО */
 .videos{
-padding:20px 40px;
-color:white;
-}
-
-.video-grid{
 display:grid;
-grid-template-columns:repeat(3,1fr);
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:15px;
-margin:15px 0;
+margin-top:20px;
 }
 
-.video-grid iframe{
+.videos iframe{
 width:100%;
 height:180px;
 border-radius:10px;
 }
 
-/* РЕЙТИНГ */
-.rating{
-background:white;
-padding:30px;
-margin:30px;
-border-radius:20px;
+/* FEED */
+.feed{
+display:flex;
+flex-direction:column;
+gap:20px;
+margin-top:20px;
 }
 
+.post{
+position:relative;
+}
+
+.post img{
+width:100%;
+border-radius:15px;
+}
+
+.post button{
+position:absolute;
+bottom:10px;
+right:10px;
+padding:8px;
+border:none;
+border-radius:50%;
+background:black;
+color:white;
+cursor:pointer;
+}
+
+/* РЕЙТИНГ */
 .cards{
 display:grid;
-grid-template-columns:repeat(5,1fr);
-gap:10px;
-margin-top:15px;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:12px;
+margin-top:20px;
 }
 
 .card{
-background:#f1f1f1;
-padding:15px;
+padding:14px;
 border-radius:12px;
-text-align:center;
+background:#f1f1f1;
 cursor:pointer;
-transition:0.3s;
 }
 
-.card:hover{
-background:black;
-color:white;
-transform:translateY(-5px);
+.gold{border-left:6px solid gold;}
+.silver{border-left:6px solid silver;}
+.bronze{border-left:6px solid #cd7f32;}
+
+/* МОДАЛ */
+.modal{
+display:none;
+position:fixed;
+top:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
 }
 
-.gold{color:#d4af37;}
-.silver{color:#aaa;}
-.bronze{color:#cd7f32;}
-
-.card.gold{border-left:5px solid gold;}
-.card.silver{border-left:5px solid silver;}
-.card.bronze{border-left:5px solid #cd7f32;}
+.modal img{
+display:block;
+margin:60px auto;
+max-width:700px;
+width:95%;
+}
