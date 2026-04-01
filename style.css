@@ -244,3 +244,33 @@ header {
 
 .left { left: 20px; }
 .right { right: 20px; }
+/* верхняя панель */
+.top-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+/* логотип маленький */
+.logo {
+    width: 40px;
+}
+
+/* название */
+.title {
+    font-weight: bold;
+}
+
+/* центр басты бет */
+.home-center {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+/* большой логотип */
+.big-logo {
+    width: 120px;
+    margin-bottom: 15px;
+}

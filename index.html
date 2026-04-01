@@ -127,19 +127,25 @@ header{
 
 <div class="container">
 
+<div class="top-bar" onclick="goHome()">
+
+    <img src="logo.png" class="logo">
+
+    <span class="title">№35 Мектеп-лицейі</span>
+
+</div>
+
 <header>№35 Мектеп-лицейі</header>
 
-<div class="menu">
-<button onclick="openPage('home')">Басты бет</button>
-<button onclick="openPage('rating')">Үздіктер</button>
-</div>
 
 <!-- HOME -->
 <div id="home" class="page active">
 
 <div class="hero">
-<h1>Қош келдіңіздер</h1>
-<p>Білім мен жетістік мекені</p>
+    <h1>№35 Мектеп-лицейі</h1>
+    <p>Білім мен жетістік мекені</p>
+</div>
+
 </div>
 
 <div class="slider">
@@ -174,6 +180,11 @@ slides[n].classList.add("active");
 function nextSlide(){i=(i+1)%slides.length;show(i);}
 function prevSlide(){i=(i-1+slides.length)%slides.length;show(i);}
 </script>
+
+function goHome(){
+    document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+    document.getElementById("home").classList.add("active");
+}
 
 </body>
 </html>
