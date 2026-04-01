@@ -191,3 +191,18 @@ h2 {
 .item {
     text-align: center;
 }
+.banner {
+    width: 260px;      /* узкая ширина */
+    height: 500px;     /* длинная высота */
+    object-fit: cover; /* обрезает красиво */
+    border-radius: 15px;
+    display: block;
+    margin: 20px auto;
+}
+.banner {
+    position: relative;
+}
+.banner {
+    width: 100%;
+    height: 300px;
+}
