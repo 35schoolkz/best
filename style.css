@@ -210,3 +210,42 @@ background:#333;
 color:white;
 cursor:pointer;
 }
+.rating-box{
+background:white;
+padding:20px;
+border-radius:20px;
+max-width:600px;
+margin:20px auto;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+}
+
+.rating-box h2{
+text-align:center;
+margin-bottom:15px;
+}
+
+.rating-list{
+display:flex;
+flex-direction:column;
+gap:8px;
+}
+
+.rank{
+padding:12px;
+border-radius:10px;
+text-align:center;
+font-weight:600;
+background:#f5f5f5;
+}
+
+.gold{
+background:linear-gradient(90deg,#FFD700,#fff);
+}
+
+.silver{
+background:linear-gradient(90deg,#C0C0C0,#fff);
+}
+
+.bronze{
+background:linear-gradient(90deg,#CD7F32,#fff);
+}
