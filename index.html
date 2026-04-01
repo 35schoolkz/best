@@ -24,14 +24,22 @@
 <h1 class="title">№35 Мектеп-лицейі</h1>
 
 <div class="menu">
+<button onclick="openPage('bilim')">📘 Білім</button>
+<button onclick="openPage('maksat')">🎯 Бір мақсат</button>
+<button onclick="openPage('rating')">🏆 Үздіктер</button>
+<button onclick="openPage('safe')">🛡 Қауіпсіз мектеп</button>
+<button onclick="openPage('sport')">⚽ Спорт</button>
+<button onclick="openPage('comment')">💬 Пікірлер</button>
+</div>
 
-<button onclick="openPage('bilim')">📘<br>Білім</button>
-<button onclick="openPage('maksat')">🎯<br>Бір мақсат</button>
-<button onclick="openPage('rating')">🏆<br>Үздіктер</button>
-<button onclick="openPage('safe')">🛡<br>Қауіпсіз мектеп</button>
-<button onclick="openPage('sport')">⚽<br>Спорт</button>
-<button onclick="openPage('comment')">💬<br>Пікірлер</button>
+<!-- БАННЕР -->
+<img src="school.jpg" class="banner">
 
+<!-- СЛАЙДЕР -->
+<div class="slider">
+<img src="photo1.jpg" class="slide active">
+<img src="photo2.jpg" class="slide">
+<img src="photo3.jpg" class="slide">
 </div>
 
 </div>
@@ -74,7 +82,6 @@
 </div>
 </div>
 
-<!-- ҚАУІПСІЗ -->
 <div id="safe" class="page">
 <h2>🛡 Қауіпсіз мектеп</h2>
 <div class="videos">
@@ -89,17 +96,17 @@
 <h2>🏆 Үздік оқушылар</h2>
 
 <div class="cards">
-<div class="card gold">🥇 Тәліпова Ұлдана</div>
-<div class="card gold">🥇 Сәдуақас Нұрай</div>
+<div class="card gold" onclick="openGallery('uldana')">🥇 Тәліпова Ұлдана</div>
+<div class="card gold" onclick="openGallery('nuray')">🥇 Сәдуақас Нұрай</div>
 <div class="card gold">🥇 Мұхамеджанова Көркем</div>
 
-<div class="card silver">🥈 Шерімқожа Ақерке</div>
+<div class="card silver" onclick="openGallery('akerke')">🥈 Шерімқожа Ақерке</div>
 <div class="card silver">🥈 Камаладин Мадияр</div>
 <div class="card silver">🥈 Амангелдиева Альбина</div>
 
-<div class="card bronze">🥉 Мейрамбеков Нұрислам</div>
+<div class="card bronze" onclick="openGallery('nurislam')">🥉 Мейрамбеков Нұрислам</div>
 <div class="card bronze">🥉 Алмас Нұрислам</div>
-<div class="card bronze">🥉 Ақбергенова Мерей</div>
+<div class="card bronze" onclick="openGallery('merei')">🥉 Ақбергенова Мерей</div>
 </div>
 
 </div>
@@ -109,30 +116,87 @@
 
 <h2>💬 Пікірлер</h2>
 
-<div class="comments">
-
-<div class="comment">🔥 Өте керемет мектеп!</div>
-<div class="comment">👍 Мұғалімдер өте жақсы</div>
-<div class="comment">😍 Маған қатты ұнады</div>
-<div class="comment">💯 ТОП мектеп</div>
-<div class="comment">👏 Оқушылар өте белсенді</div>
-<div class="comment">😎 Сайт күшті шыққан</div>
-<div class="comment">🤝 Ұжым өте мықты</div>
-<div class="comment">🎓 Білім деңгейі жоғары</div>
-<div class="comment">💖 Қатты ұнады</div>
+<div class="comment">🔥 Өте керемет мектеп! <span onclick="like(this)">👍 <b>0</b></span></div>
+<div class="comment">👍 Мұғалімдер өте жақсы <span onclick="like(this)">👍 <b>0</b></span></div>
+<div class="comment">😍 Маған қатты ұнады <span onclick="like(this)">👍 <b>0</b></span></div>
 
 </div>
 
 </div>
 
+</div>
+
+<!-- МОДАЛ -->
+<div id="modal" class="modal" onclick="closeImg()">
+<span class="arrow left" onclick="prevImg(event)">❮</span>
+<span class="arrow right" onclick="nextImg(event)">❯</span>
+<img id="img">
 </div>
 
 <script>
 
-/* вкладки */
 function openPage(id){
 document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
 document.getElementById(id).classList.add("active");
+}
+
+/* СЛАЙДЕР */
+let slides=document.querySelectorAll(".slide");
+let i=0;
+setInterval(()=>{
+slides[i].classList.remove("active");
+i=(i+1)%slides.length;
+slides[i].classList.add("active");
+},3000);
+
+/* ЛАЙК */
+function like(el){
+let b=el.querySelector("b");
+b.innerText=+b.innerText+1;
+}
+
+/* ВСЕ ФОТКИ */
+let galleries={
+
+uldana:["uldana1.jpeg","uldana2.jpeg","uldana3.jpeg","uldana4.jpeg","uldana5.jpeg","uldana6.jpeg","uldana7.jpeg","uldana8.jpeg","uldana9.jpeg","uldana10.jpeg","uldana11.jpeg","uldana12.jpeg","uldana13.jpeg","uldana14.jpeg","uldana15.jpeg"],
+
+nuray:["nurai.png","nurai2.png","nurai3.png","nurasy1.jpeg","nurasy2.jpeg","nurasy3.jpeg","nurasy4.jpeg","nurasy5.jpeg","nurasy6.jpeg","nurasy7.jpeg","nurasy8.jpeg","nurasy9.jpeg","nurasy10.jpeg","nurasy11.jpeg","nurasy12.jpeg","nurasy13.jpeg","nurasy14.jpeg"],
+
+akerke:["akerke1.jpeg","akerke2.jpeg","akerke3.jpeg","akerke4.jpeg","akerke5.jpeg","akerke6.jpeg","akerke7.jpeg","akerke8.jpeg","akerke9.jpeg"],
+
+nurislam:["nurislam1.jpeg","nurislam2.jpeg","nurislam3.jpeg","nurislam4.jpeg","nurislam5.jpeg","nurislam6.jpeg","nurislam7.jpeg","nurislam8.jpeg","nurislam9.jpeg","nurislam10.jpeg","nurislam11.jpeg"],
+
+merei:["merei1.jpeg","merei2.jpeg","merei3.jpeg","merei4.jpeg","merei5.jpeg","merei6.jpeg","merei7.jpeg","merei8.jpeg","merei9.jpeg","merei10.jpeg","merei11.jpeg","merei12.jpeg","merei13.jpeg"]
+
+};
+
+let current=[],index=0;
+
+function openGallery(name){
+current=galleries[name];
+index=0;
+showImg();
+}
+
+function showImg(){
+document.getElementById("modal").style.display="block";
+document.getElementById("img").src=current[index];
+}
+
+function nextImg(e){
+e.stopPropagation();
+index=(index+1)%current.length;
+showImg();
+}
+
+function prevImg(e){
+e.stopPropagation();
+index=(index-1+current.length)%current.length;
+showImg();
+}
+
+function closeImg(){
+document.getElementById("modal").style.display="none";
 }
 
 </script>
