@@ -157,3 +157,70 @@ sportFeed.innerHTML=s;
 
 </body>
 </html>
+/* РЕЙТИНГ */
+.rating-box{
+background:white;
+max-width:600px;
+margin:30px auto;
+padding:20px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+text-align:center;
+}
+
+.rating-list{
+display:flex;
+flex-direction:column;
+gap:10px;
+}
+
+.rank{
+padding:12px;
+border-radius:10px;
+background:#f5f5f5;
+font-weight:600;
+cursor:pointer;
+transition:0.3s;
+}
+
+.rank:hover{
+transform:scale(1.05);
+}
+
+.gold{background:linear-gradient(90deg,#FFD700,#fff);}
+.silver{background:linear-gradient(90deg,#C0C0C0,#fff);}
+.bronze{background:linear-gradient(90deg,#CD7F32,#fff);}
+
+/* ГАЛЕРЕЯ */
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+align-items:center;
+justify-content:center;
+flex-direction:column;
+z-index:1000;
+}
+
+.modal img{
+max-width:90%;
+border-radius:10px;
+}
+
+.controls{
+margin-top:10px;
+display:flex;
+gap:10px;
+}
+
+.controls button{
+padding:10px 15px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+background:white;
+}

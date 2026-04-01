@@ -280,8 +280,14 @@ padding:10px;
 </div>
 
 <!-- МОДАЛ -->
-<div id="modal" class="modal" onclick="closeImg()">
+<div id="modal" class="modal">
 <img id="img">
+
+<div class="controls">
+<button onclick="prev()">⬅</button>
+<button onclick="next()">➡</button>
+<button onclick="closeImg()">❌</button>
+</div>
 </div>
 
 <script>
@@ -328,20 +334,35 @@ document.getElementById("comments").innerHTML+=
 
 /* ГАЛЕРЕЯ */
 let galleries={
-uldana:["uldana1.jpeg","uldana2.jpeg","uldana3.jpeg"],
-nuray:["nurai.png","nurai2.png"],
-akerke:["akerke1.jpeg","akerke2.jpeg"],
-nurislam:["nurislam1.jpeg","nurislam2.jpeg"],
-merei:["merei1.jpeg","merei2.jpeg"]
+uldana:["uldana1.jpeg","uldana2.jpeg","uldana3.jpeg","uldana4.jpeg","uldana5.jpeg","uldana6.jpeg"],
+nuray:["nurai.png","nurai2.png","nurai3.png","nurasy1.jpeg","nurasy2.jpeg","nurasy3.jpeg"],
+akerke:["akerke1.jpeg","akerke2.jpeg","akerke3.jpeg","akerke4.jpeg","akerke5.jpeg","akerke6.jpeg"],
+nurislam:["nurislam1.jpeg","nurislam2.jpeg","nurislam3.jpeg","nurislam4.jpeg","nurislam5.jpeg","nurislam6.jpeg"],
+merei:["merei1.jpeg","merei2.jpeg","merei3.jpeg","merei4.jpeg","merei5.jpeg","merei6.jpeg"]
 };
 
+let current=[];
+let index=0;
+
 function openGallery(name){
-document.getElementById("modal").style.display="block";
-document.getElementById("img").src=galleries[name][0];
+current=galleries[name];
+index=0;
+modal.style.display="flex";
+img.src=current[index];
+}
+
+function next(){
+index=(index+1)%current.length;
+img.src=current[index];
+}
+
+function prev(){
+index=(index-1+current.length)%current.length;
+img.src=current[index];
 }
 
 function closeImg(){
-document.getElementById("modal").style.display="none";
+modal.style.display="none";
 }
 
 </script>
