@@ -206,3 +206,41 @@ h2 {
     width: 100%;
     height: 300px;
 }
+.hero {
+    width: 100%;
+    height: 320px; /* высота баннера */
+    position: relative;
+    overflow: hidden;
+}
+
+.hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* красиво обрезает */
+}
+
+/* затемнение */
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    background: rgba(0,0,0,0.4);
+}
+
+/* текст */
+.hero-text {
+    position: absolute;
+    bottom: 30px;
+    left: 30px;
+    color: white;
+}
+
+.hero-text h1 {
+    font-size: 28px;
+}
+
+.hero-text p {
+    font-size: 16px;
+}
