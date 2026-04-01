@@ -1,67 +1,72 @@
+/* ОБЩЕЕ */
 body{
 margin:0;
 font-family:sans-serif;
 background:#f0f2f5;
 }
 
+/* ФОН (НЕ ЛОМАЕТ КЛИКИ) */
 .bg{
 position:fixed;
+top:0;
+left:0;
 width:100%;
 height:100%;
-background:url("school.jpg") center/cover;
+background:url("school.jpg") center/cover no-repeat;
 filter:blur(6px);
 z-index:-1;
 pointer-events:none;
 }
 
+/* КОНТЕЙНЕР */
 .container{
-max-width:1100px;
+max-width:900px;
 margin:auto;
 padding:20px;
+}
+
+/* HEADER */
+.header{
+display:flex;
+align-items:center;
+gap:10px;
+cursor:pointer;
+margin-bottom:10px;
 }
 
 .logo{
 width:50px;
 height:50px;
-}
-
-.banner img{
-width:100%;
-max-height:250px;
 object-fit:cover;
-border-radius:15px;
 }
 
-/* меню */
+/* КНОПКИ */
 .menu{
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:15px;
-margin:15px 0;
+gap:10px;
+margin:10px 0;
 }
 
-.menu-btn{
-background:white;
+.menu button{
 padding:15px;
-border-radius:15px;
-text-align:center;
+border:none;
+border-radius:12px;
+background:white;
 cursor:pointer;
-transition:0.3s;
+font-size:14px;
+transition:0.2s;
 }
 
-.menu-btn:hover{
+.menu button:hover{
 transform:scale(1.05);
 }
 
-.emoji{
-font-size:25px;
-margin-bottom:5px;
-}
-
-/* slider */
+/* СЛАЙДЕР */
 .slider{
 position:relative;
-height:250px;
+height:200px;
+margin:10px 0;
 }
 
 .slide{
@@ -69,7 +74,7 @@ position:absolute;
 width:100%;
 height:100%;
 object-fit:cover;
-border-radius:15px;
+border-radius:12px;
 opacity:0;
 transition:1s;
 }
@@ -78,102 +83,130 @@ transition:1s;
 opacity:1;
 }
 
-/* фото */
+/* СТРАНИЦЫ */
+.page{
+display:none;
+}
+
+.page.active{
+display:block;
+}
+
+/* ФОТО */
 .feed{
 display:flex;
 flex-direction:column;
-gap:15px;
+gap:10px;
 }
 
 .feed img{
 width:100%;
-border-radius:15px;
+border-radius:12px;
+object-fit:contain; /* ВАЖНО */
+background:#eee;
 }
 
-/* видео */
-.videos{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:10px;
-}
-
-/* рейтинг */
-.cards{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:10px;
-}
-
-.card{
-background:white;
-padding:10px;
-border-radius:10px;
-cursor:pointer;
-}
-
-.gold{border-left:5px solid gold;}
-.silver{border-left:5px solid silver;}
-.bronze{border-left:5px solid #cd7f32;}
-
-/* комментарии */
-.comment{
-background:white;
-padding:10px;
+/* ВИДЕО */
+iframe{
+width:100%;
+height:200px;
 border-radius:10px;
 margin:10px 0;
+border:none;
 }
 
-.add-comment{
+/* РЕЙТИНГ */
+.rating-list{
 display:flex;
+flex-direction:column;
+gap:10px;
+align-items:center;
+margin-top:15px;
+}
+
+.rank{
+width:80%;
+padding:12px;
+border-radius:12px;
+background:white;
+text-align:center;
+cursor:pointer;
+font-weight:600;
+transition:0.2s;
+}
+
+.rank:hover{
+transform:scale(1.03);
+}
+
+/* ЦВЕТА */
+.gold{
+background:linear-gradient(90deg,#FFD700,#fff);
+}
+
+.silver{
+background:linear-gradient(90deg,#C0C0C0,#fff);
+}
+
+.bronze{
+background:linear-gradient(90deg,#CD7F32,#fff);
+}
+
+/* КАРТОЧКИ */
+.cards{
+display:grid;
+grid-template-columns:1fr 1fr;
 gap:10px;
 }
 
-.add-comment input{
-padding:10px;
-flex:1;
-}
-
-.add-comment button{
-padding:10px;
-cursor:pointer;
-}
-
-/* модал */
-.modal{
-display:none;
-position:fixed;
-top:0;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.9);
-}
-
-.modal img{
-display:block;
-margin:60px auto;
-max-width:700px;
-width:90%;
-}
-
-.arrow{
-position:absolute;
-top:50%;
-font-size:40px;
-color:white;
-cursor:pointer;
-}
-.left{left:20px;}
-.right{right:20px;}
+/* МИНИ ФОТО */
 .mini{
 display:grid;
 grid-template-columns:repeat(3,1fr);
 gap:4px;
-margin-bottom:8px;
 }
 
 .mini img{
 width:100%;
 height:60px;
-object-fit:cover;
+object-fit:contain;
 border-radius:6px;
+background:#eee;
+}
+
+/* МОДАЛ */
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+z-index:1000;
+}
+
+.modal img{
+display:block;
+margin:50px auto;
+max-width:90%;
+}
+
+/* КОММЕНТ */
+input{
+width:100%;
+margin:5px 0;
+padding:10px;
+border-radius:8px;
+border:1px solid #ccc;
+}
+
+button.send{
+width:100%;
+padding:10px;
+border:none;
+border-radius:8px;
+background:#333;
+color:white;
+cursor:pointer;
 }
