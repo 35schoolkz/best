@@ -2,108 +2,158 @@
 <html lang="kk">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>№35 Мектеп-лицейі</title>
 
 <style>
-* {margin:0;padding:0;box-sizing:border-box;}
+*{margin:0;padding:0;box-sizing:border-box;}
 
-body {
-    font-family: 'Segoe UI', Arial;
-    background: #eef1f5;
+body{
+    font-family: Arial;
+    background:#f3f4f6;
 }
 
 /* HEADER */
-header {
+header{
     text-align:center;
-    padding:20px;
+    padding:15px;
     background:white;
-    font-size:22px;
     font-weight:bold;
 }
 
 /* MENU */
-.menu {
+.menu{
     display:flex;
     justify-content:center;
-    gap:12px;
-    padding:12px;
+    gap:10px;
+    padding:10px;
 }
 
-.menu button {
-    padding:10px 18px;
-    border-radius:20px;
+.menu button{
+    padding:10px 15px;
     border:none;
+    border-radius:10px;
     background:#e5e7eb;
     cursor:pointer;
-    transition:0.3s;
-}
-
-.menu button:hover {
-    background:black;
-    color:white;
 }
 
 /* PAGE */
-.page {display:none;padding:20px;}
-.active {display:block;}
+.page{display:none;padding:20px;}
+.active{display:block;}
 
-/* CARD */
-.item {
-    background:white;
-    padding:18px;
-    margin:10px 0;
-    border-radius:14px;
-    cursor:pointer;
-    transition:0.25s;
-    box-shadow:0 4px 12px rgba(0,0,0,0.05);
+/* SLIDER */
+.slider{
+    max-width:600px;
+    margin:20px auto;
+    position:relative;
 }
 
-.item:hover {
-    transform:translateY(-5px);
-    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+.slide{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    display:none;
+    border-radius:12px;
+}
+
+.slide.active{display:block;}
+
+.nav{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:black;
+    color:white;
+    padding:10px;
+    border-radius:50%;
+    cursor:pointer;
+}
+
+.prev{left:10px;}
+.next{right:10px;}
+
+.dots{
+    text-align:center;
+    margin-top:10px;
+}
+
+.dot{
+    width:10px;
+    height:10px;
+    background:#ccc;
+    border-radius:50%;
+    display:inline-block;
+    margin:5px;
+    cursor:pointer;
+}
+
+.dot.active{background:black;}
+
+/* BANNER */
+.banner-wrapper{
+    width:260px;
+    height:520px;
+    margin:30px auto;
+    position:relative;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.banner{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.banner-text{
+    position:absolute;
+    bottom:20px;
+    left:15px;
+    color:white;
+}
+
+/* LIST */
+.center{
+    max-width:500px;
+    margin:auto;
+}
+
+.item{
+    background:white;
+    padding:15px;
+    margin:10px 0;
+    border-radius:12px;
+    text-align:center;
+    cursor:pointer;
 }
 
 /* MODAL */
-.modal {
+.modal{
     display:none;
     position:fixed;
     width:100%;
     height:100%;
-    background:rgba(0,0,0,0.85);
+    background:rgba(0,0,0,0.8);
     top:0;
 }
 
-/* IMAGE */
-.modal img {
+.modal img{
     display:block;
     margin:70px auto;
-    max-width:500px;
+    max-width:450px;
     width:90%;
-    border-radius:12px;
-    animation:zoom 0.3s;
 }
 
-/* ARROWS */
-.arrow {
+.arrow{
     position:absolute;
     top:50%;
-    font-size:45px;
+    font-size:40px;
     color:white;
     cursor:pointer;
 }
 
-.left {left:20px;}
-.right {right:20px;}
-
-/* ANIMATION */
-@keyframes zoom {
-    from {transform:scale(0.7);}
-    to {transform:scale(1);}
-}
-
-h2 {
-    margin:20px 0;
-}
+.left{left:20px;}
+.right{right:20px;}
 </style>
 
 </head>
@@ -113,14 +163,39 @@ h2 {
 <header>№35 Мектеп-лицейі</header>
 
 <div class="menu">
-    <button onclick="openPage('home')">Басты бет</button>
-    <button onclick="openPage('rating')">Үздіктер</button>
+<button onclick="openPage('home')">Басты бет</button>
+<button onclick="openPage('rating')">Үздіктер</button>
 </div>
 
 <!-- HOME -->
 <div id="home" class="page active">
-<h2>№35 Мектеп-лицейі</h2>
-<p>Біздің мектеп — білім мен жетістік мекені.</p>
+
+<h2 style="text-align:center;">№35 Мектеп-лицейі</h2>
+
+<!-- БАННЕР -->
+<div class="banner-wrapper">
+<img src="school.jpg" class="banner">
+<div class="banner-text">
+<h3>Қош келдіңіздер</h3>
+</div>
+</div>
+
+<!-- СЛАЙДЕР -->
+<div class="slider">
+<img src="photo1.jpg" class="slide active">
+<img src="photo2.jpg" class="slide">
+<img src="photo3.jpg" class="slide">
+
+<div class="nav prev" onclick="prevSlide()">❮</div>
+<div class="nav next" onclick="nextSlide()">❯</div>
+
+<div class="dots">
+<span class="dot active" onclick="go(0)"></span>
+<span class="dot" onclick="go(1)"></span>
+<span class="dot" onclick="go(2)"></span>
+</div>
+</div>
+
 </div>
 
 <!-- RATING -->
@@ -128,8 +203,7 @@ h2 {
 
 <h2>🏆 Үздік оқушылар</h2>
 
-<div class="center-box">
-
+<div class="center">
 <div class="item" onclick="openGallery('uldana')">🥇 Тәліпова Ұлдана</div>
 <div class="item" onclick="openGallery('nuray')">🥇 Сәдуақас Нұрай</div>
 <div class="item">🥇 Мұхамеджанова Көркем</div>
@@ -142,93 +216,97 @@ h2 {
 <div class="item" onclick="openGallery('nurislam')">🥉 Мейрамбеков Нұрислам</div>
 <div class="item">🥉 Алмас Нұрислам</div>
 <div class="item" onclick="openGallery('merei')">🥉 Ақбергенова Мерей</div>
-
 </div>
 
 <h2>👨‍🏫 Үздік мұғалімдер</h2>
 
-<div class="center-box">
-
+<div class="center">
 <div class="item" onclick="openGallery('aigerim')">Сағатова Айгерім</div>
 <div class="item" onclick="openGallery('aigul')">Сулейменова Айгүл</div>
 <div class="item" onclick="openGallery('zharyl')">Жарылқасынова Ақмарал</div>
 <div class="item" onclick="openGallery('korganbay')">Қорғанбай Жансая</div>
 <div class="item" onclick="openGallery('aizhan')">Жұмабекқызы Айжан</div>
-
 </div>
+
 </div>
 
 <!-- MODAL -->
 <div id="modal" class="modal" onclick="closeModal()">
-
 <span class="arrow left" onclick="prevImg(event)">❮</span>
 <span class="arrow right" onclick="nextImg(event)">❯</span>
-
 <img id="img">
-
 </div>
 
 <script>
+
 function openPage(id){
-    document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
-    document.getElementById(id).classList.add("active");
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document.getElementById(id).classList.add("active");
 }
 
-/* ГАЛЕРЕЯ ПОД ТВОИ ФАЙЛЫ */
-let galleries = {
+/* SLIDER */
+let i=0;
+let slides=document.querySelectorAll(".slide");
+let dots=document.querySelectorAll(".dot");
 
-uldana: ["uldana1.jpeg","uldana2.jpeg","uldana3.jpeg"],
+function show(n){
+slides.forEach(s=>s.classList.remove("active"));
+dots.forEach(d=>d.classList.remove("active"));
+slides[n].classList.add("active");
+dots[n].classList.add("active");
+}
 
-nuray: ["nurai.png","nurai2.png","nurai3.png","nurasy11.jpeg"],
+function nextSlide(){i=(i+1)%slides.length;show(i);}
+function prevSlide(){i=(i-1+slides.length)%slides.length;show(i);}
+function go(n){i=n;show(i);}
 
-akerke: ["akerke1.jpeg","akerke2.jpeg"],
+setInterval(nextSlide,4000);
 
-nurislam: ["nurislam1.jpeg","nurislam2.jpeg"],
+/* GALLERY */
+let galleries={
+uldana:["uldana1.jpeg"],
+nuray:["nurai.png","nurai2.png"],
+akerke:["akerke1.jpeg"],
+nurislam:["nurislam1.jpeg"],
+merei:["merei1.jpeg"],
 
-merei: ["merei1.jpeg","merei2.jpeg"],
-
-aigerim: ["aigerim1.jpeg","aigerim2.jpeg"],
-
-aigul: ["sul1.jpeg","sul2.jpeg"],
-
-zharyl: ["zharyl1.jpeg","zharyl2.jpeg"],
-
-korganbay: ["korganbay1.jpeg"],
-
-aizhan: ["aizhan1.jpeg","aizhan2.jpeg"]
-
+aigerim:["aigerim1.jpeg"],
+aigul:["sul1.jpeg"],
+zharyl:["zharyl1.jpeg"],
+korganbay:["korganbay1.jpeg"],
+aizhan:["aizhan1.jpeg"]
 };
-<img src="school.jpg" class="banner">
 
-let i = 0;
-let current = [];
+let current=[];
+let index=0;
 
 function openGallery(name){
-    current = galleries[name];
-    i = 0;
-    document.getElementById("modal").style.display = "block";
-    show();
+current=galleries[name];
+index=0;
+document.getElementById("modal").style.display="block";
+showImg();
 }
 
-function show(){
-    document.getElementById("img").src = current[i];
+function showImg(){
+document.getElementById("img").src=current[index];
 }
 
 function nextImg(e){
-    e.stopPropagation();
-    i = (i + 1) % current.length;
-    show();
+e.stopPropagation();
+index=(index+1)%current.length;
+showImg();
 }
 
 function prevImg(e){
-    e.stopPropagation();
-    i = (i - 1 + current.length) % current.length;
-    show();
+e.stopPropagation();
+index=(index-1+current.length)%current.length;
+showImg();
 }
 
 function closeModal(){
-    document.getElementById("modal").style.display = "none";
+document.getElementById("modal").style.display="none";
 }
+
 </script>
 
 </body>
