@@ -13,7 +13,6 @@ body{
 background:url("school.jpg") center/cover no-repeat fixed;
 }
 
-/* фон */
 body::before{
 content:"";
 position:fixed;
@@ -24,7 +23,6 @@ backdrop-filter:blur(8px);
 z-index:-1;
 }
 
-/* контейнер */
 .container{
 max-width:1100px;
 margin:40px auto;
@@ -33,7 +31,7 @@ border-radius:20px;
 padding:25px;
 }
 
-/* header */
+/* HEADER */
 .header{
 display:flex;
 align-items:center;
@@ -46,7 +44,7 @@ width:40px;
 border-radius:50%;
 }
 
-/* главная */
+/* ГЛАВНАЯ */
 .home{
 text-align:center;
 padding:30px;
@@ -57,21 +55,67 @@ width:120px;
 margin-bottom:10px;
 }
 
-/* кнопка */
-.btn{
-padding:10px 18px;
-background:black;
-color:white;
-border:none;
-border-radius:20px;
-cursor:pointer;
+/* КНОПКИ */
+.menu{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:10px;
+margin-top:20px;
 }
 
-/* страницы */
+.btn{
+padding:12px 20px;
+border:none;
+border-radius:25px;
+cursor:pointer;
+font-size:16px;
+color:white;
+transition:0.3s;
+}
+
+.btn:hover{
+transform:scale(1.1);
+}
+
+.bilim{background:#4CAF50;}
+.maksat{background:#2196F3;}
+.uzdik{background:#000;}
+.safe{background:#f44336;}
+.sport{background:#ff9800;}
+
+/* СТРАНИЦЫ */
 .page{display:none;}
 .active{display:block;}
 
-/* рейтинг */
+/* ВИДЕО */
+.videos{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:15px;
+margin-top:20px;
+}
+
+.videos iframe{
+width:100%;
+height:160px;
+border-radius:10px;
+}
+
+/* ФОТО */
+.images{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:15px;
+margin-top:20px;
+}
+
+.images img{
+width:100%;
+border-radius:12px;
+}
+
+/* РЕЙТИНГ */
 .cards{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
@@ -94,7 +138,7 @@ color:white;
 transform:scale(1.05);
 }
 
-/* модал */
+/* МОДАЛ */
 .modal{
 display:none;
 position:fixed;
@@ -109,10 +153,8 @@ display:block;
 margin:60px auto;
 max-width:500px;
 width:90%;
-border-radius:10px;
 }
 
-/* стрелки */
 .arrow{
 position:absolute;
 top:50%;
@@ -132,6 +174,7 @@ cursor:pointer;
 
 <div class="container">
 
+<!-- HEADER -->
 <div class="header" onclick="openPage('home')">
 <img src="logo.jpg">
 <h3>№35 Мектеп-лицейі</h3>
@@ -139,30 +182,71 @@ cursor:pointer;
 
 <!-- HOME -->
 <div id="home" class="page active">
+
 <div class="home">
 <img src="logo.jpg">
 <h1>№35 Мектеп-лицейі</h1>
 <p>Білім мен жетістік мекені</p>
-<button class="btn" onclick="openPage('rating')">Үздіктер</button>
+
+<div class="menu">
+<button class="btn bilim" onclick="openPage('bilim')">📘 Білім</button>
+<button class="btn maksat" onclick="openPage('maksat')">🎯 Бір мақсат</button>
+<button class="btn uzdik" onclick="openPage('rating')">🏆 Үздіктер</button>
+<button class="btn safe" onclick="openPage('safe')">🛡 Қауіпсіздік</button>
+<button class="btn sport" onclick="openPage('sport')">⚽ Спорт</button>
+</div>
+
+</div>
+
+</div>
+
+<!-- БІЛІМ -->
+<div id="bilim" class="page">
+<h2>📘 Білім</h2>
+<div class="images">
+<img src="bilim.jpg">
 </div>
 </div>
 
-<!-- RATING -->
+<!-- БІР МАҚСАТ -->
+<div id="maksat" class="page">
+<h2>🎯 Бір мақсат</h2>
+<div class="videos">
+<iframe src="https://www.youtube.com/embed/G7MI7YPqEhY"></iframe>
+<iframe src="https://www.youtube.com/embed/_4A4fcuPQq0"></iframe>
+<iframe src="https://www.youtube.com/embed/L0bstXl4kiY"></iframe>
+</div>
+</div>
+
+<!-- ҚАУІПСІЗДІК -->
+<div id="safe" class="page">
+<h2>🛡 Қауіпсіз мектеп</h2>
+<div class="videos">
+<iframe src="https://www.youtube.com/embed/s6GVbAE_uqE"></iframe>
+<iframe src="https://www.youtube.com/embed/sbnnTlA8HVQ"></iframe>
+<iframe src="https://www.youtube.com/embed/HaLxqOs3hLA"></iframe>
+</div>
+</div>
+
+<!-- СПОРТ -->
+<div id="sport" class="page">
+<h2>⚽ Спорт</h2>
+<div class="images">
+<img src="sport1.jpg">
+<img src="sport2.jpg">
+</div>
+</div>
+
+<!-- ҮЗДІКТЕР -->
 <div id="rating" class="page">
-
 <h2>🏆 Үздік оқушылар</h2>
 
 <div class="cards">
-
 <div class="card" onclick="openGallery('uldana')">Тәліпова Ұлдана</div>
 <div class="card" onclick="openGallery('nuray')">Сәдуақас Нұрай</div>
 <div class="card" onclick="openGallery('akerke')">Шерімқожа Ақерке</div>
 <div class="card" onclick="openGallery('nurislam')">Мейрамбеков Нұрислам</div>
 <div class="card" onclick="openGallery('merei')">Ақбергенова Мерей</div>
-<div class="card" onclick="openGallery('aigerim')">Сағатова Айгерім</div>
-<div class="card" onclick="openGallery('aizhan')">Жұмабекқызы Айжан</div>
-<div class="card" onclick="openGallery('zharyl')">Жарылқасынова Ақмарал</div>
-
 </div>
 
 </div>
@@ -184,75 +268,37 @@ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
 document.getElementById(id).classList.add("active");
 }
 
-/* ГАЛЕРЕИ (ВСЕ ТВОИ ФОТКИ) */
-let galleries = {
-
-uldana:[
-"uldana1.jpeg","uldana2.jpeg","uldana3.jpeg","uldana4.jpeg",
-"uldana5.jpeg","uldana6.jpeg","uldana7.jpeg","uldana8.jpeg",
-"uldana9.jpeg","uldana10.jpeg","uldana11.jpeg","uldana12.jpeg",
-"uldana13.jpeg","uldana14.jpeg","uldana15.jpeg"
-],
-
-nuray:[
-"nurai.png","nurai2.png","nurai3.png"
-],
-
-akerke:[
-"akerke1.jpeg","akerke2.jpeg","akerke3.jpeg","akerke4.jpeg",
-"akerke5.jpeg","akerke6.jpeg","akerke7.jpeg","akerke8.jpeg","akerke9.jpeg"
-],
-
-nurislam:[
-"nurislam1.jpeg","nurislam2.jpeg","nurislam3.jpeg","nurislam4.jpeg",
-"nurislam5.jpeg","nurislam6.jpeg","nurislam7.jpeg","nurislam8.jpeg",
-"nurislam9.jpeg","nurislam10.jpeg","nurislam11.jpeg"
-],
-
-merei:[
-"merei1.jpeg","merei2.jpeg","merei3.jpeg","merei4.jpeg",
-"merei5.jpeg","merei6.jpeg","merei7.jpeg","merei8.jpeg",
-"merei9.jpeg","merei10.jpeg","merei11.jpeg","merei12.jpeg","merei13.jpeg"
-],
-
-aigerim:[
-"aigerim1.jpeg","aigerim2.jpeg","aigerim3.jpeg","aigerim4.jpeg",
-"aigerim5.jpeg","aigerim6.jpeg"
-],
-
-aizhan:[
-"aizhan1.jpeg","aizhan2.jpeg","aizhan3.jpeg","aizhan4.jpeg"
-],
-
-zharyl:[
-"zharyl1.jpeg","zharyl2.jpeg","zharyl3.jpeg","zharyl4.jpeg"
-]
-
+/* ГАЛЕРЕИ */
+let galleries={
+uldana:["uldana1.jpeg","uldana2.jpeg","uldana3.jpeg"],
+nuray:["nurai.png","nurai2.png"],
+akerke:["akerke1.jpeg","akerke2.jpeg"],
+nurislam:["nurislam1.jpeg","nurislam2.jpeg"],
+merei:["merei1.jpeg","merei2.jpeg"]
 };
 
-let current = [];
-let index = 0;
+let current=[],i=0;
 
 function openGallery(name){
-current = galleries[name];
-index = 0;
+current=galleries[name];
+i=0;
 document.getElementById("modal").style.display="block";
 showImg();
 }
 
 function showImg(){
-document.getElementById("img").src = current[index];
+document.getElementById("img").src=current[i];
 }
 
 function nextImg(e){
 e.stopPropagation();
-index = (index + 1) % current.length;
+i=(i+1)%current.length;
 showImg();
 }
 
 function prevImg(e){
 e.stopPropagation();
-index = (index - 1 + current.length) % current.length;
+i=(i-1+current.length)%current.length;
 showImg();
 }
 
