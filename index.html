@@ -6,7 +6,6 @@
 <title>№35 Мектеп-лицейі</title>
 
 <style>
-
 body{margin:0;font-family:sans-serif}
 
 /* фон */
@@ -51,7 +50,7 @@ object-fit:cover;opacity:0;transition:1s
 .page{display:none}
 .page.active{display:block}
 
-/* фотки */
+/* фото */
 .feed img{
 width:100%;
 margin:10px 0;
@@ -139,7 +138,6 @@ padding:10px;
 border-radius:10px;
 cursor:pointer;
 }
-
 </style>
 </head>
 
@@ -158,9 +156,9 @@ cursor:pointer;
 <div id="home" class="page active">
 
 <div class="menu">
-<button onclick="openPage('bilim')">📘 Білім</button>
-<button onclick="openPage('maksat')">🎯 Бір мақсат</button>
-<button onclick="openPage('rating')">🏆 Үздіктер</button>
+<button onclick="openPage('bilim')">📘 Оқу жетістігі</button>
+<button onclick="openPage('maksat')">🎯 Бір мақсат, бір мүдде</button>
+<button onclick="openPage('rating')">🏆 Оқушы белсенділігі</button>
 </div>
 
 <div class="slider">
@@ -170,36 +168,46 @@ cursor:pointer;
 </div>
 
 <div class="menu">
-<button onclick="openPage('safe')">🛡 Қауіпсіз мектеп</button>
-<button onclick="openPage('sport')">⚽ Спорт</button>
+<button onclick="openPage('safe')">🛡 Тәрбие жұмысы</button>
+<button onclick="openPage('teachers')">👩‍🏫 Мұғалім сапасы</button>
 <button onclick="openPage('comment')">💬 Пікірлер</button>
 </div>
 
 </div>
 
-<!-- БІЛІМ -->
+<!-- ОҚУ ЖЕТІСТІГІ -->
 <div id="bilim" class="page">
-<h2>📘 Білім</h2>
+<h2>📘 Оқу жетістігі</h2>
 <div id="bilimFeed" class="feed"></div>
 </div>
 
-<!-- СПОРТ -->
-<div id="sport" class="page">
-<h2>⚽ Спорт</h2>
-<div id="sportFeed" class="feed"></div>
+<!-- МҰҒАЛІМ САПАСЫ -->
+<div id="teachers" class="page">
+<h2>👩‍🏫 Мұғалім сапасы</h2>
+
+<div class="rating-box">
+<div class="rank" onclick="openGallery('aigerim')">Сағатова Айгерім</div>
+<div class="rank" onclick="openGallery('aizhan')">Жұмабекқызы Айжан</div>
+<div class="rank" onclick="openGallery('zharyl')">Жарылқасынова Ақмарал</div>
+<div class="rank" onclick="openGallery('korganbay')">Қорғанбай Жансая</div>
+<div class="rank" onclick="openGallery('aigul')">Сулейменова Айгүл</div>
 </div>
+
+</div>
+
+<!-- СПОРТ (удалили, заменили на teachers) -->
 
 <!-- ВИДЕО -->
 <div id="maksat" class="page">
-<h2>🎯 Бір мақсат</h2>
+<h2>🎯 Бір мақсат, бір мүдде</h2>
 <iframe src="https://www.youtube.com/embed/G7MI7YPqEhY"></iframe>
 <iframe src="https://www.youtube.com/embed/_4A4fcuPQq0"></iframe>
 <iframe src="https://www.youtube.com/embed/L0bstXl4kiY"></iframe>
 </div>
 
-<!-- ҚАУІПСІЗ -->
+<!-- ТӘРБИЕ -->
 <div id="safe" class="page">
-<h2>🛡 Қауіпсіз мектеп</h2>
+<h2>🛡 Тәрбие жұмысы</h2>
 <iframe src="https://www.youtube.com/embed/s6GVbAE_uqE"></iframe>
 <iframe src="https://www.youtube.com/embed/sbnnTlA8HVQ"></iframe>
 <iframe src="https://www.youtube.com/embed/HaLxqOs3hLA"></iframe>
@@ -210,7 +218,7 @@ cursor:pointer;
 
 <div class="rating-box">
 
-<h2>🏆 Үздік оқушылар</h2>
+<h2>🏆 Оқушы белсенділігі</h2>
 
 <div class="rank gold" onclick="openGallery('uldana')">🥇 Тәліпова Ұлдана</div>
 <div class="rank gold" onclick="openGallery('nuray')">🥇 Сәдуақас Нұрай</div>
@@ -224,14 +232,6 @@ cursor:pointer;
 <div class="rank bronze" onclick="openGallery('nurislam')">🥉 Мейрамбеков Нұрислам</div>
 <div class="rank bronze" onclick="openGallery('almas')">🥉 Алмас Нұрислам</div>
 <div class="rank bronze" onclick="openGallery('merei')">🥉 Ақбергенова Мерей</div>
-
-<h2>👩‍🏫 Мұғалімдер</h2>
-
-<div class="rank" onclick="openGallery('aigerim')">Сағатова Айгерім</div>
-<div class="rank" onclick="openGallery('aizhan')">Жұмабекқызы Айжан</div>
-<div class="rank" onclick="openGallery('zharyl')">Жарылқасынова Ақмарал</div>
-<div class="rank" onclick="openGallery('korganbay')">Қорғанбай Жансая</div>
-<div class="rank" onclick="openGallery('aigul')">Сулейменова Айгүл</div>
 
 </div>
 
@@ -283,22 +283,16 @@ let b="";
 for(let i=1;i<=19;i++){b+=`<img src="bilim${i}.jpg">`}
 bilimFeed.innerHTML=b;
 
-/* спорт */
-let s="";
-for(let i=1;i<=10;i++){s+=`<img src="sport${i}.jpeg">`}
-sportFeed.innerHTML=s;
-
-/* галереи (ВСЕ) */
+/* галереи */
 let galleries={
-uldana:["uldana1.jpeg","uldana2.jpeg","uldana3.jpeg","uldana4.jpeg","uldana5.jpeg","uldana6.jpeg","uldana7.jpeg"],
-nuray:["nurai.png","nurai2.png","nurai3.png","nurasy1.jpeg","nurasy2.jpeg","nurasy3.jpeg","nurasy4.jpeg"],
-akerke:["akerke1.jpeg","akerke2.jpeg","akerke3.jpeg","akerke4.jpeg","akerke5.jpeg","akerke6.jpeg"],
-nurislam:["nurislam1.jpeg","nurislam2.jpeg","nurislam3.jpeg","nurislam4.jpeg","nurislam5.jpeg"],
-merei:["merei1.jpeg","merei2.jpeg","merei3.jpeg","merei4.jpeg","merei5.jpeg"],
-
-aigerim:["aigerim1.jpeg","aigerim2.jpeg","aigerim3.jpeg"],
-aizhan:["aizhan1.jpeg","aizhan2.jpeg","aizhan3.jpeg"],
-zharyl:["zharyl1.jpeg","zharyl2.jpeg","zharyl3.jpeg"],
+uldana:["uldana1.jpeg","uldana2.jpeg","uldana3.jpeg"],
+nuray:["nurai.png","nurai2.png"],
+akerke:["akerke1.jpeg","akerke2.jpeg"],
+nurislam:["nurislam1.jpeg","nurislam2.jpeg"],
+merei:["merei1.jpeg","merei2.jpeg"],
+aigerim:["aigerim1.jpeg","aigerim2.jpeg"],
+aizhan:["aizhan1.jpeg","aizhan2.jpeg"],
+zharyl:["zharyl1.jpeg","zharyl2.jpeg"],
 korganbay:["korganbay1.jpeg","korganbay2.jpeg"],
 aigul:["zharyl1.jpeg","zharyl2.jpeg"]
 };
