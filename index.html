@@ -39,25 +39,12 @@ cursor:pointer;
 }
 
 /* slider */
-.slider{position:relative;height:220px}
-
-.slide,
-.tar-slide,
-.mug-slide{
-position:absolute;
-width:100%;
-height:100%;
-object-fit:cover;
-opacity:0;
-transition:1s;
-border-radius:12px;
+.slider{position:relative;height:200px}
+.slide{
+position:absolute;width:100%;height:100%;
+object-fit:cover;opacity:0;transition:1s
 }
-
-.slide.active,
-.tar-slide.active,
-.mug-slide.active{
-opacity:1;
-}
+.slide.active{opacity:1}
 
 /* страницы */
 .page{display:none}
@@ -103,60 +90,6 @@ margin:10px 0;
 border-radius:10px;
 border:none;
 }
-<!-- ТӘРБИЕ ЖҰМЫСЫ -->
-<div id="safe" class="page">
-<h2>🛡 Тәрбие жұмысы</h2>
-
-<div id="tarFeed" class="feed"></div>
-
-<iframe src="https://www.youtube.com/embed/s6GVbAE_uqE"></iframe>
-<iframe src="https://www.youtube.com/embed/sbnnTlA8HVQ"></iframe>
-</div>
-
-
-<!-- МҰҒАЛІМ САПАСЫ -->
-<div id="teachers" class="page">
-<h2>👩‍🏫 Мұғалім сапасы</h2>
-
-<div id="mugFeed" class="feed"></div>
-</div>
-
-
-<!-- ПІКІРЛЕР -->
-<div id="comment" class="page">
-<h2>💬 Пікірлер</h2>
-
-<div id="commentsList"></div>
-
-<input id="nameInput" placeholder="Атың"
-style="width:100%;padding:10px;margin-top:10px;border-radius:8px;border:none;">
-
-<textarea id="textInput" placeholder="Пікір жаз..."
-style="width:100%;padding:10px;margin-top:10px;border-radius:8px;border:none;"></textarea>
-
-<button onclick="addComment()"
-style="margin-top:10px;padding:12px;width:100%;border:none;border-radius:10px;background:#4CAF50;color:white;font-weight:bold;">
-Жіберу
-</button>
-</div>
-
-/* комментарии */
-.comment-box{
-background:white;
-padding:15px;
-border-radius:15px;
-margin:10px 0;
-box-shadow:0 5px 15px rgba(0,0,0,0.1);
-}
-
-.comment-name{
-font-weight:bold;
-margin-bottom:5px;
-}
-
-.comment-text{
-color:#555;
-}
 
 /* галерея */
 .modal{
@@ -175,6 +108,7 @@ z-index:999;
 max-width:90%;
 max-height:75vh;
 object-fit:contain;
+border-radius:10px;
 }
 
 .controls{
@@ -241,7 +175,7 @@ cursor:pointer;
 
 </div>
 
-<!-- ОҚУ -->
+<!-- ОҚУ ЖЕТІСТІГІ -->
 <div id="bilim" class="page">
 <h2>📘 Оқу жетістігі</h2>
 <div id="bilimFeed" class="feed"></div>
@@ -251,18 +185,17 @@ cursor:pointer;
 <div id="teachers" class="page">
 <h2>👩‍🏫 Мұғалім сапасы</h2>
 
-<div class="slider">
-<img src="mug1.jpg" class="mug-slide active">
-<img src="mug2.jpg" class="mug-slide">
-<img src="mug3.jpg" class="mug-slide">
-<img src="mug4.jpg" class="mug-slide">
-<img src="mug5.jpg" class="mug-slide">
-<img src="mug6.jpg" class="mug-slide">
-<img src="mug7.jpg" class="mug-slide">
-<img src="mug8.jpg" class="mug-slide">
+<div class="rating-box">
+<div class="rank" onclick="openGallery('aigerim')">Сағатова Айгерім</div>
+<div class="rank" onclick="openGallery('aizhan')">Жұмабекқызы Айжан</div>
+<div class="rank" onclick="openGallery('zharyl')">Жарылқасынова Ақмарал</div>
+<div class="rank" onclick="openGallery('korganbay')">Қорғанбай Жансая</div>
+<div class="rank" onclick="openGallery('aigul')">Сулейменова Айгүл</div>
 </div>
 
 </div>
+
+<!-- СПОРТ (удалили, заменили на teachers) -->
 
 <!-- ВИДЕО -->
 <div id="maksat" class="page">
@@ -275,80 +208,68 @@ cursor:pointer;
 <!-- ТӘРБИЕ -->
 <div id="safe" class="page">
 <h2>🛡 Тәрбие жұмысы</h2>
-
-<div class="slider">
-<img src="tar1.jpg" class="tar-slide active">
-<img src="tar2.jpg" class="tar-slide">
-<img src="tar3.jpg" class="tar-slide">
-<img src="tar4.jpg" class="tar-slide">
-<img src="tar5.jpg" class="tar-slide">
-<img src="tar6.jpg" class="tar-slide">
-<img src="tar7.jpg" class="tar-slide">
-<img src="tar8.jpg" class="tar-slide">
-<img src="tar9.jpg" class="tar-slide">
-<img src="tar10.jpg" class="tar-slide">
-<img src="tar11.jpg" class="tar-slide">
-</div>
-
+<iframe src="https://www.youtube.com/embed/s6GVbAE_uqE"></iframe>
+<iframe src="https://www.youtube.com/embed/sbnnTlA8HVQ"></iframe>
+<iframe src="https://www.youtube.com/embed/HaLxqOs3hLA"></iframe>
 </div>
 
 <!-- РЕЙТИНГ -->
 <div id="rating" class="page">
+
 <div class="rating-box">
 
 <h2>🏆 Оқушы белсенділігі</h2>
 
 <div class="rank gold" onclick="openGallery('uldana')">🥇 Тәліпова Ұлдана</div>
 <div class="rank gold" onclick="openGallery('nuray')">🥇 Сәдуақас Нұрай</div>
+<div class="rank gold" onclick="openGallery('korkem')">🥇 Мұхамеджанова Көркем</div>
 
 <div class="rank silver" onclick="openGallery('akerke')">🥈 Шерімқожа Ақерке</div>
+<div class="rank silver" onclick="openGallery('madiyar')">🥈 Камаладин Мадияр</div>
+<div class="rank silver" onclick="openGallery('albina')">🥈 Амангелдиева Альбина</div>
+<div class="rank silver" onclick="openGallery('meruert')">🥈 Астрахан Меруерт</div>
 
 <div class="rank bronze" onclick="openGallery('nurislam')">🥉 Мейрамбеков Нұрислам</div>
+<div class="rank bronze" onclick="openGallery('almas')">🥉 Алмас Нұрислам</div>
+<div class="rank bronze" onclick="openGallery('merei')">🥉 Ақбергенова Мерей</div>
 
 </div>
+
 </div>
 
 <!-- ПІКІР -->
 <div id="comment" class="page">
 <h2>💬 Пікірлер</h2>
-
-<div class="comment-box">
-<div class="comment-name">Нургуль Есеналиева:</div>
-<div class="comment-text">Мектеп ұжымына алғыс айтамыз. Балаларымызға жақсы білім беріп, тәрбиелеп жатқандарыңыз үшін рахмет.</div>
-</div>
-
-<div class="comment-box">
-<div class="comment-name">Назым Омарова:</div>
-<div class="comment-text">Балаларымызға көңіл бөліп, білім беріп жатқандарыңыз үшін алғысымыз шексіз.</div>
-</div>
-
-<div class="comment-box">
-<div class="comment-name">Айгерим Даниярова:</div>
-<div class="comment-text">Мектептің жетістіктері көбейе берсин. Тек саттилик!</div>
-</div>
-
+<input placeholder="Атың">
+<input placeholder="Пікір">
+<button>Жіберу</button>
 </div>
 
 </div>
 
 <!-- ГАЛЕРЕЯ -->
 <div id="modal" class="modal">
+
 <img id="img">
+
 <div class="controls">
 <button onclick="prev()">⬅</button>
 <button onclick="next()">➡</button>
 </div>
+
 <div class="close-btn" onclick="closeGallery()">❌</div>
+
 </div>
 
 <script>
 
+/* вкладки */
 function openPage(id){
 document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
 document.getElementById(id).classList.add("active");
 }
 
-/* основной слайдер */
+/* slider */
 let slides=document.querySelectorAll(".slide");
 let i=0;
 setInterval(()=>{
@@ -357,39 +278,23 @@ i=(i+1)%slides.length;
 slides[i].classList.add("active");
 },3000);
 
-/* mug */
-let mug=document.querySelectorAll(".mug-slide");
-let mi=0;
-setInterval(()=>{
-if(mug.length){
-mug[mi].classList.remove("active");
-mi=(mi+1)%mug.length;
-mug[mi].classList.add("active");
-}
-},3000);
-
-/* tar */
-let tar=document.querySelectorAll(".tar-slide");
-let ti=0;
-setInterval(()=>{
-if(tar.length){
-tar[ti].classList.remove("active");
-ti=(ti+1)%tar.length;
-tar[ti].classList.add("active");
-}
-},3000);
-
 /* білім */
 let b="";
 for(let i=1;i<=19;i++){b+=`<img src="bilim${i}.jpg">`}
 bilimFeed.innerHTML=b;
 
-/* галерея */
+/* галереи */
 let galleries={
-uldana:["uldana1.jpeg","uldana2.jpeg"],
+uldana:["uldana1.jpeg","uldana2.jpeg","uldana3.jpeg"],
 nuray:["nurai.png","nurai2.png"],
 akerke:["akerke1.jpeg","akerke2.jpeg"],
-nurislam:["nurislam1.jpeg","nurislam2.jpeg"]
+nurislam:["nurislam1.jpeg","nurislam2.jpeg"],
+merei:["merei1.jpeg","merei2.jpeg"],
+aigerim:["aigerim1.jpeg","aigerim2.jpeg"],
+aizhan:["aizhan1.jpeg","aizhan2.jpeg"],
+zharyl:["zharyl1.jpeg","zharyl2.jpeg"],
+korganbay:["korganbay1.jpeg","korganbay2.jpeg"],
+aigul:["zharyl1.jpeg","zharyl2.jpeg"]
 };
 
 let current=[],index=0;
@@ -419,39 +324,3 @@ modal.style.display="none";
 
 </body>
 </html>
-<!-- ТӘРБИЕ ЖҰМЫСЫ -->
-<div id="safe" class="page">
-<h2>🛡 Тәрбие жұмысы</h2>
-
-<div id="tarFeed" class="feed"></div>
-
-<iframe src="https://www.youtube.com/embed/s6GVbAE_uqE"></iframe>
-<iframe src="https://www.youtube.com/embed/sbnnTlA8HVQ"></iframe>
-</div>
-
-
-<!-- МҰҒАЛІМ САПАСЫ -->
-<div id="teachers" class="page">
-<h2>👩‍🏫 Мұғалім сапасы</h2>
-
-<div id="mugFeed" class="feed"></div>
-</div>
-
-
-<!-- ПІКІРЛЕР -->
-<div id="comment" class="page">
-<h2>💬 Пікірлер</h2>
-
-<div id="commentsList"></div>
-
-<input id="nameInput" placeholder="Атың"
-style="width:100%;padding:10px;margin-top:10px;border-radius:8px;border:none;">
-
-<textarea id="textInput" placeholder="Пікір жаз..."
-style="width:100%;padding:10px;margin-top:10px;border-radius:8px;border:none;"></textarea>
-
-<button onclick="addComment()"
-style="margin-top:10px;padding:12px;width:100%;border:none;border-radius:10px;background:#4CAF50;color:white;font-weight:bold;">
-Жіберу
-</button>
-</div>
