@@ -260,5 +260,142 @@ textInput.value="";
 
 </script>
 
+<script>
+/* =========================
+   ДОБАВЛЕНИЕ ФОТО (НЕ УДАЛЯЕТ СТАРОЕ)
+========================= */
+(function(){
+
+  function addImages(containerId, prefix, count){
+    var el = document.getElementById(containerId);
+    if(!el) return;
+
+    var html = "";
+    for(var i=1;i<=count;i++){
+      html += '<img src="'+prefix+i+'.jpg">';
+    }
+
+    el.insertAdjacentHTML('beforeend', html); // ДОБАВЛЯЕМ
+  }
+
+  // если контейнера нет — создаём его автоматически (не ломаем сайт)
+  function ensureContainer(pageId, containerId){
+    var page = document.getElementById(pageId);
+    if(!page) return;
+
+    if(!document.getElementById(containerId)){
+      var div = document.createElement("div");
+      div.id = containerId;
+      div.className = "feed";
+      page.appendChild(div);
+    }
+  }
+
+  // Тәрбие жұмысы
+  ensureContainer("safe","tarFeed");
+  addImages("tarFeed","kukik",8);
+
+  // Бір мақсат
+  ensureContainer("maksat","ataFeed");
+  addImages("ataFeed","ata",7);
+
+  // Мұғалім сапасы
+  ensureContainer("teachers","mugFeed");
+  addImages("mugFeed","mug",8);
+
+})();
+</script>
+
+
+<script>
+/* =========================
+   КОММЕНТАРИИ (ДОБАВЛЕНИЕ)
+========================= */
+
+// создаём список если нет
+(function(){
+  var commentPage = document.getElementById("comment");
+  if(!commentPage) return;
+
+  if(!document.getElementById("commentsList")){
+    var list = document.createElement("div");
+    list.id = "commentsList";
+    commentPage.prepend(list);
+  }
+
+  var list = document.getElementById("commentsList");
+
+  // ДОБАВЛЯЕМ ГОТОВЫЕ КОММЕНТЫ
+  list.insertAdjacentHTML("beforeend", `
+    <div class="comment-box">
+      <div class="comment-name">Нургуль Есеналиева:</div>
+      <div class="comment-text">
+        Мектеп ұжымына алғыс айтамыз. Балаларымызға жақсы білім беріп, тәрбиелеп жатқандарыңыз үшін рахмет. Еңбектеріңізге табыс тілейміз!
+      </div>
+    </div>
+
+    <div class="comment-box">
+      <div class="comment-name">Назым Омарова:</div>
+      <div class="comment-text">
+        Балаларымызға көңіл бөліп, білім беріп жатқандарыңыз үшін алғысымыз шексіз. Еңбектеріңізге сәттілік тілейміз!
+      </div>
+    </div>
+
+    <div class="comment-box">
+      <div class="comment-name">Айгерим Даниярова:</div>
+      <div class="comment-text">
+        Мектептің жетістіктері көбейе берсин. Тек саттилик!
+      </div>
+    </div>
+  `);
+
+})();
+
+// функция добавления
+function addComment(){
+  var name = document.getElementById("nameInput");
+  var text = document.getElementById("textInput");
+
+  if(!name || !text) return;
+  if(!name.value || !text.value) return;
+
+  var list = document.getElementById("commentsList");
+  if(!list) return;
+
+  var div = document.createElement("div");
+  div.className = "comment-box";
+
+  div.innerHTML = `
+    <div class="comment-name">${name.value}:</div>
+    <div class="comment-text">${text.value}</div>
+  `;
+
+  list.prepend(div);
+
+  name.value="";
+  text.value="";
+}
+</script>
+
+
+<style id="comment_style_add">
+.comment-box{
+  background:white;
+  padding:15px;
+  border-radius:15px;
+  margin:10px 0;
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+.comment-name{
+  font-weight:bold;
+  margin-bottom:5px;
+}
+
+.comment-text{
+  color:#555;
+}
+</style>
+
 </body>
 </html>
