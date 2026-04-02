@@ -405,8 +405,9 @@ function addComment(){
 }
 </style>
 
-</body>
-let galleries = {
+<script>
+
+window.galleries = {
 
 uldana:[
 "uldana1.jpeg","uldana2.jpeg","uldana3.jpeg",
@@ -459,4 +460,32 @@ merei:[
 ]
 
 };
+
+function openGallery(name){
+if(!galleries[name]){
+console.log("нет галереи:", name);
+return;
+}
+
+current = galleries[name];
+index = 0;
+
+document.getElementById("modal").style.display = "flex";
+document.getElementById("img").src = current[index];
+}
+
+function openGallery(name){
+if(!galleries[name]){
+console.log("нет галереи:", name);
+return;
+}
+
+current = galleries[name];
+index = 0;
+
+document.getElementById("modal").style.display = "flex";
+document.getElementById("img").src = current[index];
+}
+
+</body>
 </html>
