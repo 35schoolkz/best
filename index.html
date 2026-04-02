@@ -91,52 +91,13 @@ border-radius:10px;
 border:none;
 }
 
-/* галерея */
-.modal{
-display:none;
-position:fixed;
-top:0;left:0;
-width:100%;height:100%;
-background:rgba(0,0,0,0.95);
-justify-content:center;
-align-items:center;
-flex-direction:column;
-z-index:999;
-}
-
-.modal img{
-max-width:90%;
-max-height:75vh;
-object-fit:contain;
-border-radius:10px;
-}
-
-.controls{
-position:absolute;
-width:100%;
-top:50%;
-display:flex;
-justify-content:space-between;
-padding:0 20px;
-transform:translateY(-50%);
-}
-
-.controls button{
+/* комментарии */
+.comment-box{
 background:white;
-border:none;
-padding:10px;
-border-radius:50%;
-cursor:pointer;
-}
-
-.close-btn{
-position:absolute;
-top:20px;
-right:20px;
-background:white;
-padding:10px;
-border-radius:10px;
-cursor:pointer;
+padding:15px;
+border-radius:15px;
+margin:10px 0;
+box-shadow:0 5px 15px rgba(0,0,0,0.1);
 }
 </style>
 </head>
@@ -175,7 +136,7 @@ cursor:pointer;
 
 </div>
 
-<!-- ОҚУ ЖЕТІСТІГІ -->
+<!-- ОҚУ -->
 <div id="bilim" class="page">
 <h2>📘 Оқу жетістігі</h2>
 <div id="bilimFeed" class="feed"></div>
@@ -184,80 +145,72 @@ cursor:pointer;
 <!-- МҰҒАЛІМ САПАСЫ -->
 <div id="teachers" class="page">
 <h2>👩‍🏫 Мұғалім сапасы</h2>
-
-<div class="rating-box">
-<div class="rank" onclick="openGallery('aigerim')">Сағатова Айгерім</div>
-<div class="rank" onclick="openGallery('aizhan')">Жұмабекқызы Айжан</div>
-<div class="rank" onclick="openGallery('zharyl')">Жарылқасынова Ақмарал</div>
-<div class="rank" onclick="openGallery('korganbay')">Қорғанбай Жансая</div>
-<div class="rank" onclick="openGallery('aigul')">Сулейменова Айгүл</div>
+<div id="mugFeed" class="feed"></div>
 </div>
 
-</div>
-
-<!-- СПОРТ (удалили, заменили на teachers) -->
-
-<!-- ВИДЕО -->
+<!-- БІР МАҚСАТ -->
 <div id="maksat" class="page">
 <h2>🎯 Бір мақсат, бір мүдде</h2>
+
 <iframe src="https://www.youtube.com/embed/G7MI7YPqEhY"></iframe>
 <iframe src="https://www.youtube.com/embed/_4A4fcuPQq0"></iframe>
 <iframe src="https://www.youtube.com/embed/L0bstXl4kiY"></iframe>
+
+<div id="ataFeed" class="feed"></div>
 </div>
 
 <!-- ТӘРБИЕ -->
 <div id="safe" class="page">
 <h2>🛡 Тәрбие жұмысы</h2>
+
 <iframe src="https://www.youtube.com/embed/s6GVbAE_uqE"></iframe>
 <iframe src="https://www.youtube.com/embed/sbnnTlA8HVQ"></iframe>
 <iframe src="https://www.youtube.com/embed/HaLxqOs3hLA"></iframe>
+
+<div id="tarFeed" class="feed"></div>
 </div>
 
 <!-- РЕЙТИНГ -->
 <div id="rating" class="page">
-
 <div class="rating-box">
 
 <h2>🏆 Оқушы белсенділігі</h2>
 
-<div class="rank gold" onclick="openGallery('uldana')">🥇 Тәліпова Ұлдана</div>
-<div class="rank gold" onclick="openGallery('nuray')">🥇 Сәдуақас Нұрай</div>
-<div class="rank gold" onclick="openGallery('korkem')">🥇 Мұхамеджанова Көркем</div>
-
-<div class="rank silver" onclick="openGallery('akerke')">🥈 Шерімқожа Ақерке</div>
-<div class="rank silver" onclick="openGallery('madiyar')">🥈 Камаладин Мадияр</div>
-<div class="rank silver" onclick="openGallery('albina')">🥈 Амангелдиева Альбина</div>
-<div class="rank silver" onclick="openGallery('meruert')">🥈 Астрахан Меруерт</div>
-
-<div class="rank bronze" onclick="openGallery('nurislam')">🥉 Мейрамбеков Нұрислам</div>
-<div class="rank bronze" onclick="openGallery('almas')">🥉 Алмас Нұрислам</div>
-<div class="rank bronze" onclick="openGallery('merei')">🥉 Ақбергенова Мерей</div>
+<div class="rank gold">🥇 Тәліпова Ұлдана</div>
+<div class="rank silver">🥈 Ақерке</div>
+<div class="rank bronze">🥉 Нұрислам</div>
 
 </div>
-
 </div>
 
 <!-- ПІКІР -->
 <div id="comment" class="page">
 <h2>💬 Пікірлер</h2>
-<input placeholder="Атың">
-<input placeholder="Пікір">
-<button>Жіберу</button>
+
+<div id="commentsList">
+
+<div class="comment-box">
+Нургуль Есеналиева:<br>
+Мектеп ұжымына алғыс айтамыз. Балаларымызға жақсы білім беріп, тәрбиелеп жатқандарыңыз үшін рахмет. Еңбектеріңізге табыс тілейміз!
+</div>
+
+<div class="comment-box">
+Назым Омарова:<br>
+Балаларымызға көңіл бөліп, білім беріп жатқандарыңыз үшін алғысымыз шексіз. Еңбектеріңізге сәттілік тілейміз!
+</div>
+
+<div class="comment-box">
+Айгерим Даниярова:<br>
+Мектептің жетістіктері көбейе берсин. Тек саттилик!
 </div>
 
 </div>
 
-<!-- ГАЛЕРЕЯ -->
-<div id="modal" class="modal">
+<input id="nameInput" placeholder="Атың">
+<input id="textInput" placeholder="Пікір">
+<button onclick="addComment()">Жіберу</button>
 
-<img id="img">
-
-<div class="controls">
-<button onclick="prev()">⬅</button>
-<button onclick="next()">➡</button>
 </div>
-
-<div class="close-btn" onclick="closeGallery()">❌</div>
 
 </div>
 
@@ -269,55 +222,40 @@ document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
 document.getElementById(id).classList.add("active");
 }
 
-/* slider */
-let slides=document.querySelectorAll(".slide");
-let i=0;
-setInterval(()=>{
-slides[i].classList.remove("active");
-i=(i+1)%slides.length;
-slides[i].classList.add("active");
-},3000);
-
-/* білім */
+/* билим */
 let b="";
 for(let i=1;i<=19;i++){b+=`<img src="bilim${i}.jpg">`}
 bilimFeed.innerHTML=b;
 
-/* галереи */
-let galleries={
-uldana:["uldana1.jpeg","uldana2.jpeg","uldana3.jpeg"],
-nuray:["nurai.png","nurai2.png"],
-akerke:["akerke1.jpeg","akerke2.jpeg"],
-nurislam:["nurislam1.jpeg","nurislam2.jpeg"],
-merei:["merei1.jpeg","merei2.jpeg"],
-aigerim:["aigerim1.jpeg","aigerim2.jpeg"],
-aizhan:["aizhan1.jpeg","aizhan2.jpeg"],
-zharyl:["zharyl1.jpeg","zharyl2.jpeg"],
-korganbay:["korganbay1.jpeg","korganbay2.jpeg"],
-aigul:["zharyl1.jpeg","zharyl2.jpeg"]
-};
+/* kukik */
+let k="";
+for(let i=1;i<=8;i++){k+=`<img src="kukik${i}.jpg">`}
+tarFeed.innerHTML=k;
 
-let current=[],index=0;
+/* ata */
+let a="";
+for(let i=1;i<=7;i++){a+=`<img src="ata${i}.jpg">`}
+ataFeed.innerHTML=a;
 
-function openGallery(name){
-current=galleries[name];
-index=0;
-modal.style.display="flex";
-img.src=current[index];
-}
+/* mug */
+let m="";
+for(let i=1;i<=8;i++){m+=`<img src="mug${i}.jpg">`}
+mugFeed.innerHTML=m;
 
-function next(){
-index=(index+1)%current.length;
-img.src=current[index];
-}
+/* комментарии */
+function addComment(){
+let name=nameInput.value;
+let text=textInput.value;
+if(!name || !text) return;
 
-function prev(){
-index=(index-1+current.length)%current.length;
-img.src=current[index];
-}
+let div=document.createElement("div");
+div.className="comment-box";
+div.innerHTML=name+"<br>"+text;
 
-function closeGallery(){
-modal.style.display="none";
+commentsList.prepend(div);
+
+nameInput.value="";
+textInput.value="";
 }
 
 </script>
