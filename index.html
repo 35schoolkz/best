@@ -462,9 +462,123 @@ merei:[
 
 };
 
-/* ===== ГАЛЕРЕЯ ===== */
+<!-- ===== ГАЛЕРЕЯ ДИПЛОМОВ (ФИКС) ===== -->
+
+<div id="modal" class="modal">
+<img id="img">
+
+<div class="controls">
+<button onclick="prev()">⬅</button>
+<button onclick="next()">➡</button>
+</div>
+
+<div onclick="closeGallery()" style="
+position:absolute;
+top:20px;
+right:20px;
+background:white;
+padding:10px;
+border-radius:10px;
+cursor:pointer;">
+❌
+</div>
+</div>
+
+<style>
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:999;
+}
+
+.modal img{
+max-width:90%;
+max-height:70%;
+}
+
+.controls{
+position:absolute;
+top:50%;
+width:100%;
+display:flex;
+justify-content:space-between;
+}
+
+.controls button{
+background:white;
+border:none;
+padding:10px;
+border-radius:50%;
+cursor:pointer;
+}
+</style>
 
 <script>
+
+/* ===== ВСЕ ДИПЛОМЫ ===== */
+
+let galleries = {
+
+uldana:[
+"uldana1.jpeg","uldana2.jpeg","uldana3.jpeg",
+"uldana4.jpeg","uldana5.jpeg","uldana6.jpeg","uldana7.jpeg"
+],
+
+nuray:[
+"nurai.png","nurai2.png"
+],
+
+korkem:[
+"korkem1.jpeg","korkem2.jpeg","korkem3.jpeg",
+"korkem4.jpeg","korkem5.jpeg","korkem6.jpeg"
+],
+
+akerke:[
+"akerke1.jpeg","akerke2.jpeg","akerke3.jpeg",
+"akerke4.jpeg","akerke5.jpeg","akerke6.jpeg"
+],
+
+madiyar:[
+"madiyar1.jpeg","madiyar2.jpeg","madiyar3.jpeg",
+"madiyar4.jpeg","madiyar5.jpeg","madiyar6.jpeg"
+],
+
+albina:[
+"albina1.jpeg","albina2.jpeg","albina3.jpeg",
+"albina4.jpeg","albina5.jpeg","albina6.jpeg"
+],
+
+meruert:[
+"meruert1.jpeg","meruert2.jpeg","meruert3.jpeg",
+"meruert4.jpeg","meruert5.jpeg","meruert6.jpeg"
+],
+
+nurislam:[
+"nurislam1.jpeg","nurislam2.jpeg","nurislam3.jpeg",
+"nurislam4.jpeg","nurislam5.jpeg","nurislam6.jpeg"
+],
+
+almas:[
+"almas1.jpeg","almas2.jpeg","almas3.jpeg",
+"almas4.jpeg","almas5.jpeg","almas6.jpeg"
+],
+
+merei:[
+"merei1.jpeg","merei2.jpeg","merei3.jpeg",
+"merei4.jpeg","merei5.jpeg","merei6.jpeg"
+]
+
+};
+
+/* ===== ЛОГИКА ГАЛЕРЕИ ===== */
 
 let current = [], index = 0;
 
@@ -493,58 +607,8 @@ document.getElementById("modal").style.display = "none";
 }
 
 </script>
-};
-
-let current = [], index = 0;
-
-function openGallery(name){
-if(!galleries[name]) return;
-
-current = galleries[name];
-index = 0;
-
-modal.style.display = "flex";
-img.src = current[index];
-}
-
-function next(){
-index = (index + 1) % current.length;
-img.src = current[index];
-}
-
-function prev(){
-index = (index - 1 + current.length) % current.length;
-img.src = current[index];
-}
-
-function closeGallery(){
-modal.style.display = "none";
-}
 
 
-document.getElementById("modal").style.display = "flex";
-document.getElementById("img").src = current[index];
-}
-
-<div id="modal" class="modal">
-<img id="img">
-
-<div class="controls">
-<button onclick="prev()">⬅</button>
-<button onclick="next()">➡</button>
-</div>
-
-<div onclick="closeGallery()" style="
-position:absolute;
-top:20px;
-right:20px;
-background:white;
-padding:10px;
-border-radius:10px;
-cursor:pointer;">
-❌
-</div>
-</div>
 
 </body>
 </html>
