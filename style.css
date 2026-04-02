@@ -224,3 +224,13 @@ border-radius:8px;
 cursor:pointer;
 background:white;
 }
+/* ТОЛЬКО ДЛЯ СЛАЙДЕРОВ */
+.slides img{
+object-fit:contain !important; /* 🔥 главное */
+background:black; /* чтобы были полосы красиво */
+}
+
+/* сам контейнер чуть выше */
+.slider{
+height:300px; /* можно 280-350 */
+}
