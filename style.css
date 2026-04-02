@@ -1,197 +1,26 @@
-<!DOCTYPE html>
-<html lang="kk">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>№35 Мектеп-лицейі</title>
+<!-- ===== ГАЛЕРЕЯ ДИПЛОМОВ (ФИКС) ===== -->
 
-<link rel="stylesheet" href="style.css">
-</head>
+<div id="modal" class="modal">
+<img id="img">
 
-<body>
-
-<div class="bg"></div>
-
-<div class="container">
-
-<!-- HEADER -->
-<div class="header" onclick="openPage('home')">
-<img src="logo.jpg" class="logo">
-<h2>№35 Мектеп-лицейі</h2>
+<div class="controls">
+<button onclick="prev()">⬅</button>
+<button onclick="next()">➡</button>
 </div>
 
-<!-- HOME -->
-<div id="home" class="page active">
-
-<div class="menu">
-<button onclick="openPage('bilim')">📘 Білім</button>
-<button onclick="openPage('maksat')">🎯 Бір мақсат</button>
-<button onclick="openPage('rating')">🏆 Үздіктер</button>
-</div>
-
-<div class="slider">
-<img src="photo1.jpg" class="slide active">
-<img src="photo2.jpg" class="slide">
-<img src="photo3.jpg" class="slide">
-</div>
-
-<div class="menu">
-<button onclick="openPage('safe')">🛡 Қауіпсіз</button>
-<button onclick="openPage('sport')">⚽ Спорт</button>
-<button onclick="openPage('comment')">💬 Пікірлер</button>
-</div>
-
-</div>
-
-<!-- БІЛІМ -->
-<div id="bilim" class="page">
-<h2>Білім</h2>
-<div id="bilimFeed" class="feed"></div>
-</div>
-
-<!-- СПОРТ -->
-<div id="sport" class="page">
-<h2>Спорт</h2>
-<div id="sportFeed" class="feed"></div>
-</div>
-
-<!-- ВИДЕО -->
-<div id="maksat" class="page">
-<h2>Бір мақсат</h2>
-<iframe src="https://www.youtube.com/embed/G7MI7YPqEhY"></iframe>
-<iframe src="https://www.youtube.com/embed/_4A4fcuPQq0"></iframe>
-<iframe src="https://www.youtube.com/embed/L0bstXl4kiY"></iframe>
-</div>
-
-<!-- ҚАУІПСІЗ -->
-<div id="safe" class="page">
-<h2>Қауіпсіз мектеп</h2>
-<iframe src="https://www.youtube.com/embed/s6GVbAE_uqE"></iframe>
-<iframe src="https://www.youtube.com/embed/sbnnTlA8HVQ"></iframe>
-<iframe src="https://www.youtube.com/embed/HaLxqOs3hLA"></iframe>
-</div>
-
-<!-- 🔥 РЕЙТИНГ (НОВЫЙ) -->
-<div id="rating" class="page">
-
-<div class="rating-wrapper">
-
-<h2>🏆 Үздік оқушылар</h2>
-
-<div class="rating-list">
-
-<div class="rank gold">🥇 Тәліпова Ұлдана</div>
-<div class="rank gold">🥇 Сәдуақас Нұрай</div>
-<div class="rank gold">🥇 Мұхамеджанова Көркем</div>
-
-<div class="rank silver">🥈 Шерімқожа Ақерке</div>
-<div class="rank silver">🥈 Камаладин Мадияр</div>
-<div class="rank silver">🥈 Амангелдиева Альбина</div>
-<div class="rank silver">🥈 Астрахан Меруерт</div>
-
-<div class="rank bronze">🥉 Мейрамбеков Нұрислам</div>
-<div class="rank bronze">🥉 Алмас Нұрислам</div>
-<div class="rank bronze">🥉 Ақбергенова Мерей</div>
-
-</div>
-
-<h2>👩‍🏫 Мұғалімдер</h2>
-
-<div class="rating-list">
-
-<div class="rank">Сағатова Айгерім</div>
-<div class="rank">Жұмабекқызы Айжан</div>
-<div class="rank">Жарылқасынова Ақмарал</div>
-<div class="rank">Қорғанбай Жансая</div>
-<div class="rank">Сулейменова Айгүл</div>
-
-</div>
-
-</div>
-
-</div>
-
-<!-- ПІКІР -->
-<div id="comment" class="page">
-<h2>Пікір</h2>
-<div id="comments"></div>
-<input id="name">
-<input id="text">
-<button onclick="addComment()">Жіберу</button>
-</div>
-
-</div>
-
-<script>
-
-/* ВКЛАДКИ */
-function openPage(id){
-document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-document.getElementById(id).classList.add("active");
-}
-
-/* СЛАЙДЕР */
-let slides=document.querySelectorAll(".slide");
-let i=0;
-setInterval(()=>{
-slides[i].classList.remove("active");
-i=(i+1)%slides.length;
-slides[i].classList.add("active");
-},3000);
-
-/* БІЛІМ */
-let b="";
-for(let i=1;i<=19;i++){
-b+=`<img src="bilim${i}.jpg">`;
-}
-bilimFeed.innerHTML=b;
-
-/* СПОРТ */
-let s="";
-for(let i=1;i<=10;i++){
-s+=`<img src="sport${i}.jpeg">`;
-}
-sportFeed.innerHTML=s;
-
-</script>
-
-</body>
-</html>
-/* РЕЙТИНГ */
-.rating-box{
+<div onclick="closeGallery()" style="
+position:absolute;
+top:20px;
+right:20px;
 background:white;
-max-width:600px;
-margin:30px auto;
-padding:20px;
-border-radius:20px;
-box-shadow:0 10px 30px rgba(0,0,0,0.2);
-text-align:center;
-}
-
-.rating-list{
-display:flex;
-flex-direction:column;
-gap:10px;
-}
-
-.rank{
-padding:12px;
+padding:10px;
 border-radius:10px;
-background:#f5f5f5;
-font-weight:600;
-cursor:pointer;
-transition:0.3s;
-}
+cursor:pointer;">
+❌
+</div>
+</div>
 
-.rank:hover{
-transform:scale(1.05);
-}
-
-.gold{background:linear-gradient(90deg,#FFD700,#fff);}
-.silver{background:linear-gradient(90deg,#C0C0C0,#fff);}
-.bronze{background:linear-gradient(90deg,#CD7F32,#fff);}
-
-/* ГАЛЕРЕЯ */
+<style>
 .modal{
 display:none;
 position:fixed;
@@ -200,73 +29,117 @@ left:0;
 width:100%;
 height:100%;
 background:rgba(0,0,0,0.9);
-align-items:center;
 justify-content:center;
+align-items:center;
 flex-direction:column;
-z-index:1000;
+z-index:999;
 }
 
 .modal img{
 max-width:90%;
-border-radius:10px;
+max-height:70%;
 }
 
 .controls{
-margin-top:10px;
+position:absolute;
+top:50%;
+width:100%;
 display:flex;
-gap:10px;
+justify-content:space-between;
 }
 
 .controls button{
-padding:10px 15px;
-border:none;
-border-radius:8px;
-cursor:pointer;
 background:white;
+border:none;
+padding:10px;
+border-radius:50%;
+cursor:pointer;
 }
-/* ТОЛЬКО ДЛЯ СЛАЙДЕРОВ */
-.slides img{
-object-fit:contain !important; /* 🔥 главное */
-background:black; /* чтобы были полосы красиво */
+</style>
+
+<script>
+
+/* ===== ВСЕ ДИПЛОМЫ ===== */
+
+let galleries = {
+
+uldana:[
+"uldana1.jpeg","uldana2.jpeg","uldana3.jpeg",
+"uldana4.jpeg","uldana5.jpeg","uldana6.jpeg","uldana7.jpeg"
+],
+
+nuray:[
+"nurai.png","nurai2.png"
+],
+
+korkem:[
+"korkem1.jpeg","korkem2.jpeg","korkem3.jpeg",
+"korkem4.jpeg","korkem5.jpeg","korkem6.jpeg"
+],
+
+akerke:[
+"akerke1.jpeg","akerke2.jpeg","akerke3.jpeg",
+"akerke4.jpeg","akerke5.jpeg","akerke6.jpeg"
+],
+
+madiyar:[
+"madiyar1.jpeg","madiyar2.jpeg","madiyar3.jpeg",
+"madiyar4.jpeg","madiyar5.jpeg","madiyar6.jpeg"
+],
+
+albina:[
+"albina1.jpeg","albina2.jpeg","albina3.jpeg",
+"albina4.jpeg","albina5.jpeg","albina6.jpeg"
+],
+
+meruert:[
+"meruert1.jpeg","meruert2.jpeg","meruert3.jpeg",
+"meruert4.jpeg","meruert5.jpeg","meruert6.jpeg"
+],
+
+nurislam:[
+"nurislam1.jpeg","nurislam2.jpeg","nurislam3.jpeg",
+"nurislam4.jpeg","nurislam5.jpeg","nurislam6.jpeg"
+],
+
+almas:[
+"almas1.jpeg","almas2.jpeg","almas3.jpeg",
+"almas4.jpeg","almas5.jpeg","almas6.jpeg"
+],
+
+merei:[
+"merei1.jpeg","merei2.jpeg","merei3.jpeg",
+"merei4.jpeg","merei5.jpeg","merei6.jpeg"
+]
+
+};
+
+/* ===== ЛОГИКА ГАЛЕРЕИ ===== */
+
+let current = [], index = 0;
+
+function openGallery(name){
+if(!galleries[name]) return;
+
+current = galleries[name];
+index = 0;
+
+document.getElementById("modal").style.display = "flex";
+document.getElementById("img").src = current[index];
 }
 
-/* сам контейнер чуть выше */
-.slider{
-height:300px; /* можно 280-350 */
+function next(){
+index = (index + 1) % current.length;
+document.getElementById("img").src = current[index];
 }
-<!-- ТӘРБИЕ ЖҰМЫСЫ -->
-<div id="safe" class="page">
-<h2>🛡 Тәрбие жұмысы</h2>
 
-<div id="tarFeed" class="feed"></div>
+function prev(){
+index = (index - 1 + current.length) % current.length;
+document.getElementById("img").src = current[index];
+}
 
-<iframe src="https://www.youtube.com/embed/s6GVbAE_uqE"></iframe>
-<iframe src="https://www.youtube.com/embed/sbnnTlA8HVQ"></iframe>
-</div>
+function closeGallery(){
+document.getElementById("modal").style.display = "none";
+}
 
-
-<!-- МҰҒАЛІМ САПАСЫ -->
-<div id="teachers" class="page">
-<h2>👩‍🏫 Мұғалім сапасы</h2>
-
-<div id="mugFeed" class="feed"></div>
-</div>
-
-
-<!-- ПІКІРЛЕР -->
-<div id="comment" class="page">
-<h2>💬 Пікірлер</h2>
-
-<div id="commentsList"></div>
-
-<input id="nameInput" placeholder="Атың"
-style="width:100%;padding:10px;margin-top:10px;border-radius:8px;border:none;">
-
-<textarea id="textInput" placeholder="Пікір жаз..."
-style="width:100%;padding:10px;margin-top:10px;border-radius:8px;border:none;"></textarea>
-
-<button onclick="addComment()"
-style="margin-top:10px;padding:12px;width:100%;border:none;border-radius:10px;background:#4CAF50;color:white;font-weight:bold;">
-Жіберу
-</button>
-</div>
+</script>
