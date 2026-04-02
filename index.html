@@ -407,7 +407,9 @@ function addComment(){
 
 <script>
 
-window.galleries = {
+/* ===== ПРАВИЛЬНЫЕ ГАЛЕРЕИ ===== */
+
+let galleries = {
 
 uldana:[
 "uldana1.jpeg","uldana2.jpeg","uldana3.jpeg",
@@ -415,7 +417,7 @@ uldana:[
 ],
 
 nuray:[
-"nurai.png","nurai2.png","nurai3.png",
+"nurai.png","nurai2.png"
 ],
 
 korkem:[
@@ -458,6 +460,37 @@ merei:[
 "merei4.jpeg","merei5.jpeg","merei6.jpeg"
 ]
 
+};
+
+/* ===== ГАЛЕРЕЯ ===== */
+
+let current = [], index = 0;
+
+function openGallery(name){
+if(!galleries[name]) return;
+
+current = galleries[name];
+index = 0;
+
+document.getElementById("modal").style.display = "flex";
+document.getElementById("img").src = current[index];
+}
+
+function next(){
+index = (index + 1) % current.length;
+document.getElementById("img").src = current[index];
+}
+
+function prev(){
+index = (index - 1 + current.length) % current.length;
+document.getElementById("img").src = current[index];
+}
+
+function closeGallery(){
+document.getElementById("modal").style.display = "none";
+}
+
+</script>
 };
 
 let current = [], index = 0;
