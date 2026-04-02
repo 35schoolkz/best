@@ -234,3 +234,39 @@ background:black; /* чтобы были полосы красиво */
 .slider{
 height:300px; /* можно 280-350 */
 }
+<!-- ТӘРБИЕ ЖҰМЫСЫ -->
+<div id="safe" class="page">
+<h2>🛡 Тәрбие жұмысы</h2>
+
+<div id="tarFeed" class="feed"></div>
+
+<iframe src="https://www.youtube.com/embed/s6GVbAE_uqE"></iframe>
+<iframe src="https://www.youtube.com/embed/sbnnTlA8HVQ"></iframe>
+</div>
+
+
+<!-- МҰҒАЛІМ САПАСЫ -->
+<div id="teachers" class="page">
+<h2>👩‍🏫 Мұғалім сапасы</h2>
+
+<div id="mugFeed" class="feed"></div>
+</div>
+
+
+<!-- ПІКІРЛЕР -->
+<div id="comment" class="page">
+<h2>💬 Пікірлер</h2>
+
+<div id="commentsList"></div>
+
+<input id="nameInput" placeholder="Атың"
+style="width:100%;padding:10px;margin-top:10px;border-radius:8px;border:none;">
+
+<textarea id="textInput" placeholder="Пікір жаз..."
+style="width:100%;padding:10px;margin-top:10px;border-radius:8px;border:none;"></textarea>
+
+<button onclick="addComment()"
+style="margin-top:10px;padding:12px;width:100%;border:none;border-radius:10px;background:#4CAF50;color:white;font-weight:bold;">
+Жіберу
+</button>
+</div>
