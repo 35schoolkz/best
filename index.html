@@ -8,21 +8,17 @@
 <style>
 body{margin:0;font-family:sans-serif}
 
-/* фон */
 .bg{
 position:fixed;width:100%;height:100%;
 background:url("school.jpg") center/cover;
 filter:blur(6px);z-index:-1;
 }
 
-/* контейнер */
 .container{max-width:900px;margin:auto;padding:20px}
 
-/* header */
 .header{display:flex;gap:10px;align-items:center;cursor:pointer}
 .logo{width:50px}
 
-/* меню */
 .menu{
 display:grid;
 grid-template-columns:repeat(3,1fr);
@@ -38,7 +34,6 @@ background:white;
 cursor:pointer;
 }
 
-/* slider */
 .slider{position:relative;height:200px}
 .slide{
 position:absolute;width:100%;height:100%;
@@ -46,18 +41,16 @@ object-fit:cover;opacity:0;transition:1s
 }
 .slide.active{opacity:1}
 
-/* страницы */
 .page{display:none}
 .page.active{display:block}
 
-/* фото */
 .feed img{
 width:100%;
 margin:10px 0;
 border-radius:10px;
+cursor:pointer;
 }
 
-/* рейтинг */
 .rating-box{
 background:white;
 padding:20px;
@@ -82,7 +75,6 @@ transition:0.3s;
 .silver{background:linear-gradient(90deg,#C0C0C0,#fff)}
 .bronze{background:linear-gradient(90deg,#CD7F32,#fff)}
 
-/* видео */
 iframe{
 width:100%;
 height:200px;
@@ -91,13 +83,48 @@ border-radius:10px;
 border:none;
 }
 
-/* комментарии */
 .comment-box{
 background:white;
 padding:15px;
 border-radius:15px;
 margin:10px 0;
 box-shadow:0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* ГАЛЕРЕЯ */
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.95);
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:9999;
+}
+
+.modal img{
+max-width:90%;
+max-height:75%;
+}
+
+.controls{
+position:absolute;
+top:50%;
+width:100%;
+display:flex;
+justify-content:space-between;
+}
+
+.controls button{
+background:white;
+border:none;
+padding:10px;
+border-radius:50%;
+cursor:pointer;
 }
 </style>
 </head>
@@ -113,7 +140,6 @@ box-shadow:0 5px 15px rgba(0,0,0,0.1);
 <h2>№35 Мектеп-лицейі</h2>
 </div>
 
-<!-- HOME -->
 <div id="home" class="page active">
 
 <div class="menu">
@@ -136,19 +162,16 @@ box-shadow:0 5px 15px rgba(0,0,0,0.1);
 
 </div>
 
-<!-- ОҚУ -->
 <div id="bilim" class="page">
 <h2>📘 Оқу жетістігі</h2>
 <div id="bilimFeed" class="feed"></div>
 </div>
 
-<!-- МҰҒАЛІМ САПАСЫ -->
 <div id="teachers" class="page">
 <h2>👩‍🏫 Мұғалім сапасы</h2>
 <div id="mugFeed" class="feed"></div>
 </div>
 
-<!-- БІР МАҚСАТ -->
 <div id="maksat" class="page">
 <h2>🎯 Бір мақсат, бір мүдде</h2>
 
@@ -159,7 +182,6 @@ box-shadow:0 5px 15px rgba(0,0,0,0.1);
 <div id="ataFeed" class="feed"></div>
 </div>
 
-<!-- ТӘРБИЕ -->
 <div id="safe" class="page">
 <h2>🛡 Тәрбие жұмысы</h2>
 
@@ -170,14 +192,13 @@ box-shadow:0 5px 15px rgba(0,0,0,0.1);
 <div id="tarFeed" class="feed"></div>
 </div>
 
-<!-- РЕЙТИНГ -->
 <div id="rating" class="page">
 <div class="rating-box">
 
 <h2>🏆 Оқушы белсенділігі</h2>
 
 <div class="rank gold" onclick="openGallery('uldana')">🥇 Тәліпова Ұлдана</div>
-<div class="rank gold" onclick="openGallery('nurai')">🥇 Сәдуақас Нұрай</div>
+<div class="rank gold" onclick="openGallery('nuray')">🥇 Сәдуақас Нұрай</div>
 <div class="rank gold" onclick="openGallery('korkem')">🥇 Мұхамеджанова Көркем</div>
 
 <div class="rank silver" onclick="openGallery('akerke')">🥈 Шерімқожа Ақерке</div>
@@ -188,243 +209,64 @@ box-shadow:0 5px 15px rgba(0,0,0,0.1);
 <div class="rank bronze" onclick="openGallery('nurislam')">🥉 Мейрамбеков Нұрислам</div>
 <div class="rank bronze" onclick="openGallery('almas')">🥉 Алмас Нұрислам</div>
 <div class="rank bronze" onclick="openGallery('merei')">🥉 Ақбергенова Мерей</div>
+
 </div>
 </div>
 
-<!-- ПІКІР -->
 <div id="comment" class="page">
 <h2>💬 Пікірлер</h2>
 
-<div id="commentsList">
-
-<div class="comment-box">
-Нургуль Есеналиева:<br>
-Мектеп ұжымына алғыс айтамыз. Балаларымызға жақсы білім беріп, тәрбиелеп жатқандарыңыз үшін рахмет. Еңбектеріңізге табыс тілейміз!
-</div>
-
-<div class="comment-box">
-Назым Омарова:<br>
-Балаларымызға көңіл бөліп, білім беріп жатқандарыңыз үшін алғысымыз шексіз. Еңбектеріңізге сәттілік тілейміз!
-</div>
-
-<div class="comment-box">
-Айгерим Даниярова:<br>
-Мектептің жетістіктері көбейе берсин. Тек саттилик!
-</div>
-
-</div>
+<div id="commentsList"></div>
 
 <input id="nameInput" placeholder="Атың">
 <input id="textInput" placeholder="Пікір">
 <button onclick="addComment()">Жіберу</button>
+</div>
 
 </div>
 
+<!-- ГАЛЕРЕЯ -->
+<div id="modal" class="modal">
+<img id="img">
+<div class="controls">
+<button onclick="prev()">⬅</button>
+<button onclick="next()">➡</button>
+</div>
 </div>
 
 <script>
 
-/* вкладки */
 function openPage(id){
 document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
 document.getElementById(id).classList.add("active");
 }
 
-/* билим */
-let b="";
-for(let i=1;i<=19;i++){b+=`<img src="bilim${i}.jpg">`}
-bilimFeed.innerHTML=b;
+function load(id,prefix,count){
+let html="";
+for(let i=1;i<=count;i++){
+html+=`<img src="${prefix}${i}.jpg">`;
+}
+document.getElementById(id).innerHTML=html;
+}
 
-/* kukik */
-let k="";
-for(let i=1;i<=8;i++){k+=`<img src="kukik${i}.jpg">`}
-tarFeed.innerHTML=k;
+load("bilimFeed","bilim",19);
+load("tarFeed","kukik",8);
+load("ataFeed","ata",8);
+load("mugFeed","mug",8);
 
-/* ata */
-let a="";
-for(let i=1;i<=7;i++){a+=`<img src="ata${i}.jpg">`}
-ataFeed.innerHTML=a;
-
-/* mug */
-let m="";
-for(let i=1;i<=8;i++){m+=`<img src="mug${i}.jpg">`}
-mugFeed.innerHTML=m;
-
-/* комментарии */
 function addComment(){
 let name=nameInput.value;
 let text=textInput.value;
-if(!name || !text) return;
+if(!name||!text)return;
 
 let div=document.createElement("div");
 div.className="comment-box";
-div.innerHTML=name+"<br>"+text;
+div.innerHTML=name+": "+text;
 
 commentsList.prepend(div);
-
-nameInput.value="";
-textInput.value="";
 }
 
-</script>
-
-<script>
-/* =========================
-   ДОБАВЛЕНИЕ ФОТО (НЕ УДАЛЯЕТ СТАРОЕ)
-========================= */
-(function(){
-
-  function addImages(containerId, prefix, count){
-    var el = document.getElementById(containerId);
-    if(!el) return;
-
-    var html = "";
-    for(var i=1;i<=count;i++){
-      html += '<img src="'+prefix+i+'.jpg">';
-    }
-
-    el.insertAdjacentHTML('beforeend', html); // ДОБАВЛЯЕМ
-  }
-
-  // если контейнера нет — создаём его автоматически (не ломаем сайт)
-  function ensureContainer(pageId, containerId){
-    var page = document.getElementById(pageId);
-    if(!page) return;
-
-    if(!document.getElementById(containerId)){
-      var div = document.createElement("div");
-      div.id = containerId;
-      div.className = "feed";
-      page.appendChild(div);
-    }
-  }
-
-  // Тәрбие жұмысы
-  ensureContainer("safe","tarFeed");
-  addImages("tarFeed","kukik",8);
-
-  // Бір мақсат
-  ensureContainer("maksat","ataFeed");
-  addImages("ataFeed","ata",7);
-
-  // Мұғалім сапасы
-  ensureContainer("teachers","mugFeed");
-  addImages("mugFeed","mug",8);
-
-})();
-</script>
-
-
-<script>
-/* =========================
-   КОММЕНТАРИИ (ДОБАВЛЕНИЕ)
-========================= */
-
-// создаём список если нет
-(function(){
-  var commentPage = document.getElementById("comment");
-  if(!commentPage) return;
-
-  if(!document.getElementById("commentsList")){
-    var list = document.createElement("div");
-    list.id = "commentsList";
-    commentPage.prepend(list);
-  }
-
-  var list = document.getElementById("commentsList");
-
-  // ДОБАВЛЯЕМ ГОТОВЫЕ КОММЕНТЫ
-  list.insertAdjacentHTML("beforeend", `
-    <div class="comment-box">
-      <div class="comment-name">Нургуль Есеналиева:</div>
-      <div class="comment-text">
-        Мектеп ұжымына алғыс айтамыз. Балаларымызға жақсы білім беріп, тәрбиелеп жатқандарыңыз үшін рахмет. Еңбектеріңізге табыс тілейміз!
-      </div>
-    </div>
-
-    <div class="comment-box">
-      <div class="comment-name">Назым Омарова:</div>
-      <div class="comment-text">
-        Балаларымызға көңіл бөліп, білім беріп жатқандарыңыз үшін алғысымыз шексіз. Еңбектеріңізге сәттілік тілейміз!
-      </div>
-    </div>
-
-    <div class="comment-box">
-      <div class="comment-name">Айгерим Даниярова:</div>
-      <div class="comment-text">
-        Мектептің жетістіктері көбейе берсин. Тек саттилик!
-      </div>
-    </div>
-  `);
-
-})();
-
-// функция добавления
-function addComment(){
-  var name = document.getElementById("nameInput");
-  var text = document.getElementById("textInput");
-
-  if(!name || !text) return;
-  if(!name.value || !text.value) return;
-
-  var list = document.getElementById("commentsList");
-  if(!list) return;
-
-  var div = document.createElement("div");
-  div.className = "comment-box";
-
-  div.innerHTML = `
-    <div class="comment-name">${name.value}:</div>
-    <div class="comment-text">${text.value}</div>
-  `;
-
-  list.prepend(div);
-
-  name.value="";
-  text.value="";
-}
-</script>
-
-
-<style id="comment_style_add">
-.comment-box{
-  background:white;
-  padding:15px;
-  border-radius:15px;
-  margin:10px 0;
-  box-shadow:0 5px 15px rgba(0,0,0,0.1);
-}
-
-.comment-name{
-  font-weight:bold;
-  margin-bottom:5px;
-}
-
-.comment-text{
-  color:#555;
-}
-</style>
-
-<script>
-
-<!-- ===== ГАЛЕРЕЯ ===== -->
-
-<div id="modal" class="modal">
-<img id="img">
-
-<div class="controls">
-<button onclick="prev()">⬅</button>
-<button onclick="next()">➡</button>
-</div>
-
-<div onclick="closeGallery()" class="close">❌</div>
-</div>
-
-<script>
-
-/* ===== ДИПЛОМЫ ===== */
-
-const galleries = {
+const galleries={
 uldana:["uldana1.jpeg","uldana2.jpeg","uldana3.jpeg","uldana4.jpeg","uldana5.jpeg","uldana6.jpeg","uldana7.jpeg"],
 nuray:["nurai.png","nurai2.png"],
 korkem:["korkem1.jpeg","korkem2.jpeg","korkem3.jpeg","korkem4.jpeg","korkem5.jpeg","korkem6.jpeg"],
@@ -437,35 +279,27 @@ almas:["almas1.jpeg","almas2.jpeg","almas3.jpeg","almas4.jpeg","almas5.jpeg","al
 merei:["merei1.jpeg","merei2.jpeg","merei3.jpeg","merei4.jpeg","merei5.jpeg","merei6.jpeg"]
 };
 
-let current = [];
-let index = 0;
+let current=[],index=0;
 
 function openGallery(name){
-  if(!galleries[name]) return;
-
-  current = galleries[name];
-  index = 0;
-
-  document.getElementById("modal").style.display = "flex";
-  document.getElementById("img").src = current[index];
+if(!galleries[name]) return;
+current=galleries[name];
+index=0;
+modal.style.display="flex";
+img.src=current[index];
 }
 
 function next(){
-  index = (index + 1) % current.length;
-  document.getElementById("img").src = current[index];
+index=(index+1)%current.length;
+img.src=current[index];
 }
 
 function prev(){
-  index = (index - 1 + current.length) % current.length;
-  document.getElementById("img").src = current[index];
-}
-
-function closeGallery(){
-  document.getElementById("modal").style.display = "none";
+index=(index-1+current.length)%current.length;
+img.src=current[index];
 }
 
 </script>
-
 
 </body>
 </html>
